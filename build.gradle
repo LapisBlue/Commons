@@ -1,0 +1,39 @@
+// Apply Gradle plugins
+plugins {
+    id 'java'
+    id 'maven'
+    id 'eclipse'
+    id 'idea'
+
+    id 'com.github.hierynomus.license' version '0.11.0'
+}
+
+defaultTasks 'licenseFormat', 'build'
+
+// Project information
+group = 'blue.lapis'
+version = '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+// Project repositories
+repositories {
+    mavenCentral()
+}
+
+// Project dependencies
+dependencies {
+    compile project('SpongeAPI') // TODO: Change to Maven dependency hosted in the future
+}
+
+// License header formatting
+license {
+    header file('LICENSE')
+    sourceSets = project.sourceSets
+    ignoreFailures false
+    strictCheck true
+    mapping {
+        java = 'SLASHSTAR_STYLE'
+    }
+}

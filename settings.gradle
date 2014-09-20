@@ -1,0 +1,3 @@
+rootProject.name = 'LapisCommons'
+include 'SpongeAPI'
+project(':SpongeAPI').projectDir = file('lib/SpongeAPI')
