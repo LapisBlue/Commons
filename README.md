@@ -1,4 +1,4 @@
-LapisDev Commons
+LapisBlue Commons
 =============
 [![travis badge](https://api.travis-ci.org/LapisBlue/Commons.svg)](https://travis-ci.org/LapisDev/Commons/)
 
