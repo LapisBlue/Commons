@@ -20,32 +20,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.command;
+package blue.lapis.common.command.token;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- *
+ * Thread-safe registry/factory for {@link TokenParser}s, which resolve Strings into typesafe game objects.
  */
-public class InvalidTokenException extends RuntimeException {
+public class TokenParserRegistry {
 
-    private String token;
-    private Class<?> expectedType;
+    private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private static final Map<Class<?>, TokenParser<?>> tokenParserMap = new HashMap<Class<?>, TokenParser<?>>();
 
-    public InvalidTokenException(String token, Class<?> expectedType) {
-        this.token = token;
-        this.expectedType = expectedType;
+    @SuppressWarnings("unchecked")
+    @Nullable
+    public static <T> TokenParser<T> get(@Nonnull Class<T> clazz) {
+        TokenParser<T> t;
+        lock.readLock().lock();
+        {
+            t = (TokenParser<T>) tokenParserMap.get(clazz);
+        }
+        lock.readLock().unlock();
+        return t;
     }
 
-    /**
-     * @return the token that the TokenParser attempted to resolve
-     */
-    public String getToken() {
-        return token;
-    }
-
-    /**
-     * @return the Class of the object which the TokenParser creates
-     */
-    public Class<?> getExpectedType() {
-        return expectedType;
+    public static <T> void register(Class<T> clazz, TokenParser<T> parser) {
+        lock.writeLock().lock();
+        {
+            tokenParserMap.put(clazz, parser);
+        }
+        lock.writeLock().unlock();
     }
 }

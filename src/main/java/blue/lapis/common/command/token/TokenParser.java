@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.command;
+package blue.lapis.common.command.token;
 
 import org.spongepowered.api.command.CommandSource;
 
@@ -29,13 +29,13 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 /**
- * Converts a String parameter, as from a Command, into a game object of type {@code T}. Additionally, implementors of
- * this class are able to produce suggestions for completing a partial entry.
+ * Converts a String parameter, as from a Command, into a game object of type {@code T}. Additionally, implementors
+ * of this class are able to produce suggestions for completing a partial entry, such as for tab-complete.
  */
 public interface TokenParser<T> {
 
     /**
-     * Parse the provided token and return a typesafe object for it.
+     * Parse the provided parser and return a typesafe object for it.
      * @param source    the Player, console, or command block which initiated this object resolution
      * @param token     the token to be resolved into an object of type {@code T}
      * @return an object of type T which corresponds to the String entered
@@ -45,8 +45,8 @@ public interface TokenParser<T> {
     T parse(@Nonnull CommandSource source, @Nonnull String token);
 
     /**
-     * Get tab-complete suggestions for this token
-     * @param token     The token to generate tab-complete suggestions for
+     * Get tab-complete suggestions for this parser
+     * @param token     The parser to generate tab-complete suggestions for
      * @return a List of possible completions, or an empty List if none are available
      */
     @Nonnull

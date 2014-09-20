@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.command;
+package blue.lapis.common.command.token;
 
 import blue.lapis.common.LapisCommonsPlugin;
 import org.spongepowered.api.command.CommandSource;
@@ -33,13 +33,13 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 /**
- *
+ * Converts a Player name into an online {@link Player}.
  */
 public class PlayerTokenParser implements TokenParser<Player> {
 
     @Override
     @Nonnull
-    public Player parse(@Nonnull CommandSource source, @Nonnull final String token) {
+    public Player parse(@Nonnull final CommandSource source, @Nonnull final String token) {
         Collection<Player> players = LapisCommonsPlugin.getInstance().getGameInstance().getOnlinePlayers();
         String matchString = token.toLowerCase();
 
