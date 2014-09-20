@@ -25,27 +25,14 @@ package blue.lapis.common.command;
 
 import org.spongepowered.api.command.CommandSource;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
 /**
- * Converts a String parameter, as from a Command, into a game object of type {@code T}. Additionally, implementors of
- * this class are able to produce suggestions for completing a partial entry.
+ * Represents the environment in which a command has been called; its CommandConfiguration, its CommandSource, parsed
+ * arguments, etc.
  */
-public interface TokenParser<T> {
-    /**
-     * Parse the provided token and return a typesafe object for it.
-     * @param source    the Player, console, or command block which initiated this object resolution
-     * @param token     the token to be resolved into an object of type {@code T}
-     * @return          an object of type T which corresponds to the String entered
-     * @throws          InvalidTokenException if the String does not appear to match any object
-     */
-    @Nonnull T parse(@Nonnull CommandSource source, @Nonnull String token);
+public class CommandContext {
+    private final CommandSource source;
 
-    /**
-     * Get tab-complete suggestions for this token
-     * @param token     The token to generate tab-complete suggestions for
-     * @return          a List of possible completions, or an empty List if none are available
-     */
-    @Nonnull List<String> suggest(@Nonnull CommandSource source, String token);
+    public CommandContext(CommandSource source) {
+        this.source = source;
+    }
 }

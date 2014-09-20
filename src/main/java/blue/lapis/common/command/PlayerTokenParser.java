@@ -36,7 +36,7 @@ import java.util.List;
  *
  */
 public class PlayerTokenParser implements TokenParser<Player> {
-    @Override public Player parse(@Nonnull CommandSource source, @Nonnull final String token) {
+    @Override public @Nonnull Player parse(@Nonnull CommandSource source, @Nonnull final String token) {
         Collection<Player> players = LapisCommonsPlugin.getInstance().getGameInstance().getOnlinePlayers();
         String matchString = token.toLowerCase();
 
@@ -56,10 +56,10 @@ public class PlayerTokenParser implements TokenParser<Player> {
             }
         }
 
-        return null;
+        throw new InvalidTokenException(token, Player.class);
     }
 
-    @Override public List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
+    @Override public @Nonnull List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
         ArrayList<String> results = new ArrayList<String>();
         Collection<Player> players = LapisCommonsPlugin.getInstance().getGameInstance().getOnlinePlayers();
         String matchString = partial.toLowerCase();

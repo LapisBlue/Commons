@@ -24,11 +24,9 @@
 package blue.lapis.common.command;
 
 import javax.annotation.Nonnull;
-import java.io.StreamTokenizer;
-import java.util.StringTokenizer;
 
 /**
- *
+ * Simple interface for converting a joined String into a series of tokens.
  */
 public interface Tokenizer {
     @Nonnull String[] getTokens(@Nonnull final String s);

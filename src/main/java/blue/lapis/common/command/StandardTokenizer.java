@@ -24,18 +24,21 @@
 package blue.lapis.common.command;
 
 import javax.annotation.Nonnull;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.ArrayList;
 
 /**
- *
+ * Reference implementation of the Tokenizer; generally splits on spaces, except inside quoted strings.
  */
 public class StandardTokenizer implements Tokenizer {
     @Nonnull @Override public String[] getTokens(@Nonnull final String s) {
         StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(s));
+        tokenizer.eolIsSignificant(false);
+        tokenizer.slashSlashComments(false);
+        tokenizer.slashStarComments(false);
+
         ArrayList<String> result = new ArrayList<String>();
         try {
             while (tokenizer.nextToken()!=StreamTokenizer.TT_EOF) {
