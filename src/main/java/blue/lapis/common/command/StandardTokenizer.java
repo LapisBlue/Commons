@@ -1,4 +1,4 @@
-package net.spongedev.commons.command;
+package blue.lapis.common.command;
 
 import javax.annotation.Nonnull;
 import java.io.ByteArrayInputStream;
