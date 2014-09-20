@@ -3,4 +3,4 @@
 	url = https://github.com/LapisDev/Command.git
 [submodule "Persistence"]
 	path = Persistence
-	url = https://github.com/LapisDev/Persistence
+	url = https://github.com/LapisDev/Persistence.git
