@@ -7,7 +7,7 @@ import java.util.UUID;
  */
 public interface Economy {
     public static final String ACCOUNT_TYPE_PLAYER = "player";
-    public static final String ACCOuNT_TYPE_BANK = "bank";
+    public static final String ACCOUNT_TYPE_BANK = "bank";
 
     public void createAccount(UUID player);
 
