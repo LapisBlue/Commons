@@ -4,3 +4,6 @@
 [submodule "Persistence"]
 	path = Persistence
 	url = https://github.com/LapisDev/Persistence.git
+[submodule "lib/SpongeAPI"]
+	path = lib/SpongeAPI
+	url = https://github.com/SpongePowered/SpongeAPI.git
