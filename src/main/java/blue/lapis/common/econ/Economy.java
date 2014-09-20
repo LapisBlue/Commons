@@ -1,4 +1,4 @@
-package eco;
+package blue.lapis.common.econ;
 
 import java.util.UUID;
 
