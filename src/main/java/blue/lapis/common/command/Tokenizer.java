@@ -28,5 +28,7 @@ import javax.annotation.Nonnull;
  * Simple interface for converting a joined String into a series of tokens.
  */
 public interface Tokenizer {
-    @Nonnull String[] getTokens(@Nonnull final String s);
+
+    @Nonnull
+    String[] getTokens(@Nonnull final String s);
 }

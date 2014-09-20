@@ -29,6 +29,7 @@ import org.spongepowered.api.command.CommandSource;
  * arguments, etc.
  */
 public class CommandContext {
+
     private final CommandSource source;
 
     public CommandContext(CommandSource source) {

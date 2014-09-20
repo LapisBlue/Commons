@@ -26,8 +26,10 @@ package blue.lapis.common.command;
  *
  */
 public class InvalidTokenException extends RuntimeException {
-    private String   token;
+
+    private String token;
     private Class<?> expectedType;
+
     public InvalidTokenException(String token, Class<?> expectedType) {
         this.token = token;
         this.expectedType = expectedType;

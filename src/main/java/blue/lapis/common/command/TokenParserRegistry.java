@@ -22,22 +22,25 @@
  */
 package blue.lapis.common.command;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Thread-safe registry/factory for {@link blue.lapis.common.command.TokenParser}s, which resolve Strings into
  * typesafe game objects.
  */
 public class TokenParserRegistry {
-    private static final ReentrantReadWriteLock        lock           = new ReentrantReadWriteLock();
+
+    private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private static final Map<Class<?>, TokenParser<?>> tokenParserMap = new HashMap<Class<?>, TokenParser<?>>();
 
     @SuppressWarnings("unchecked")
-    public static @Nullable <T> TokenParser<T> get(@Nonnull Class<T> clazz) {
+    @Nullable
+    public static <T> TokenParser<T> get(@Nonnull Class<T> clazz) {
         TokenParser<T> t;
         lock.readLock().lock();
         {
@@ -48,8 +51,10 @@ public class TokenParserRegistry {
     }
 
     public static <T> void register(Class<T> clazz, TokenParser<T> parser) {
-        lock.writeLock().lock(); {
+        lock.writeLock().lock();
+        {
             tokenParserMap.put(clazz, parser);
-        } lock.writeLock().unlock();
+        }
+        lock.writeLock().unlock();
     }
 }
