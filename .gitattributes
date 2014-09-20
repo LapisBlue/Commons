@@ -1,0 +1,9 @@
+* text=auto
+*.bat text eol=crlf
+gradlew text eol=lf
+
+#################
+## Java
+#################
+*.java text
+*.java diff=java
