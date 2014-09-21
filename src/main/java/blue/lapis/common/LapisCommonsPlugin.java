@@ -40,7 +40,6 @@ public class LapisCommonsPlugin {
     private Game game;
 
     public LapisCommonsPlugin() {
-        Preconditions.checkState(instance == null, "Already initialized");
         instance = this;
     }
 
@@ -64,12 +63,5 @@ public class LapisCommonsPlugin {
 
     public Game getGameInstance() {
         return game;
-    }
-
-    /**
-     * DO NOT USE: This method is for unit-testing
-     */
-    public void setGameInstance(Game game) {
-        this.game = game;
     }
 }

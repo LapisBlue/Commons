@@ -25,6 +25,7 @@ package blue.lapis.commons.test;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.StandardTokenizer;
 import blue.lapis.common.command.token.PlayerTokenParser;
+import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
@@ -33,6 +34,7 @@ import org.spongepowered.api.GameRegistry;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.EventManager;
+import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.math.Vector3d;
 import org.spongepowered.api.math.Vector3f;
 import org.spongepowered.api.plugin.PluginManager;
@@ -45,6 +47,8 @@ import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -60,7 +64,10 @@ public class TokenizerVerification {
 
     @Before
     public void initTests() {
-
+        PreInitializationEvent init = mock(PreInitializationEvent.class);
+        when(init.getGame()).thenReturn(new GameProxy());
+        when(init.getPluginLog()).thenReturn(LogManager.getLogger(LapisCommonsPlugin.class));
+        plugin.initialize(init);
     }
 
     @Test
@@ -77,7 +84,6 @@ public class TokenizerVerification {
 
     @Test
     public void resolvePlayer() {
-        LapisCommonsPlugin.getInstance().setGameInstance(gameProxy);
         String resolution = playerParser.parse(null, "Lo").getName();
         Assert.assertEquals("Lorem", resolution);
         resolution = playerParser.parse(null, "Foo").getName();
