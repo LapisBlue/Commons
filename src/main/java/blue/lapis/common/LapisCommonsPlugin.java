@@ -47,4 +47,11 @@ public class LapisCommonsPlugin {
         return gameInstance;
     }
 
+    /**
+     * DO NOT USE: This method is for unit-testing
+     */
+    public void setGameInstance(Game game) {
+        this.gameInstance = game;
+    }
+
 }

@@ -45,7 +45,13 @@ public class StandardTokenizer implements Tokenizer {
         ArrayList<String> result = new ArrayList<String>();
         try {
             while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
-                result.add(tokenizer.sval);
+                if (tokenizer.ttype==StreamTokenizer.TT_WORD) {
+                    result.add(tokenizer.sval);
+                } else if (tokenizer.ttype==StreamTokenizer.TT_NUMBER) {
+                    result.add(tokenizer.nval+"");
+                } else if (tokenizer.ttype=='"') {
+                    result.add(tokenizer.sval);
+                }
             }
         } catch (IOException ex) {
         }
