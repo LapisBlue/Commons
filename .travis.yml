@@ -4,3 +4,6 @@ jdk:
   - openjdk7
   - oraclejdk7
   - oraclejdk8
+notifications:
+  email: false
+  irc: "irc.esper.net#lapis"
