@@ -20,25 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
-
-import blue.lapis.common.economy.account.AccountSystem;
-import blue.lapis.common.economy.currency.CurrencyFormatterRegistry;
+package blue.lapis.common.economy.currency;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public final class Economy {
-    private static AccountSystem accountSystem;
+/**
+ * Produces formatted currency Strings for display
+ */
+public interface CurrencyFormatter {
 
-    @Nullable
-    public static AccountSystem getAccountSystem() {
-        //TODO: create an instance of the account system implementation
-        return null;
-    }
-
+    /**
+     * Converts a machine-readable currency into a human-readable String which expresses its quantity and units
+     * @param amount The amount of currency to render
+     * @return A formatted String expressing the currency's quantity and units.
+     */
     @Nonnull
-    public static String formatCurrency(double amount, String prefix) {
-        return CurrencyFormatterRegistry.get(prefix).format(amount);
-    }
+    String format(double amount);
 }

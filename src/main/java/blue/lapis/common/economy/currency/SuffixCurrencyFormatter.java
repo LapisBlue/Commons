@@ -20,25 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
+package blue.lapis.common.economy.currency;
 
-import blue.lapis.common.economy.account.AccountSystem;
-import blue.lapis.common.economy.currency.CurrencyFormatterRegistry;
+import java.text.NumberFormat;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public final class Economy {
-    private static AccountSystem accountSystem;
+/**
+ * Formats currency by simply appending a currency symbol to a formatted number.
+ */
+public class SuffixCurrencyFormatter implements CurrencyFormatter {
+    private final String singular;
+    private final String plural;
+    private final NumberFormat formatter;
 
-    @Nullable
-    public static AccountSystem getAccountSystem() {
-        //TODO: create an instance of the account system implementation
-        return null;
+    public SuffixCurrencyFormatter(String singular, String plural) {
+        this.singular = singular;
+        this.plural = plural;
+        formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(0);
+        formatter.setMaximumFractionDigits(2);
+        formatter.setGroupingUsed(true);
     }
+
+    public SuffixCurrencyFormatter(String prefix) {
+        this(prefix, prefix);
+    }
+
 
     @Nonnull
-    public static String formatCurrency(double amount, String prefix) {
-        return CurrencyFormatterRegistry.get(prefix).format(amount);
+    @Override
+    public String format(double amount) {
+        if (amount==1.0d) {
+            return formatter.format(amount)+singular;
+        } else {
+            return formatter.format(amount)+plural;
+        }
     }
+
+
 }
