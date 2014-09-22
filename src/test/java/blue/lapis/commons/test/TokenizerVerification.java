@@ -30,23 +30,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.GameRegistry;
-import org.spongepowered.api.Platform;
 import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.state.PreInitializationEvent;
-import org.spongepowered.api.math.Vector3d;
-import org.spongepowered.api.math.Vector3f;
-import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.world.World;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -57,15 +45,24 @@ public class TokenizerVerification {
     LapisCommonsPlugin plugin = new LapisCommonsPlugin();
     public StandardTokenizer tokenizer = new StandardTokenizer();
     public PlayerTokenParser playerParser = new PlayerTokenParser();
-    public Game gameProxy = new GameProxy();
+    public Game gameProxy;
 
     public String identifiers = "one two three four 81 {} six [ ]";
     public String quotes = "one \"two three\" four 81 {} [ ]";
 
     @Before
     public void initTests() {
+        List<Player> playerList = new ArrayList<Player>();
+        for(String name : new String[]{"Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot"}) {
+            Player p = mock(Player.class);
+            when(p.getName()).thenReturn(name);
+            playerList.add(p);
+        }
+        gameProxy = mock(Game.class);
+        when(gameProxy.getOnlinePlayers()).thenReturn(playerList);
+
         PreInitializationEvent init = mock(PreInitializationEvent.class);
-        when(init.getGame()).thenReturn(new GameProxy());
+        when(init.getGame()).thenReturn(gameProxy);
         when(init.getPluginLog()).thenReturn(LogManager.getLogger(LapisCommonsPlugin.class));
         plugin.initialize(init);
     }
@@ -90,160 +87,4 @@ public class TokenizerVerification {
         Assert.assertEquals("Foo", resolution);
     }
 
-
-
-    private class GameProxy implements Game {
-        @Override
-        public Platform getPlatform() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public PluginManager getPluginManager() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public EventManager getEventManager() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public GameRegistry getRegistry() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public Collection<Player> getOnlinePlayers() {
-            Set<Player> result = new HashSet<Player>();
-            result.add(new PlayerProxy("Foo"));
-            result.add(new PlayerProxy("Bar"));
-            result.add(new PlayerProxy("Baz"));
-            result.add(new PlayerProxy("Lorem"));
-            result.add(new PlayerProxy("Ipsum"));
-            result.add(new PlayerProxy("Marco"));
-            result.add(new PlayerProxy("Polo"));
-            result.add(new PlayerProxy("Foot"));
-            return result;
-        }
-
-        @Override
-        public int getMaxPlayers() {
-            return 0;
-        }
-
-        @Nullable
-        @Override
-        public Player getPlayer(UUID uuid) {
-            return null;
-        }
-
-        @Override
-        public Collection<World> getWorlds() {
-            return null;
-        }
-
-        @Override
-        public World getWorld(UUID uuid) {
-            return null;
-        }
-
-        @Override
-        public World getWorld(String s) {
-            return null;
-        }
-
-        @Override
-        public void broadcastMessage(String s) {
-
-        }
-
-        @Override
-        public String getAPIVersion() {
-            return null;
-        }
-
-        @Override
-        public String getImplementationVersion() {
-            return null;
-        }
-    }
-
-    private class PlayerProxy implements Player {
-        private final String name;
-
-        public PlayerProxy(@Nonnull final String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public String getDisplayName() {
-            return name;
-        }
-
-        @Override
-        public void damage(double v) {
-        }
-
-        @Override
-        public double getHealth() {
-            return 0;
-        }
-
-        @Override
-        public void setHealth(double v) {
-        }
-
-        @Override
-        public UUID getUniqueID() {
-            return null;
-        }
-
-        @Override
-        public boolean isBurning() {
-            return false;
-        }
-
-        @Override
-        public int getDuration() {
-            return 0;
-        }
-
-        @Override
-        public void setDuration(int i) {
-        }
-
-        @Override
-        public Vector3f getVelocity() {
-            return null;
-        }
-
-        @Override
-        public void setVelocity(Vector3f vector3f) {
-
-        }
-
-        @Override
-        public Vector3d getPosition() {
-            return null;
-        }
-
-        @Override
-        public void setPosition(Vector3d vector3d) {
-        }
-
-        @Override
-        public Vector3f getRotation() {
-            return null;
-        }
-
-        @Override
-        public void setRotation(Vector3f vector3f) {
-        }
-    }
 }
