@@ -22,6 +22,8 @@
  */
 package blue.lapis.common.economy.currency;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 public interface CurrencySystem {
@@ -29,7 +31,7 @@ public interface CurrencySystem {
     @Nullable
     Currency getCurrency(int id);
 
-    Currency[] getCurrencies();
+    List<Currency> getCurrencies();
 
     boolean registerCurrency(Currency currency, int id);
 }

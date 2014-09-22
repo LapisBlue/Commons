@@ -30,12 +30,14 @@ public interface EconomyAccount {
 
     String getName();
 
+    Currency getCurrency();
+
     double getBalance();
     Transaction setBalance(double balance);
 
-    TransactionHistory getHistory();
+    // TODO: Transaction creation
 
-    Currency getCurrency();
+    TransactionHistory getHistory();
 
     boolean delete();
 }
