@@ -5,6 +5,8 @@ package blue.lapis.common.econ;
  */
 public interface EconomyAccount {
 
+    String getAccountName();
+
     double getBalance();
 
     void setBalance();
@@ -12,4 +14,8 @@ public interface EconomyAccount {
     boolean hasCashFlow();
 
     CashFlow getCashFlow();
+
+    String getCurrencyNameSingular();
+
+    String getCurrencyNamePlural();
 }
