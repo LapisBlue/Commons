@@ -20,17 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.econ;
+package blue.lapis.common.perm;
 
-public interface AccountSystem {
+public interface PermissionLevel extends Comparable<PermissionLevel> {
 
-    EconomyAccount[] getAccounts(Object gameObject);
+    PermissionLevel guest();
 
-    EconomyAccount getAccount(Object gameObject, String accountName);
+    PermissionLevel normal();
 
-    boolean hasAccount(Object gameObject, String accountName);
+    PermissionLevel trusted();
 
-    EconomyAccount createAccount(Object gameObject, String accountName);
+    PermissionLevel mod();
 
-    void deleteAccount(Object gameObject, String accountName);
+    PermissionLevel admin();
 }
