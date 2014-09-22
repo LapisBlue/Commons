@@ -32,4 +32,6 @@ public interface EconomyAccount {
     TransactionHistory getHistory();
 
     Currency getCurrency();
+
+    boolean delete();
 }

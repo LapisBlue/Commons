@@ -24,18 +24,16 @@ package blue.lapis.common.economy.system;
 
 import blue.lapis.common.economy.component.EconomyAccount;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 public interface AccountSystem {
 
-    EconomyAccount[] getAccounts(Object gameObject);
+    List<EconomyAccount> getAccounts();
+    List<EconomyAccount> getAccounts(Object owner);
 
     @Nullable
-    EconomyAccount getAccount(Object gameObject, String accountName);
-
-    boolean hasAccount(Object gameObject, String accountName);
-
-    EconomyAccount createAccount(Object gameObject, String accountName);
-
-    void deleteAccount(Object gameObject, String accountName);
+    EconomyAccount getAccount(Object owner, String accountName);
+    EconomyAccount createAccount(Object owner, String accountName);
 }
