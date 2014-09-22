@@ -20,18 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.component;
+package blue.lapis.common.economy.transaction;
 
-public interface EconomyAccount {
+public interface TransactionDetail {
 
-    String getName();
+    String getSource();
 
-    double getBalance();
-    Transaction setBalance(double balance);
+    String getDetails();
 
-    TransactionHistory getHistory();
-
-    Currency getCurrency();
-
-    boolean delete();
 }

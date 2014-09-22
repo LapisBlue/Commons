@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.economy.system;
 
-import blue.lapis.common.economy.component.Currency;
+import blue.lapis.common.economy.Currency;
 
 import javax.annotation.Nullable;
 

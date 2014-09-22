@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.economy.system;
 
-import blue.lapis.common.economy.component.EconomyAccount;
+import blue.lapis.common.economy.EconomyAccount;
 
 import java.util.List;
 

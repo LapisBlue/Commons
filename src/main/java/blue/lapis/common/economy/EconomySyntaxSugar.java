@@ -22,8 +22,6 @@
  */
 package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.component.EconomyAccount;
-
 import javax.annotation.Nullable;
 import java.util.UUID;
 

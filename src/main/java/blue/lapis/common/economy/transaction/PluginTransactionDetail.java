@@ -20,23 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.component;
+package blue.lapis.common.economy.transaction;
 
-import javax.annotation.Nullable;
+public interface PluginTransactionDetail extends TransactionDetail {
+    String getPluginName();
 
-public interface Transaction {
-    double getOldBalance();
-    double getNewBalance();
-    double getDifference();
+    String getReasonId();
 
-    TransactionDetail getDetails();
-
-    Result getResult();
-
-    public interface Result {
-        boolean isSuccess();
-
-        @Nullable
-        String getReason();
-    }
+    Object[] getCustomValues();
 }

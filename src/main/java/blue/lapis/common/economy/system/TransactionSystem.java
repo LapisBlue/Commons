@@ -22,8 +22,8 @@
  */
 package blue.lapis.common.economy.system;
 
-import blue.lapis.common.economy.component.EconomyAccount;
-import blue.lapis.common.economy.component.Transaction;
+import blue.lapis.common.economy.EconomyAccount;
+import blue.lapis.common.economy.transaction.Transaction;
 
 public interface TransactionSystem {
 

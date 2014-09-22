@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.economy.event;
 
-import blue.lapis.common.economy.component.Transaction;
+import blue.lapis.common.economy.transaction.Transaction;
 
 public interface TransactionEvent extends EconomyEvent {
 

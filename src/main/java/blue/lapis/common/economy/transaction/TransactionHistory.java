@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.component;
+package blue.lapis.common.economy.transaction;
 
-public interface TransactionDetail {
+import java.util.List;
 
-    String getSource();
-
-    String getDetails();
-
+public interface TransactionHistory {
+    List<Transaction> getTransactions();
+    List<Transaction> getTransactions(int limit);
 }
