@@ -20,16 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.perm;
+package blue.lapis.common.permission;
 
-interface Permission {
+public interface PermissionSystem {
 
-    String getPermissionPath();
+    // TODO: remove?
+    void addPermission(Class<?> plugin, Permission perm);
 
-    PermissionLevel getTrustLevel();
+    Permission[] gerPermissions(Class<?> plugin);
 
-    // todo: or String[] ?
-    String getSourcePlugin();
-
-    String getDescription();
+    Permission[] getPermissions();
 }

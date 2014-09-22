@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.perm;
+package blue.lapis.common.permission;
 
 public interface PermissionLevel extends Comparable<PermissionLevel> {
 
