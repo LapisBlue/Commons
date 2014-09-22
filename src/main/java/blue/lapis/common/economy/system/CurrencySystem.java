@@ -24,8 +24,11 @@ package blue.lapis.common.economy.system;
 
 import blue.lapis.common.economy.component.Currency;
 
+import javax.annotation.Nullable;
+
 public interface CurrencySystem {
 
+    @Nullable
     Currency getCurrency(int id);
 
     Currency[] getCurrencies();

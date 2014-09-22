@@ -24,6 +24,7 @@ package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.component.EconomyAccount;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public interface EconomySyntaxSugar {
@@ -32,9 +33,11 @@ public interface EconomySyntaxSugar {
 
     void printFlow(EconomyAccount account, Object receiver, int entries);
 
+    @Nullable
     String getFormattedBalance(EconomyAccount account);
 
     // TODO: formatted balance for any amount?
 
+    @Nullable
     EconomyAccount getPrimaryPlayerAccount(UUID playerId, int currency);
 }

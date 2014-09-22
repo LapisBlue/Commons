@@ -24,10 +24,13 @@ package blue.lapis.common.economy.system;
 
 import blue.lapis.common.economy.component.EconomyAccount;
 
+import javax.annotation.Nullable;
+
 public interface AccountSystem {
 
     EconomyAccount[] getAccounts(Object gameObject);
 
+    @Nullable
     EconomyAccount getAccount(Object gameObject, String accountName);
 
     boolean hasAccount(Object gameObject, String accountName);

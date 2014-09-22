@@ -25,9 +25,13 @@ package blue.lapis.common.economy;
 import blue.lapis.common.economy.system.AccountSystem;
 import blue.lapis.common.economy.system.TransactionSystem;
 
+import javax.annotation.Nullable;
+
 public interface Economy {
 
+    @Nullable
     AccountSystem getAccountSystem();
 
+    @Nullable
     TransactionSystem getTransactionSystem();
 }
