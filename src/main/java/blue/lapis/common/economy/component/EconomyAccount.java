@@ -27,11 +27,9 @@ public interface EconomyAccount {
     String getAccountName();
 
     double getBalance();
-
-    void setBalance(double balance);
+    Transaction setBalance(double balance);
 
     boolean hasHistory();
-
     TransactionHistory getHistory();
 
     Currency getCurrency();

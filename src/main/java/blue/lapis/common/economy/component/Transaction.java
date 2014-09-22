@@ -22,13 +22,21 @@
  */
 package blue.lapis.common.economy.component;
 
+import javax.annotation.Nullable;
+
 public interface Transaction {
-
     double getOldBalance();
-
     double getNewBalance();
-
-    double getDelta();
+    double getDifference();
 
     TransactionDetail getDetails();
+
+    Result getResult();
+
+    public interface Result {
+        boolean isSuccess();
+
+        @Nullable
+        String getReason();
+    }
 }
