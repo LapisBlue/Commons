@@ -20,15 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.econ;
+package blue.lapis.common.economy;
 
-public interface Transaction {
+import java.util.UUID;
 
-    double getOldBalance();
+interface EconomyUtils {
 
-    double getNewBalanace();
+    void printFlow(EconomyAccount account, Object receivier);
 
-    double getDelta();
+    void printFlow(EconomyAccount account, Object receivier, int entries);
 
-    TransactionDetail getDetails();
+    String getFormattedBalance(EconomyAccount account);
+
+    // TODO: formatted balance for any amount?
+
+    EconomyAccount getPrimaryPlayerAccount(UUID playerId);
 }
