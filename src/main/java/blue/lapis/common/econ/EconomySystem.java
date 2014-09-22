@@ -5,5 +5,5 @@ package blue.lapis.common.econ;
  */
 public interface EconomySystem {
 
-    void addTransaction(Object gameObject, Transaction transaction);
+    void addTransaction(Object gameObject, EconomyAccount account, Transaction transaction);
 }

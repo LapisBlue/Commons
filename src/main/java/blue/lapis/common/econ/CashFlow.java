@@ -1,6 +1,4 @@
-package blue.lapis.common.econ.component;
-
-import blue.lapis.common.econ.Transaction;
+package blue.lapis.common.econ;
 
 /**
  * @author Dragonfire
