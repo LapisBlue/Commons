@@ -26,7 +26,7 @@ public interface Transaction {
 
     double getOldBalance();
 
-    double getNewBalanace();
+    double getNewBalance();
 
     double getDelta();
 

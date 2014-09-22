@@ -26,9 +26,9 @@ import java.util.UUID;
 
 interface EconomyUtils {
 
-    void printFlow(EconomyAccount account, Object receivier);
+    void printFlow(EconomyAccount account, Object receiver);
 
-    void printFlow(EconomyAccount account, Object receivier, int entries);
+    void printFlow(EconomyAccount account, Object receiver, int entries);
 
     String getFormattedBalance(EconomyAccount account);
 
