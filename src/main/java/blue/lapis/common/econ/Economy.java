@@ -24,9 +24,6 @@ package blue.lapis.common.econ;
 
 import java.util.UUID;
 
-/**
- * @author Dragonfire
- */
 public interface Economy {
     public static final String ACCOUNT_TYPE_PLAYER = "player";
     public static final String ACCOUNT_TYPE_BANK = "bank";
