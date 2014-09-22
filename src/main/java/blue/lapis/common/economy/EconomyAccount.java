@@ -27,14 +27,11 @@ public interface EconomyAccount {
     String getAccountName();
 
     double getBalance();
-
     void setBalance();
 
-    boolean hasCashFlow();
-
-    TransactionHistory getCashFlow();
+    boolean hasHistory();
+    TransactionHistory getHistory();
 
     String getCurrencyNameSingular();
-
     String getCurrencyNamePlural();
 }
