@@ -23,7 +23,6 @@
 package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.account.AccountSystem;
-import blue.lapis.common.economy.currency.CurrencySystem;
 
 import javax.annotation.Nullable;
 
@@ -31,6 +30,4 @@ public interface Economy {
 
     @Nullable
     AccountSystem getAccountSystem();
-
-    CurrencySystem getCurrencySystem();
 }
