@@ -20,18 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
+package blue.lapis.common.economy.system;
 
-public interface EconomyAccount {
+import blue.lapis.common.economy.component.Currency;
 
-    String getAccountName();
+public interface CurrencySystem {
 
-    double getBalance();
-    void setBalance(double balance);
+    Currency getCurrency(int id);
 
-    boolean hasHistory();
-    TransactionHistory getHistory();
+    Currency[] getCurrencies();
 
-    String getCurrencyNameSingular();
-    String getCurrencyNamePlural();
+    boolean registerCurrency(Currency currency, int id);
 }

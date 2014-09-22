@@ -22,6 +22,9 @@
  */
 package blue.lapis.common.economy;
 
+import blue.lapis.common.economy.system.AccountSystem;
+import blue.lapis.common.economy.system.TransactionSystem;
+
 public interface Economy {
 
     AccountSystem getAccountSystem();

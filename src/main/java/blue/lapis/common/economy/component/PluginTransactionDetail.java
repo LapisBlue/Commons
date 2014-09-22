@@ -20,17 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
+package blue.lapis.common.economy.component;
 
-public interface AccountSystem {
+public interface PluginTransactionDetail extends TransactionDetail {
+    String getPluginName();
 
-    EconomyAccount[] getAccounts(Object gameObject);
+    String getReasonId();
 
-    EconomyAccount getAccount(Object gameObject, String accountName);
-
-    boolean hasAccount(Object gameObject, String accountName);
-
-    EconomyAccount createAccount(Object gameObject, String accountName);
-
-    void deleteAccount(Object gameObject, String accountName);
+    Object[] getCustomValues();
 }

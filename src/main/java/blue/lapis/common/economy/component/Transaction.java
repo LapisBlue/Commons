@@ -20,11 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.event;
+package blue.lapis.common.economy.component;
 
-import blue.lapis.common.economy.component.Transaction;
+public interface Transaction {
 
-public interface EconomyBalanceChanged extends EconomyEvent {
+    double getOldBalance();
 
-    Transaction getTransaction();
+    double getNewBalance();
+
+    double getDelta();
+
+    TransactionDetail getDetails();
 }

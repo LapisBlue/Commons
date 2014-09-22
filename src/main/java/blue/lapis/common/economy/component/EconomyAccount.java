@@ -20,9 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
+package blue.lapis.common.economy.component;
 
-public interface TransactionSystem {
+public interface EconomyAccount {
 
-    void addTransaction(Object gameObject, EconomyAccount account, Transaction transaction);
+    String getAccountName();
+
+    double getBalance();
+
+    void setBalance(double balance);
+
+    boolean hasHistory();
+
+    TransactionHistory getHistory();
+
+    Currency getCurrency();
 }

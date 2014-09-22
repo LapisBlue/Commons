@@ -22,6 +22,8 @@
  */
 package blue.lapis.common.economy;
 
+import blue.lapis.common.economy.component.EconomyAccount;
+
 import java.util.UUID;
 
 public interface EconomySyntaxSugar {

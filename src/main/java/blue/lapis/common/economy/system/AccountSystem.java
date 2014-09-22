@@ -20,11 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.event;
+package blue.lapis.common.economy.system;
 
-import blue.lapis.common.economy.component.Transaction;
+import blue.lapis.common.economy.component.EconomyAccount;
 
-public interface EconomyBalanceChanged extends EconomyEvent {
+public interface AccountSystem {
 
-    Transaction getTransaction();
+    EconomyAccount[] getAccounts(Object gameObject);
+
+    EconomyAccount getAccount(Object gameObject, String accountName);
+
+    boolean hasAccount(Object gameObject, String accountName);
+
+    EconomyAccount createAccount(Object gameObject, String accountName);
+
+    void deleteAccount(Object gameObject, String accountName);
 }
