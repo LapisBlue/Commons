@@ -22,35 +22,17 @@
  */
 package blue.lapis.common.command;
 
-import org.spongepowered.api.command.CommandSource;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Represents the environment in which a command has been called; its CommandConfiguration, its CommandSource,
- * parsed arguments, etc.
+ *
  */
-public interface CommandContext<S extends CommandSource> {
-
-    /**
-     * @return the CommandSource which this command was issued from
-     */
-    @Nonnull
-    S getSource();
-
-    /**
-     * @return the entire line of text entered, except for the portion recognized as the command
-     */
-    @Nonnull
-    public String getLine();
-
-    /**
-     * @return the tokens in String format, as determined by the Tokenizer for this command
-     */
-    @Nonnull
-    public String[] getTokens();
-
-    @Nullable
-    public <T> T get(Class<T> clazz, int argNum);
+@Retention(RetentionPolicy.RUNTIME)
+@Target( {ElementType.METHOD, ElementType.TYPE} )
+public @interface CommandHandler {
+    String[] name();
+    String[] permissions() default {};
 }

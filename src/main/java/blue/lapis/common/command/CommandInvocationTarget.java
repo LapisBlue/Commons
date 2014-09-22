@@ -22,39 +22,15 @@
  */
 package blue.lapis.common.command;
 
-import java.io.IOException;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
-import java.util.ArrayList;
+import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
 
 /**
- * Reference implementation of the Tokenizer; generally splits on spaces, except inside quoted strings.
+ * Anything that can be invoked as a command
  */
-public class StandardTokenizer implements Tokenizer {
-
+public interface CommandInvocationTarget<S extends CommandSource> {
+    void invoke(@Nonnull CommandContext<S> context);
     @Nonnull
-    @Override
-    public String[] getTokens(@Nonnull final String s) {
-        StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(s));
-        tokenizer.eolIsSignificant(false);
-        tokenizer.slashSlashComments(false);
-        tokenizer.slashStarComments(false);
-
-        ArrayList<String> result = new ArrayList<String>();
-        try {
-            while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
-                if (tokenizer.ttype==StreamTokenizer.TT_WORD) {
-                    result.add(tokenizer.sval);
-                } else if (tokenizer.ttype==StreamTokenizer.TT_NUMBER) {
-                    result.add(tokenizer.nval+"");
-                } else if (tokenizer.ttype=='"') {
-                    result.add(tokenizer.sval);
-                }
-            }
-        } catch (IOException ex) {
-        }
-        return result.toArray(new String[result.size()]);
-    }
+    String getName();
 }

@@ -25,32 +25,11 @@ package blue.lapis.common.command;
 import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
- * Represents the environment in which a command has been called; its CommandConfiguration, its CommandSource,
- * parsed arguments, etc.
+ * Device which can accept Command registrations and determine, given an input line, which Command to invoke.
  */
-public interface CommandContext<S extends CommandSource> {
-
-    /**
-     * @return the CommandSource which this command was issued from
-     */
-    @Nonnull
-    S getSource();
-
-    /**
-     * @return the entire line of text entered, except for the portion recognized as the command
-     */
-    @Nonnull
-    public String getLine();
-
-    /**
-     * @return the tokens in String format, as determined by the Tokenizer for this command
-     */
-    @Nonnull
-    public String[] getTokens();
-
-    @Nullable
-    public <T> T get(Class<T> clazz, int argNum);
+public interface CommandHolder {
+    void register(@Nonnull final String pluginID, @Nonnull final CommandInvocationTarget command);
+    void fireCommand(@Nonnull final CommandSource source, @Nonnull final String inputline);
 }

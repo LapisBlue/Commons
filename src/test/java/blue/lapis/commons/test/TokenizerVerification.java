@@ -23,7 +23,7 @@
 package blue.lapis.commons.test;
 
 import blue.lapis.common.LapisCommonsPlugin;
-import blue.lapis.common.command.StandardTokenizer;
+import blue.lapis.common.command.impl.StandardTokenizer;
 import blue.lapis.common.command.token.PlayerTokenParser;
 import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;

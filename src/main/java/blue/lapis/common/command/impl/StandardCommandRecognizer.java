@@ -20,37 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.command;
+package blue.lapis.common.command.impl;
 
+import blue.lapis.common.command.CommandRecognizer;
+import blue.lapis.common.command.LapisCommand;
 import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
- * Represents the environment in which a command has been called; its CommandConfiguration, its CommandSource,
- * parsed arguments, etc.
+ * Straightforward implementation of CommandRecognizer
  */
-public interface CommandContext<S extends CommandSource> {
+public class StandardCommandRecognizer implements CommandRecognizer{
+    public static final StandardCommandRecognizer INSTANCE = new StandardCommandRecognizer();
 
-    /**
-     * @return the CommandSource which this command was issued from
-     */
-    @Nonnull
-    S getSource();
+    @Override
+    public boolean recognize(@Nonnull final CommandSource source,
+                             @Nonnull final String inputLine,
+                             @Nonnull final LapisCommand command) {
 
-    /**
-     * @return the entire line of text entered, except for the portion recognized as the command
-     */
-    @Nonnull
-    public String getLine();
-
-    /**
-     * @return the tokens in String format, as determined by the Tokenizer for this command
-     */
-    @Nonnull
-    public String[] getTokens();
-
-    @Nullable
-    public <T> T get(Class<T> clazz, int argNum);
+        return (inputLine.toLowerCase().equals(command.getName().toLowerCase()));
+    }
 }
