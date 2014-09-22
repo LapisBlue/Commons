@@ -22,11 +22,9 @@
  */
 package blue.lapis.common.economy.component;
 
+import java.util.List;
+
 public interface TransactionHistory {
-
-    Transaction[] getFlow();
-
-    Transaction[] getFlow(int entrySize);
-
-    void addFlow(Transaction newCashFlow);
+    List<Transaction> getTransactions();
+    List<Transaction> getTransactions(int limit);
 }
