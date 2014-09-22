@@ -20,9 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.command.token;
+package blue.lapis.common.command.impl;
 
 import blue.lapis.common.LapisCommonsPlugin;
+import blue.lapis.common.command.token.InvalidTokenException;
+import blue.lapis.common.command.token.TokenParser;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Player;
 
