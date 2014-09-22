@@ -24,7 +24,7 @@ package blue.lapis.common.economy.component;
 
 public interface EconomyAccount {
 
-    String getAccountName();
+    String getName();
 
     double getBalance();
     Transaction setBalance(double balance);
