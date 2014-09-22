@@ -24,7 +24,7 @@ package blue.lapis.common.economy;
 
 import java.util.UUID;
 
-interface EconomyUtils {
+public interface EconomySyntaxSugar {
 
     void printFlow(EconomyAccount account, Object receiver);
 
@@ -34,5 +34,5 @@ interface EconomyUtils {
 
     // TODO: formatted balance for any amount?
 
-    EconomyAccount getPrimaryPlayerAccount(UUID playerId);
+    EconomyAccount getPrimaryPlayerAccount(UUID playerId, int currency);
 }

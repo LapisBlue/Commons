@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.economy;
 
-interface TransactionDetail {
+public interface TransactionDetail {
 
     String getSource();
 
