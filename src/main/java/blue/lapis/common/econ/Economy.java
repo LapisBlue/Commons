@@ -59,13 +59,13 @@ public interface Economy {
 
     public boolean hasEnough(String type, String accountName, double amount);
 
-    public void substract(UUID player, double amount);
+    public void subtract(UUID player, double amount);
 
-    public void substract(String type, String accountName, double amount);
+    public void subtract(String type, String accountName, double amount);
 
-    public void substract(UUID player, double amount, String source, String details);
+    public void subtract(UUID player, double amount, String source, String details);
 
-    public void substract(String type, String accountName, double amount, String source, String details);
+    public void subtract(String type, String accountName, double amount, String source, String details);
 
     public void add(UUID player, double amount);
 
