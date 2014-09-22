@@ -3,13 +3,13 @@ package blue.lapis.common.econ;
 /**
  * @author Dragonfire
  */
-public interface TransactionDetails {
+public interface Transaction {
 
     double getOldBalance();
 
     double getNewBalanace();
 
-    String getReason();
+    double getDelta();
 
-    String getSource();
+    TransactionDetail getDetails();
 }

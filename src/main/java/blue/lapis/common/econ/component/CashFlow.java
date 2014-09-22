@@ -1,15 +1,15 @@
 package blue.lapis.common.econ.component;
 
-import blue.lapis.common.econ.TransactionDetails;
+import blue.lapis.common.econ.Transaction;
 
 /**
  * @author Dragonfire
  */
 public interface CashFlow {
 
-    TransactionDetails[] getFlow();
+    Transaction[] getFlow();
 
-    TransactionDetails[] getFlow(int entrySize);
+    Transaction[] getFlow(int entrySize);
 
-    void addFlow(TransactionDetails newCashFlow);
+    void addFlow(Transaction newCashFlow);
 }
