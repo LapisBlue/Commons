@@ -22,6 +22,8 @@
  */
 package blue.lapis.common.econ;
 
+import java.util.UUID;
+
 interface EconomyUtils {
 
     void printFlow(EconomyAccount account, Object receivier);
@@ -31,4 +33,6 @@ interface EconomyUtils {
     String getFormattedBalance(EconomyAccount account);
 
     // TODO: formatted balance for any amount?
+
+    EconomyAccount getPrimaryPlayerAccount(UUID playerId);
 }

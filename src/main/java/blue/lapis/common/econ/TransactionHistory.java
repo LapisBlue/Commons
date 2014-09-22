@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.econ;
 
-public interface CashFlow {
+public interface TransactionHistory {
 
     Transaction[] getFlow();
 

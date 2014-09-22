@@ -32,7 +32,7 @@ public interface EconomyAccount {
 
     boolean hasCashFlow();
 
-    CashFlow getCashFlow();
+    TransactionHistory getCashFlow();
 
     String getCurrencyNameSingular();
 
