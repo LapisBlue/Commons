@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.permission;
 
-interface Permission {
+public interface Permission {
 
     String getPermissionPath();
 
