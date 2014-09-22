@@ -33,5 +33,6 @@ public interface AccountSystem {
 
     @Nullable
     EconomyAccount getAccount(Object owner, String accountName);
+
     EconomyAccount createAccount(Object owner, String accountName);
 }
