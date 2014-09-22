@@ -22,6 +22,6 @@
  */
 package blue.lapis.common.economy.event;
 
-public interface EconomyAccountDeleted extends EconomyEvent {
+public interface AccountDeletedEvent extends EconomyEvent {
 
 }

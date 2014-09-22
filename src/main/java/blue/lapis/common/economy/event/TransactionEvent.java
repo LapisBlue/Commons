@@ -24,7 +24,7 @@ package blue.lapis.common.economy.event;
 
 import blue.lapis.common.economy.component.Transaction;
 
-public interface EconomyBalanceChanged extends EconomyEvent {
+public interface TransactionEvent extends EconomyEvent {
 
     Transaction getTransaction();
 }
