@@ -22,9 +22,6 @@
  */
 package blue.lapis.common.econ;
 
-/**
- * @author Dragonfire
- */
 public interface Economy {
 
     AccountSystem getAccountSystem();
