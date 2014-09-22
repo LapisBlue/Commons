@@ -22,8 +22,11 @@
  */
 package blue.lapis.common.economy;
 
-import javax.annotation.Nullable;
+import blue.lapis.common.economy.account.EconomyAccount;
+
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 public interface EconomySyntaxSugar {
 

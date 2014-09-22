@@ -20,13 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
+package blue.lapis.common.economy.transaction;
 
-public interface Currency {
+import blue.lapis.common.economy.account.EconomyAccount;
 
-    int getId();
+public interface TransactionSystem {
 
-    String getCurrencyNameSingular();
-
-    String getCurrencyNamePlural();
+    void addTransaction(Object gameObject, EconomyAccount account, Transaction transaction);
 }

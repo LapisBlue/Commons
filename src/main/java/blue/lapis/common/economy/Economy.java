@@ -22,8 +22,8 @@
  */
 package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.system.AccountSystem;
-import blue.lapis.common.economy.system.TransactionSystem;
+import blue.lapis.common.economy.account.AccountSystem;
+import blue.lapis.common.economy.transaction.TransactionSystem;
 
 import javax.annotation.Nullable;
 

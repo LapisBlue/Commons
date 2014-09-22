@@ -20,18 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.system;
+package blue.lapis.common.economy.account;
 
-import blue.lapis.common.economy.Currency;
+import blue.lapis.common.economy.currency.Currency;
+import blue.lapis.common.economy.transaction.Transaction;
+import blue.lapis.common.economy.transaction.TransactionHistory;
 
-import javax.annotation.Nullable;
+public interface EconomyAccount {
 
-public interface CurrencySystem {
+    String getName();
 
-    @Nullable
-    Currency getCurrency(int id);
+    double getBalance();
+    Transaction setBalance(double balance);
 
-    Currency[] getCurrencies();
+    TransactionHistory getHistory();
 
-    boolean registerCurrency(Currency currency, int id);
+    Currency getCurrency();
+
+    boolean delete();
 }

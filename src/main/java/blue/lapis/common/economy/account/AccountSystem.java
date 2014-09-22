@@ -20,12 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.system;
+package blue.lapis.common.economy.account;
 
-import blue.lapis.common.economy.EconomyAccount;
-import blue.lapis.common.economy.transaction.Transaction;
+import java.util.List;
 
-public interface TransactionSystem {
+import javax.annotation.Nullable;
 
-    void addTransaction(Object gameObject, EconomyAccount account, Transaction transaction);
+public interface AccountSystem {
+
+    List<EconomyAccount> getAccounts();
+    List<EconomyAccount> getAccounts(Object owner);
+
+    @Nullable
+    EconomyAccount getAccount(Object owner, String accountName);
+    EconomyAccount createAccount(Object owner, String accountName);
 }
