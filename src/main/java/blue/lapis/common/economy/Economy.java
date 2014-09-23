@@ -23,7 +23,6 @@
 package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.account.AccountSystem;
-import blue.lapis.common.economy.account.TransactionDetailFactory;
 import blue.lapis.common.economy.currency.CurrencyFormatterRegistry;
 
 import javax.annotation.Nonnull;
@@ -50,11 +49,6 @@ public final class Economy {
     @Nullable
     public AccountSystem getAccountSystem() {
         //TODO: create an instance of the account system implementation
-        return null;
-    }
-
-    public TransactionDetailFactory getTransactionDetailFactory() {
-        //TODO: implement
         return null;
     }
 

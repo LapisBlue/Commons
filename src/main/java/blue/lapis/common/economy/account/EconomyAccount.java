@@ -22,8 +22,6 @@
  */
 package blue.lapis.common.economy.account;
 
-import blue.lapis.common.economy.account.detail.TransactionDetail;
-
 /**
  * Represents a single account of a single type of currency. Generally, accounts of a common currency have a
  * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does not
@@ -42,33 +40,19 @@ public interface EconomyAccount {
      * Sets a new currency balance on this account
      * @param balance The new balance for this account to carry
      */
-    // TODO: against the bank system logic?
-    @Deprecated
     void setBalance(double balance);
-    // modify(Economy.inst().getTransactionDetailFactory().getSimpleTransactionDetail(this, getBalance() * -1));
-
     /**
      * Deposits currency into this account
      * @param amount The amount of currency to deposit
      * @return The new balance on this account
      */
-    @Deprecated
-    TransactionDetail add(double amount);
-
-    TransactionDetail add(double amount, String purpose, String source);
+    double add(double amount);
 
     /**
      * Withdraws currency from this account
      * @param amount The amount of currency to withdraw
      * @return The new balance on this account
      */
-    @Deprecated
-    TransactionDetail subtract(double amount);
-
-    TransactionDetail subtract(double amount, String purpose, String source);
-
-
-    TransactionDetail modify(TransactionDetail detail);
-
+    double subtract(double amount);
 
 }
