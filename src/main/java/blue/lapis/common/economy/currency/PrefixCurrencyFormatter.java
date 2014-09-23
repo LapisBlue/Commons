@@ -33,8 +33,8 @@ public class PrefixCurrencyFormatter extends AbstractCurrencyFormatter {
         super(singular, plural);
     }
 
-    public PrefixCurrencyFormatter(String pefix) {
-        super(pefix);
+    public PrefixCurrencyFormatter(String prefix) {
+        super(prefix);
     }
 
     @Nonnull
