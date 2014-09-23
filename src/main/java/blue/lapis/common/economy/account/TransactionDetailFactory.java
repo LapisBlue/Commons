@@ -20,32 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.currency;
+package blue.lapis.common.economy.account;
 
-import javax.annotation.Nonnull;
+import blue.lapis.common.economy.account.detail.TransactionDetail;
+import blue.lapis.common.economy.account.detail.TransactionDetailFormatter;
 
-/**
- * Formats currency by simply prepending a currency symbol to a formatted number.
- */
-public class PrefixCurrencyFormatter extends AbstractCurrencyFormatter {
+import java.util.Optional;
 
-    public PrefixCurrencyFormatter(String singular, String plural) {
-        super(singular, plural);
-    }
+public interface TransactionDetailFactory {
 
-    public PrefixCurrencyFormatter(String pefix) {
-        super(pefix);
-    }
+    long nextTransactionId();
 
-    @Nonnull
-    @Override
-    public String format(double amount) {
-        if (amount == 1.0d) {
-            return singular + formatter.format(amount);
-        } else {
-            return plural + formatter.format(amount);
-        }
-    }
+    TransactionDetail getSimpleTransactionDetail(EconomyAccount account, double amount);
 
+    TransactionDetail getStringTransactionDetail(EconomyAccount account, double amount,
+                                                     String purpose, String source);
 
+    Optional<String> getPurpose(long transactionId);
+
+    Optional<String> getSource(long transactionId);
+
+    void registerTransactionDetailFormatter(TransactionDetailFormatter formatter);
 }

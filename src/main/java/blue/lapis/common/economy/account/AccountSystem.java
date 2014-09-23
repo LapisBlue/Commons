@@ -22,9 +22,8 @@
  */
 package blue.lapis.common.economy.account;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
+import java.util.List;
 
 public interface AccountSystem {
 

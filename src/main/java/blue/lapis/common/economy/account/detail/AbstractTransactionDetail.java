@@ -20,32 +20,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.currency;
+package blue.lapis.common.economy.account.detail;
 
-import javax.annotation.Nonnull;
+import blue.lapis.common.economy.Economy;
+import blue.lapis.common.economy.account.EconomyAccount;
 
-/**
- * Formats currency by simply prepending a currency symbol to a formatted number.
- */
-public class PrefixCurrencyFormatter extends AbstractCurrencyFormatter {
+import java.util.Optional;
 
-    public PrefixCurrencyFormatter(String singular, String plural) {
-        super(singular, plural);
+public abstract class AbstractTransactionDetail implements TransactionDetail {
+
+    protected final long id;
+    protected double amount;
+    protected EconomyAccount account;
+
+    public AbstractTransactionDetail(EconomyAccount account, double amount) {
+        this.amount = amount;
+        this.id = Economy.inst().getTransactionDetailFactory().nextTransactionId();
     }
 
-    public PrefixCurrencyFormatter(String pefix) {
-        super(pefix);
-    }
-
-    @Nonnull
     @Override
-    public String format(double amount) {
-        if (amount == 1.0d) {
-            return singular + formatter.format(amount);
-        } else {
-            return plural + formatter.format(amount);
-        }
+    public double getDelta() {
+        return this.amount;
     }
 
+    @Override
+    public long getTransactionId() {
+        return this.id;
+    }
 
+    @Override
+    public EconomyAccount getEconomyAccount() {
+        return this.account;
+    }
+
+    @Override
+    public Optional<String> getTransactionPurpose() {
+        return Economy.inst().getTransactionDetailFactory().getPurpose(getTransactionId());
+    }
+    @Override
+    public Optional<String> getSource() {
+        return Economy.inst().getTransactionDetailFactory().getSource(getTransactionId());
+    }
 }

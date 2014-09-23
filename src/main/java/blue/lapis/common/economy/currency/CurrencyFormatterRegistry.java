@@ -22,19 +22,20 @@
  */
 package blue.lapis.common.economy.currency;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import javax.annotation.Nonnull;
 
 /**
  *
  */
 public final class CurrencyFormatterRegistry {
-    private static ReentrantReadWriteLock mutex = new ReentrantReadWriteLock();
-    private static HashMap<String,CurrencyFormatter> registrations = new HashMap<String, CurrencyFormatter>();
 
-    private CurrencyFormatterRegistry() {}
+    private static ReentrantReadWriteLock mutex = new ReentrantReadWriteLock();
+    private static HashMap<String, CurrencyFormatter> registrations = new HashMap<String, CurrencyFormatter>();
+
+    private CurrencyFormatterRegistry() {
+    }
 
     /**
      * Retrieves a valid CurrencyFormatter for the given prefix, even if one is not registered.
@@ -50,7 +51,7 @@ public final class CurrencyFormatterRegistry {
             return result;
         } else {
             mutex.writeLock().lock();
-            CurrencyFormatter formatter = new SuffixCurrencyFormatter(" "+prefix);
+            CurrencyFormatter formatter = new SuffixCurrencyFormatter(" " + prefix);
             registrations.put(prefix, formatter);
             mutex.writeLock().unlock();
             return formatter;
@@ -59,12 +60,12 @@ public final class CurrencyFormatterRegistry {
 
     /**
      * Register a formatter for the specified currency account-prefix.
-     * @param prefix    The account-prefix for the currency to register
+     * @param prefix The account-prefix for the currency to register
      * @param formatter A CurrencyFormatter which can turn amounts of this currency into a human-readable String
      */
     public void register(@Nonnull String prefix, @Nonnull CurrencyFormatter formatter) {
         mutex.writeLock().lock();
-        registrations.put(prefix,formatter);
+        registrations.put(prefix, formatter);
         mutex.writeLock().unlock();
     }
 }

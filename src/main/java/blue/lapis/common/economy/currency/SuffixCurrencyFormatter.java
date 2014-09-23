@@ -22,39 +22,29 @@
  */
 package blue.lapis.common.economy.currency;
 
-import java.text.NumberFormat;
-
 import javax.annotation.Nonnull;
 
 /**
  * Formats currency by simply appending a currency symbol to a formatted number.
  */
-public class SuffixCurrencyFormatter implements CurrencyFormatter {
-    private final String singular;
-    private final String plural;
-    private final NumberFormat formatter;
+public class SuffixCurrencyFormatter extends AbstractCurrencyFormatter {
 
     public SuffixCurrencyFormatter(String singular, String plural) {
-        this.singular = singular;
-        this.plural = plural;
-        formatter = NumberFormat.getNumberInstance();
-        formatter.setMinimumFractionDigits(0);
-        formatter.setMaximumFractionDigits(2);
-        formatter.setGroupingUsed(true);
+        super(singular, plural);
     }
 
-    public SuffixCurrencyFormatter(String prefix) {
-        this(prefix, prefix);
+    public SuffixCurrencyFormatter(String pefix) {
+        super(pefix);
     }
-
 
     @Nonnull
     @Override
     public String format(double amount) {
-        if (amount==1.0d) {
-            return formatter.format(amount)+singular;
+
+        if (amount == 1.0d) {
+            return formatter.format(amount) + singular;
         } else {
-            return formatter.format(amount)+plural;
+            return formatter.format(amount) + plural;
         }
     }
 

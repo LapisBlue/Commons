@@ -22,30 +22,24 @@
  */
 package blue.lapis.common.economy.currency;
 
-import javax.annotation.Nonnull;
+import java.text.NumberFormat;
 
-/**
- * Formats currency by simply prepending a currency symbol to a formatted number.
- */
-public class PrefixCurrencyFormatter extends AbstractCurrencyFormatter {
+public abstract class AbstractCurrencyFormatter implements CurrencyFormatter {
 
-    public PrefixCurrencyFormatter(String singular, String plural) {
-        super(singular, plural);
+    protected final String singular;
+    protected final String plural;
+    protected final NumberFormat formatter;
+
+    public AbstractCurrencyFormatter(String singular, String plural) {
+        this.singular = singular;
+        this.plural = plural;
+        formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(0);
+        formatter.setMaximumFractionDigits(2);
+        formatter.setGroupingUsed(true);
     }
 
-    public PrefixCurrencyFormatter(String pefix) {
-        super(pefix);
+    public AbstractCurrencyFormatter(String prefix) {
+        this(prefix, prefix);
     }
-
-    @Nonnull
-    @Override
-    public String format(double amount) {
-        if (amount == 1.0d) {
-            return singular + formatter.format(amount);
-        } else {
-            return plural + formatter.format(amount);
-        }
-    }
-
-
 }

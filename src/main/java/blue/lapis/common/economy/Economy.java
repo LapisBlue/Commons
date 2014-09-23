@@ -23,17 +23,38 @@
 package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.account.AccountSystem;
+import blue.lapis.common.economy.account.TransactionDetailFactory;
 import blue.lapis.common.economy.currency.CurrencyFormatterRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public final class Economy {
+
     private static AccountSystem accountSystem;
 
+    private static Economy INSTANCE;
+
+    // singleton pattern
+    private Economy() {
+        // init account system
+    }
+
+    public static Economy inst() {
+        if (INSTANCE == null) {
+            INSTANCE = new Economy();
+        }
+        return INSTANCE;
+    }
+
     @Nullable
-    public static AccountSystem getAccountSystem() {
+    public AccountSystem getAccountSystem() {
         //TODO: create an instance of the account system implementation
+        return null;
+    }
+
+    public TransactionDetailFactory getTransactionDetailFactory() {
+        //TODO: implement
         return null;
     }
 
