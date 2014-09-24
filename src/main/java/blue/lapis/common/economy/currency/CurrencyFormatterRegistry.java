@@ -22,17 +22,19 @@
  */
 package blue.lapis.common.economy.currency;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import javax.annotation.Nonnull;
+
+import com.google.common.collect.Maps;
 
 /**
  *
  */
 public final class CurrencyFormatterRegistry {
 
-    private static ReentrantReadWriteLock mutex = new ReentrantReadWriteLock();
-    private static HashMap<String, CurrencyFormatter> registrations = new HashMap<String, CurrencyFormatter>();
+    private static final ReentrantReadWriteLock mutex = new ReentrantReadWriteLock();
+    private static final Map<String, CurrencyFormatter> registrations = Maps.newHashMap();
 
     private CurrencyFormatterRegistry() {
     }

@@ -22,11 +22,12 @@
  */
 package blue.lapis.common.command.token;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
 
 /**
  * Thread-safe registry/factory for {@link TokenParser}s, which resolve Strings into typesafe game objects.
@@ -34,7 +35,7 @@ import javax.annotation.Nullable;
 public class TokenParserRegistry {
 
     private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    private static final Map<Class<?>, TokenParser<?>> tokenParserMap = new HashMap<Class<?>, TokenParser<?>>();
+    private static final Map<Class<?>, TokenParser<?>> tokenParserMap = Maps.newHashMap();
 
     @SuppressWarnings("unchecked")
     @Nullable

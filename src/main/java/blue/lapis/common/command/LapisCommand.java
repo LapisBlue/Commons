@@ -28,6 +28,8 @@ import blue.lapis.common.command.impl.StandardCommandRecognizer;
 import java.util.ArrayList;
 import javax.annotation.Nonnull;
 
+import com.google.common.collect.Lists;
+
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.plugin.PluginContainer;
@@ -38,7 +40,7 @@ import org.spongepowered.api.plugin.PluginContainer;
 public class LapisCommand<S extends CommandSource> implements CommandHolder, CommandInvocationTarget<S> {
 
     private CommandRecognizer recognizer;
-    private ArrayList<LapisCommand> commands = new ArrayList<LapisCommand>();
+    private ArrayList<LapisCommand> commands = Lists.newArrayList();
     private String name;
 
     public LapisCommand(@Nonnull final String name) {
