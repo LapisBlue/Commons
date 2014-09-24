@@ -27,7 +27,6 @@ import java.util.List;
 
 public interface AccountSystem {
 
-    List<EconomyAccount> getAccounts();
     List<EconomyAccount> getAccounts(Object owner);
 
     @Nullable

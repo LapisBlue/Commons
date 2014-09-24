@@ -28,6 +28,6 @@ import java.util.UUID;
 /**
  * Also useful for a party system!
  */
-public interface UserGroup extends List<UUID>{
+public interface UserGroup extends List<UUID> {
 
 }

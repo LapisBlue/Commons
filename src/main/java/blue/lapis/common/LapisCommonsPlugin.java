@@ -22,18 +22,18 @@
  */
 package blue.lapis.common;
 
-import com.google.common.base.Preconditions;
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 
+import org.apache.logging.log4j.Logger;
+
 /**
- * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's available
- * for declared dependencies and gets onto the ClassLoader to be used.
+ * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's
+ * available for declared dependencies and gets onto the ClassLoader to be used.
  */
-@Plugin(id="lapis-commons", name="LapisCommons", version="1.0.0-SNAPSHOT")
+@Plugin(id = "lapis-commons", name = "LapisCommons", version = "1.0.0-SNAPSHOT")
 public class LapisCommonsPlugin {
     private static LapisCommonsPlugin instance;
     private Logger logger;
@@ -59,9 +59,5 @@ public class LapisCommonsPlugin {
     public void initialize(PreInitializationEvent event) {
         this.game = event.getGame();
         this.logger = event.getPluginLog();
-    }
-
-    public Game getGameInstance() {
-        return game;
     }
 }

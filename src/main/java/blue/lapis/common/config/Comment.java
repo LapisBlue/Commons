@@ -30,6 +30,7 @@ public @interface Comment {
 
     /**
      * Adds a comment to a config value
+     *
      * @return comment
      */
     public String[] value();

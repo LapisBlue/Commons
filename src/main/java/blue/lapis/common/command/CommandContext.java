@@ -22,10 +22,10 @@
  */
 package blue.lapis.common.command;
 
-import org.spongepowered.api.command.CommandSource;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Represents the environment in which a command has been called; its CommandConfiguration, its CommandSource,

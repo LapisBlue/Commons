@@ -31,6 +31,7 @@ public interface CurrencyFormatter {
 
     /**
      * Converts a machine-readable currency into a human-readable String which expresses its quantity and units
+     *
      * @param amount The amount of currency to render
      * @return A formatted String expressing the currency's quantity and units.
      */

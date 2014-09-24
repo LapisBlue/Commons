@@ -22,10 +22,12 @@
  */
 package blue.lapis.common.economy.account;
 
+import blue.lapis.common.economy.currency.CurrencyFormatter;
+
 /**
  * Represents a single account of a single type of currency. Generally, accounts of a common currency have a
- * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does not
- * address who or what the holder is, or the number of holders, only the balance.
+ * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does
+ * not address who or what the holder is, or the number of holders, only the balance.
  */
 public interface EconomyAccount {
 
@@ -38,11 +40,14 @@ public interface EconomyAccount {
 
     /**
      * Sets a new currency balance on this account
+     *
      * @param balance The new balance for this account to carry
      */
     void setBalance(double balance);
+
     /**
      * Deposits currency into this account
+     *
      * @param amount The amount of currency to deposit
      * @return The new balance on this account
      */
@@ -50,9 +55,12 @@ public interface EconomyAccount {
 
     /**
      * Withdraws currency from this account
+     *
      * @param amount The amount of currency to withdraw
      * @return The new balance on this account
      */
     double subtract(double amount);
+
+    CurrencyFormatter getFormatter();
 
 }

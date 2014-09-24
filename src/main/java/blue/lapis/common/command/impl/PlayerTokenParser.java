@@ -25,14 +25,15 @@ package blue.lapis.common.command.impl;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.entity.Player;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import javax.annotation.Nonnull;
+
+import com.google.common.collect.Lists;
+
+import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.entity.Player;
 
 /**
  * Converts a Player name into an online {@link Player}.
@@ -42,7 +43,7 @@ public class PlayerTokenParser implements TokenParser<Player> {
     @Override
     @Nonnull
     public Player parse(@Nonnull final CommandSource source, @Nonnull final String token) {
-        Collection<Player> players = LapisCommonsPlugin.getInstance().getGameInstance().getOnlinePlayers();
+        Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
         String matchString = token.toLowerCase();
 
         //TODO: strip off leading p: ?
@@ -67,8 +68,8 @@ public class PlayerTokenParser implements TokenParser<Player> {
     @Override
     @Nonnull
     public List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
-        ArrayList<String> results = new ArrayList<String>();
-        Collection<Player> players = LapisCommonsPlugin.getInstance().getGameInstance().getOnlinePlayers();
+        List<String> results = Lists.newArrayList();
+        Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
         String matchString = partial.toLowerCase();
 
         for (Player p : players) {
