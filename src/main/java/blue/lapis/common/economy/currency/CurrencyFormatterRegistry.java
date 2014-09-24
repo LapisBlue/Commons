@@ -63,7 +63,8 @@ public final class CurrencyFormatterRegistry {
      * Register a formatter for the specified currency account-prefix.
      *
      * @param prefix The account-prefix for the currency to register
-     * @param formatter A CurrencyFormatter which can turn amounts of this currency into a human-readable String
+     * @param formatter A CurrencyFormatter which can turn amounts of this currency into a human-readable
+     * String
      */
     public void register(@Nonnull String prefix, @Nonnull CurrencyFormatter formatter) {
         mutex.writeLock().lock();

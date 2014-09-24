@@ -23,9 +23,9 @@
 package blue.lapis.common.economy.account;
 
 /**
- * Represents a single account of a single type of currency. Generally, accounts of a common currency have a common
- * prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does not
- * address who or what the holder is, or the number of holders, only the balance.
+ * Represents a single account of a single type of currency. Generally, accounts of a common currency have a
+ * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does
+ * not address who or what the holder is, or the number of holders, only the balance.
  */
 public interface EconomyAccount {
 

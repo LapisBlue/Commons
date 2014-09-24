@@ -28,8 +28,9 @@ import javax.annotation.Nonnull;
 import org.spongepowered.api.command.CommandSource;
 
 /**
- * Converts a String parameter, as from a Command, into a game object of type {@code T}. Additionally, implementors
- * of this class are able to produce suggestions for completing a partial entry, such as for tab-complete.
+ * Converts a String parameter, as from a Command, into a game object of type {@code T}. Additionally,
+ * implementors of this class are able to produce suggestions for completing a partial entry, such as for
+ * tab-complete.
  */
 public interface TokenParser<T> {
 

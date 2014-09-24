@@ -28,8 +28,8 @@ import org.spongepowered.api.command.CommandSource;
 
 /**
  * Simple yes-no interface: Given the CommandSource, the inputline String, and a Command, say yes or no about
- * whether to invoke it. The typical use scenario is to iterate over the recognizers of each Command and invoke the
- * first match with a matching CommandConfiguration.
+ * whether to invoke it. The typical use scenario is to iterate over the recognizers of each Command and invoke
+ * the first match with a matching CommandConfiguration.
  */
 public interface CommandRecognizer {
     boolean recognize(@Nonnull final CommandSource source,
