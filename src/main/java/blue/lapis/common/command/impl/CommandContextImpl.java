@@ -24,10 +24,11 @@ package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.CommandContext;
 import blue.lapis.common.command.token.InvalidTokenException;
-import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Lapis implementation of {@link CommandContext}
@@ -41,6 +42,7 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
 
     /**
      * Create an empty context for a command to run in.
+     *
      * @param source the Player, CommandBlock, or Console the command was run from
      */
     public CommandContextImpl(@Nonnull final S source) {
@@ -69,13 +71,13 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
     @Nullable
     @SuppressWarnings("unchecked")
     public <T> T get(Class<T> clazz, int argNum) {
-        if (args.length<=argNum) return null;
+        if (args.length <= argNum) return null;
 
         if (clazz.isAssignableFrom(args[argNum].getClass())) {
-            return (T)args[argNum];
+            return (T) args[argNum];
         } else {
             //convenience fallbacks
-            if (clazz.equals(String.class)) return (T)args[argNum].toString();
+            if (clazz.equals(String.class)) return (T) args[argNum].toString();
 
             throw new InvalidTokenException(args[argNum].getClass().getSimpleName(), clazz);
         }
@@ -83,7 +85,8 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
 
     /**
      * Sets the raw input line, minus the recognized command.
-     * @param line  the raw input line
+     *
+     * @param line the raw input line
      */
     @Nonnull
     public CommandContext withLine(@Nonnull final String line) {

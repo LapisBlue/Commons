@@ -25,7 +25,6 @@ package blue.lapis.common.command.token;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 

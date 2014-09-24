@@ -22,12 +22,13 @@
  */
 package blue.lapis.common.economy.account;
 
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public interface AccountSystem {
 
     List<EconomyAccount> getAccounts();
+
     List<EconomyAccount> getAccounts(Object owner);
 
     @Nullable

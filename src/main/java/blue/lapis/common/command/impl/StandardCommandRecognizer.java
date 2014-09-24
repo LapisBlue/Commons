@@ -24,14 +24,15 @@ package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.CommandRecognizer;
 import blue.lapis.common.command.LapisCommand;
-import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
+
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Straightforward implementation of CommandRecognizer
  */
-public class StandardCommandRecognizer implements CommandRecognizer{
+public class StandardCommandRecognizer implements CommandRecognizer {
     public static final StandardCommandRecognizer INSTANCE = new StandardCommandRecognizer();
 
     @Override

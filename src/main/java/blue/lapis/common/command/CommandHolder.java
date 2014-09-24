@@ -22,14 +22,15 @@
  */
 package blue.lapis.common.command;
 
-import org.spongepowered.api.command.CommandSource;
-
 import javax.annotation.Nonnull;
+
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Device which can accept Command registrations and determine, given an input line, which Command to invoke.
  */
 public interface CommandHolder {
     void register(@Nonnull final String pluginID, @Nonnull final CommandInvocationTarget command);
+
     void fireCommand(@Nonnull final CommandSource source, @Nonnull final String inputline);
 }

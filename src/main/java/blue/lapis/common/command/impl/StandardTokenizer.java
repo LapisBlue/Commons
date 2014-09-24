@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.ArrayList;
-
 import javax.annotation.Nonnull;
 
 /**
@@ -47,11 +46,11 @@ public class StandardTokenizer implements Tokenizer {
         ArrayList<String> result = new ArrayList<String>();
         try {
             while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
-                if (tokenizer.ttype==StreamTokenizer.TT_WORD) {
+                if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
                     result.add(tokenizer.sval);
-                } else if (tokenizer.ttype==StreamTokenizer.TT_NUMBER) {
-                    result.add(tokenizer.nval+"");
-                } else if (tokenizer.ttype=='"') {
+                } else if (tokenizer.ttype == StreamTokenizer.TT_NUMBER) {
+                    result.add(tokenizer.nval + "");
+                } else if (tokenizer.ttype == '"') {
                     result.add(tokenizer.sval);
                 }
             }

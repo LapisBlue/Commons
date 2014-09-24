@@ -23,20 +23,23 @@
 package blue.lapis.commons.test;
 
 import blue.lapis.common.LapisCommonsPlugin;
-import blue.lapis.common.command.impl.StandardTokenizer;
 import blue.lapis.common.command.impl.PlayerTokenParser;
-import org.apache.logging.log4j.LogManager;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
-import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.state.PreInitializationEvent;
+import blue.lapis.common.command.impl.StandardTokenizer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.state.PreInitializationEvent;
+
+import org.apache.logging.log4j.LogManager;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -53,7 +56,7 @@ public class TokenizerVerification {
     @Before
     public void initTests() {
         List<Player> playerList = new ArrayList<Player>();
-        for(String name : new String[]{"Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot"}) {
+        for (String name : new String[]{"Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot"}) {
             Player p = mock(Player.class);
             when(p.getName()).thenReturn(name);
             playerList.add(p);
@@ -70,13 +73,13 @@ public class TokenizerVerification {
     @Test
     public void identifiers() {
         String[] tokens = tokenizer.getTokens(identifiers);
-        Assert.assertArrayEquals(new String[]{"one","two","three","four","81.0","six"}, tokens);
+        Assert.assertArrayEquals(new String[]{"one", "two", "three", "four", "81.0", "six"}, tokens);
     }
 
     @Test
     public void quotes() {
         String[] tokens = tokenizer.getTokens(quotes);
-        Assert.assertArrayEquals(new String[]{"one","two three","four","81.0"}, tokens);
+        Assert.assertArrayEquals(new String[]{"one", "two three", "four", "81.0"}, tokens);
     }
 
     @Test

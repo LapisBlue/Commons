@@ -24,13 +24,13 @@ package blue.lapis.common.command;
 
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.StandardCommandRecognizer;
+
+import java.util.ArrayList;
+import javax.annotation.Nonnull;
+
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.plugin.PluginContainer;
-
-import java.util.ArrayList;
-
-import javax.annotation.Nonnull;
 
 /**
  * A registered command
@@ -57,9 +57,9 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
         //verify pluginID. It pays to be paranoid.
         PluginContainer plug =
                 LapisCommonsPlugin.getInstance().getGameInstance().getPluginManager().getPlugin(pluginID);
-        if (plug==null) {
+        if (plug == null) {
             LapisCommonsPlugin.getLogger().warn(
-                    "Attempted registration for a command for nonexistant plugin \""+pluginID+"\"!");
+                    "Attempted registration for a command for nonexistant plugin \"" + pluginID + "\"!");
         } else {
             //TODO: Registrations
         }

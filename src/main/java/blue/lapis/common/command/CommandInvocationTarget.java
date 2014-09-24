@@ -22,15 +22,16 @@
  */
 package blue.lapis.common.command;
 
-import org.spongepowered.api.command.CommandSource;
-
 import javax.annotation.Nonnull;
+
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Anything that can be invoked as a command
  */
 public interface CommandInvocationTarget<S extends CommandSource> {
     void invoke(@Nonnull CommandContext<S> context);
+
     @Nonnull
     String getName();
 }

@@ -22,9 +22,9 @@
  */
 package blue.lapis.common.economy.currency;
 
-import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import javax.annotation.Nonnull;
 
 /**
  *
@@ -39,6 +39,7 @@ public final class CurrencyFormatterRegistry {
 
     /**
      * Retrieves a valid CurrencyFormatter for the given prefix, even if one is not registered.
+     *
      * @param prefix The account-prefix for the currency in question
      * @return A CurrencyFormatter which can express the quantity and units of currency of this type
      */
@@ -60,6 +61,7 @@ public final class CurrencyFormatterRegistry {
 
     /**
      * Register a formatter for the specified currency account-prefix.
+     *
      * @param prefix The account-prefix for the currency to register
      * @param formatter A CurrencyFormatter which can turn amounts of this currency into a human-readable String
      */

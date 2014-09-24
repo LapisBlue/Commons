@@ -23,9 +23,8 @@
 package blue.lapis.common.config;
 
 /**
- * Config class must extends this class.
- * Fields are automaticlly config values.
- * You can use {@link Comment} to describe a config value
+ * Config class must extends this class. Fields are automaticlly config values. You can use {@link Comment} to
+ * describe a config value
  */
 public class LapisConfig {
 
