@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <code_scheme name="LapisCommons">
+  <option name="USE_FQ_CLASS_NAMES_IN_JAVADOC" value="false" />
   <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="2147483647" />
   <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="5" />
   <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
