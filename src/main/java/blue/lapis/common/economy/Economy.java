@@ -39,7 +39,7 @@ public final class Economy {
         // init account system
     }
 
-    public static Economy inst() {
+    public static Economy getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Economy();
         }
