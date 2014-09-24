@@ -27,8 +27,10 @@ import blue.lapis.common.command.Tokenizer;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
-import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Nonnull;
+
+import com.google.common.collect.Lists;
 
 /**
  * Reference implementation of the Tokenizer; generally splits on spaces, except inside quoted strings.
@@ -43,7 +45,7 @@ public class StandardTokenizer implements Tokenizer {
         tokenizer.slashSlashComments(false);
         tokenizer.slashStarComments(false);
 
-        ArrayList<String> result = new ArrayList<String>();
+        List<String> result = Lists.newArrayList();
         try {
             while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
                 if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
@@ -54,7 +56,7 @@ public class StandardTokenizer implements Tokenizer {
                     result.add(tokenizer.sval);
                 }
             }
-        } catch (IOException ex) {
+        } catch (IOException ignored) {
         }
         return result.toArray(new String[result.size()]);
     }

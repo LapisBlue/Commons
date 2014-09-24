@@ -25,7 +25,7 @@ package blue.lapis.common.command;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.StandardCommandRecognizer;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
@@ -40,7 +40,7 @@ import org.spongepowered.api.plugin.PluginContainer;
 public class LapisCommand<S extends CommandSource> implements CommandHolder, CommandInvocationTarget<S> {
 
     private CommandRecognizer recognizer;
-    private ArrayList<LapisCommand> commands = Lists.newArrayList();
+    private List<LapisCommand> commands = Lists.newArrayList();
     private String name;
 
     public LapisCommand(@Nonnull final String name) {
@@ -57,8 +57,7 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
     @Override
     public void register(@Nonnull String pluginID, @Nonnull CommandInvocationTarget command) {
         //verify pluginID. It pays to be paranoid.
-        PluginContainer plug =
-                LapisCommonsPlugin.getInstance().getGameInstance().getPluginManager().getPlugin(pluginID);
+        PluginContainer plug = LapisCommonsPlugin.getGame().getPluginManager().getPlugin(pluginID);
         if (plug == null) {
             LapisCommonsPlugin.getLogger().warn(
                     "Attempted registration for a command for nonexistant plugin \"" + pluginID + "\"!");

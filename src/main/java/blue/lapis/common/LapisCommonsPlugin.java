@@ -60,8 +60,4 @@ public class LapisCommonsPlugin {
         this.game = event.getGame();
         this.logger = event.getPluginLog();
     }
-
-    public Game getGameInstance() {
-        return game;
-    }
 }

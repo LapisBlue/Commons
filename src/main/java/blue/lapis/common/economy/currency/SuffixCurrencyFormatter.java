@@ -40,7 +40,6 @@ public class SuffixCurrencyFormatter extends AbstractCurrencyFormatter {
     @Nonnull
     @Override
     public String format(double amount) {
-
         if (amount == 1.0d) {
             return formatter.format(amount) + singular;
         } else {
