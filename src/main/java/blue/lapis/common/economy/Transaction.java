@@ -46,7 +46,7 @@ public class Transaction implements TransactionAPI {
     private double delta = 0.0d;
     private double balance = Double.NaN;
 
-    private Transaction(EconomyAccount against) {
+    private Transaction(EconomyAccount account) {
         this.account = account;
     }
 
