@@ -20,32 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.currency;
+package blue.lapis.common.economy.formatter;
 
 import javax.annotation.Nonnull;
 
 /**
- * Formats currency by simply prepending a currency symbol to a formatted number.
+ * Produces formatted currency Strings for display
  */
-public class PrefixCurrencyFormatter extends AbstractCurrencyFormatter {
+public interface BalanceFormatter {
 
-    public PrefixCurrencyFormatter(String singular, String plural) {
-        super(singular, plural);
-    }
-
-    public PrefixCurrencyFormatter(String prefix) {
-        super(prefix);
-    }
-
+    /**
+     * Converts a machine-readable currency into a human-readable String which expresses its quantity and units
+     *
+     * @param amount The amount of currency to render
+     * @return A formatted String expressing the currency's quantity and units.
+     */
     @Nonnull
-    @Override
-    public String format(double amount) {
-        if (amount == 1.0d) {
-            return singular + formatter.format(amount);
-        } else {
-            return plural + formatter.format(amount);
-        }
-    }
-
-
+    String format(double amount);
 }

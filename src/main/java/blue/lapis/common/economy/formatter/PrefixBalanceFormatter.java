@@ -20,26 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.currency;
+package blue.lapis.common.economy.formatter;
 
-import java.text.NumberFormat;
+import javax.annotation.Nonnull;
 
-public abstract class AbstractCurrencyFormatter implements CurrencyFormatter {
+/**
+ * Formats currency by simply prepending a currency symbol to a formatted number.
+ */
+public class PrefixBalanceFormatter extends AbstractBalanceFormatter {
 
-    protected final String singular;
-    protected final String plural;
-    protected final NumberFormat formatter;
-
-    public AbstractCurrencyFormatter(String singular, String plural) {
-        this.singular = singular;
-        this.plural = plural;
-        formatter = NumberFormat.getNumberInstance();
-        formatter.setMinimumFractionDigits(0);
-        formatter.setMaximumFractionDigits(2);
-        formatter.setGroupingUsed(true);
+    public PrefixBalanceFormatter(String singular, String plural) {
+        super(singular, plural);
     }
 
-    public AbstractCurrencyFormatter(String prefix) {
-        this(prefix, prefix);
+    public PrefixBalanceFormatter(String prefix) {
+        super(prefix);
     }
+
+    @Nonnull
+    @Override
+    public String format(double amount) {
+        if (amount == 1.0d) {
+            return singular + formatter.format(amount);
+        } else {
+            return plural + formatter.format(amount);
+        }
+    }
+
+
 }

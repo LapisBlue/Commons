@@ -48,8 +48,7 @@ public interface EconomyAccount {
     /**
      * @return a formatter which can display this account's currency
      */
-    @Nonnull
-    CurrencyFormatter getFormatter();
+    BalanceFormatter getFormatter();
 
     /**
      * Apply a Transaction's proposed change to this EconomyAccount. The Transaction MUST be in

@@ -20,40 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy;
+package blue.lapis.common.economy.formatter;
 
-import blue.lapis.common.economy.account.AccountSystem;
-import blue.lapis.common.economy.formatter.BalanceFormatterRegistry;
+import java.text.NumberFormat;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+public abstract class AbstractBalanceFormatter implements BalanceFormatter {
 
-public final class Economy {
+    protected final String singular;
+    protected final String plural;
+    protected final NumberFormat formatter;
 
-    private static AccountSystem accountSystem;
-
-    private static Economy INSTANCE;
-
-    private Economy() {
-        // TODO
+    public AbstractBalanceFormatter(String singular, String plural) {
+        this.singular = singular;
+        this.plural = plural;
+        formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(0);
+        formatter.setMaximumFractionDigits(2);
+        formatter.setGroupingUsed(true);
     }
 
-    @Nonnull
-    public static Economy getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Economy();
-        }
-        return INSTANCE;
-    }
-
-    @Nonnull
-    public static String formatCurrency(double amount, String prefix) {
-        return BalanceFormatterRegistry.get(prefix).format(amount);
-    }
-
-    @Nullable
-    public AccountSystem getAccountSystem() {
-        //TODO: create an instance of the account system implementation
-        return null;
+    public AbstractBalanceFormatter(String prefix) {
+        this(prefix, prefix);
     }
 }

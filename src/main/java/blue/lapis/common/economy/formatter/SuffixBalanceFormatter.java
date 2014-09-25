@@ -20,20 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.currency;
+package blue.lapis.common.economy.formatter;
 
 import javax.annotation.Nonnull;
 
 /**
  * Formats currency by simply appending a currency symbol to a formatted number.
  */
-public class SuffixCurrencyFormatter extends AbstractCurrencyFormatter {
+public class SuffixBalanceFormatter extends AbstractBalanceFormatter {
 
-    public SuffixCurrencyFormatter(String singular, String plural) {
+    public SuffixBalanceFormatter(String singular, String plural) {
         super(singular, plural);
     }
 
-    public SuffixCurrencyFormatter(String prefix) {
+    public SuffixBalanceFormatter(String prefix) {
         super(prefix);
     }
 

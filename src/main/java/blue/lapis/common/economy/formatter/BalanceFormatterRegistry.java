@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.currency;
+package blue.lapis.common.economy.formatter;
 
 import com.google.common.collect.Maps;
 
@@ -31,12 +31,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  *
  */
-public final class CurrencyFormatterRegistry {
+public final class BalanceFormatterRegistry {
 
     private static final ReentrantReadWriteLock mutex = new ReentrantReadWriteLock();
-    private static final Map<String, CurrencyFormatter> registrations = Maps.newHashMap();
+    private static final Map<String, BalanceFormatter> registrations = Maps.newHashMap();
 
-    private CurrencyFormatterRegistry() {
+    private BalanceFormatterRegistry() {
     }
 
     /**
@@ -46,15 +46,15 @@ public final class CurrencyFormatterRegistry {
      * @return A CurrencyFormatter which can express the quantity and units of currency of this type
      */
     @Nonnull
-    public static CurrencyFormatter get(@Nonnull String prefix) {
+    public static BalanceFormatter get(@Nonnull String prefix) {
         if (registrations.containsKey(prefix)) {
             mutex.readLock().lock();
-            CurrencyFormatter result = registrations.get(prefix);
+            BalanceFormatter result = registrations.get(prefix);
             mutex.readLock().unlock();
             return result;
         } else {
             mutex.writeLock().lock();
-            CurrencyFormatter formatter = new SuffixCurrencyFormatter(" " + prefix);
+            BalanceFormatter formatter = new SuffixBalanceFormatter(" " + prefix);
             registrations.put(prefix, formatter);
             mutex.writeLock().unlock();
             return formatter;
@@ -68,7 +68,7 @@ public final class CurrencyFormatterRegistry {
      * @param formatter A CurrencyFormatter which can turn amounts of this currency into a human-readable
      * String
      */
-    public void register(@Nonnull String prefix, @Nonnull CurrencyFormatter formatter) {
+    public void register(@Nonnull String prefix, @Nonnull BalanceFormatter formatter) {
         mutex.writeLock().lock();
         registrations.put(prefix, formatter);
         mutex.writeLock().unlock();
