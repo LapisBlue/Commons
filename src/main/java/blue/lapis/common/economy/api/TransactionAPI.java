@@ -67,10 +67,10 @@ public interface TransactionAPI {
     Transaction subtract(double amount);
 
     @Nonnull
-    Transaction multiplyBy(double amount);
+    Transaction multiply(double amount);
 
     @Nonnull
-    Transaction divideBy(double amount);
+    Transaction divide(double amount);
 
     @Nonnull
     Transaction fireEvent();

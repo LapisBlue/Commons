@@ -118,13 +118,13 @@ public class Transaction implements TransactionAPI {
     }
 
     @Nonnull
-    public Transaction multiplyBy(double amount) {
+    public Transaction multiply(double amount) {
         delta *= amount;
         return this;
     }
 
     @Nonnull
-    public Transaction divideBy(double amount) {
+    public Transaction divide(double amount) {
         delta /= amount;
         return this;
     }
