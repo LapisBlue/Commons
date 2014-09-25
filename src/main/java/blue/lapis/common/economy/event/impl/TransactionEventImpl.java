@@ -29,8 +29,8 @@ import com.google.common.base.Preconditions;
 import javax.annotation.Nonnull;
 
 /**
- * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to
- * change its details before it is applied.
+ * Signals that a {@link Transaction} is about to complete, and offers a chance to change its details before it
+ * is applied.
  */
 public class TransactionEventImpl extends EconomyEventImpl implements TransactionEvent {
     private final Transaction transaction;
