@@ -22,7 +22,14 @@
  */
 package blue.lapis.common.economy;
 
+import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.economy.account.EconomyAccount;
+import blue.lapis.common.economy.event.TransactionEvent;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.event.Result;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  *
@@ -67,14 +74,21 @@ public class Transaction {
         return this;
     }
 
+    public EconomyAccount getAccount() {
+        return account;
+    }
+
+    @Nullable
     public Object getReason() {
         return reason;
     }
 
+    @Nullable
     public Object getInitiator() {
         return initiator;
     }
 
+    @Nullable
     public Object getTarget() {
         return target;
     }
@@ -83,40 +97,60 @@ public class Transaction {
         return delta;
     }
 
+    @Nonnull
+    public Status getStatus() {
+        return status;
+    }
+
+    @Nonnull
     public Transaction add(double amount) {
         delta += amount;
         return this;
     }
 
+    @Nonnull
     public Transaction subtract(double amount) {
         delta -= amount;
         return this;
     }
 
+    @Nonnull
     public Transaction multiplyBy(double amount) {
         delta *= amount;
         return this;
     }
 
+    @Nonnull
     public Transaction divideBy(double amount) {
         delta /= amount;
         return this;
     }
 
+    @Nonnull
     public Transaction fireEvent() {
         status = Status.EVENT_FIRED;
-        //TODO: Fire
-        //TODO: Update Status to CANCELLED if needed
+
+        TransactionEvent event = new TransactionEvent(this);
+        LapisCommonsPlugin.getGame().getEventManager().call(event);
+
+        if (event.getResult()==Result.DENY) status = Status.CANCELLED;
+        if (event.isCancelled()) status = Status.CANCELLED;
+
         return this;
     }
 
-    public Transaction commit() {
+    public Status commit() {
         if (status!=Status.EVENT_FIRED) {
             throw new IllegalStateException("Expected transaction state: EVENT_FIRED. Instead found "+status.name());
         }
 
-        //TODO: Commit to the EconomyAccount
-        return this;
+        if (account.apply(this)) {
+            status = Status.COMPLETE;
+        } else {
+            status = Status.FAILED;
+        }
+
+        return status;
     }
 
     public static enum Status {
@@ -124,6 +158,6 @@ public class Transaction {
         EVENT_FIRED,
         CANCELLED,
         FAILED,
-        COMPLETE;
+        COMPLETE
     }
 }
