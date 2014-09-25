@@ -25,7 +25,6 @@ package blue.lapis.common.economy;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.economy.account.EconomyAccount;
 import blue.lapis.common.economy.event.TransactionEvent;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
@@ -35,6 +34,7 @@ import javax.annotation.Nullable;
  *
  */
 public class Transaction {
+
     private boolean isSetter = false;
     private Status status = Status.INCOMPLETE;
     private EconomyAccount account;
@@ -60,17 +60,17 @@ public class Transaction {
     }
 
     public Transaction withInitiator(Object o) {
-        if (status==Status.INCOMPLETE) this.initiator = o;
+        if (status == Status.INCOMPLETE) this.initiator = o;
         return this;
     }
 
     public Transaction withTarget(Object o) {
-        if (status==Status.INCOMPLETE) this.target = o;
+        if (status == Status.INCOMPLETE) this.target = o;
         return this;
     }
 
     public Transaction withReason(Object o) {
-        if (status==Status.INCOMPLETE) this.reason = o;
+        if (status == Status.INCOMPLETE) this.reason = o;
         return this;
     }
 
@@ -133,22 +133,17 @@ public class Transaction {
         TransactionEvent event = new TransactionEvent(this);
         LapisCommonsPlugin.getGame().getEventManager().call(event);
 
-        if (event.getResult()==Result.DENY) status = Status.CANCELLED;
+        if (event.getResult() == Result.DENY) status = Status.CANCELLED;
         if (event.isCancelled()) status = Status.CANCELLED;
 
         return this;
     }
 
     public Status commit() {
-        if (status!=Status.EVENT_FIRED) {
-            throw new IllegalStateException("Expected transaction state: EVENT_FIRED. Instead found "+status.name());
+        if (status != Status.EVENT_FIRED) {
+            throw new IllegalStateException("Expected transaction state: EVENT_FIRED. Instead found " + status.name());
         }
-
-        if (account.apply(this)) {
-            status = Status.COMPLETE;
-        } else {
-            status = Status.FAILED;
-        }
+        status = (account.apply(this)) ? Status.COMPLETE : Status.FAILED;
 
         return status;
     }
