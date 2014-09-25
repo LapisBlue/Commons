@@ -23,7 +23,7 @@
 package blue.lapis.common.economy.account;
 
 import blue.lapis.common.economy.Transaction;
-import blue.lapis.common.economy.currency.CurrencyFormatter;
+import blue.lapis.common.economy.formatter.BalanceFormatter;
 
 import javax.annotation.Nonnull;
 
