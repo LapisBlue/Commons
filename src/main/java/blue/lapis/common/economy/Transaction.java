@@ -24,7 +24,9 @@ package blue.lapis.common.economy;
 
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.economy.account.EconomyAccount;
+import blue.lapis.common.economy.api.TransactionAPI;
 import blue.lapis.common.economy.event.TransactionEvent;
+import blue.lapis.common.economy.event.impl.TransactionEventImpl;
 import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
@@ -33,7 +35,7 @@ import javax.annotation.Nullable;
 /**
  *
  */
-public class Transaction {
+public class Transaction implements TransactionAPI {
 
     private boolean isSetter = false;
     private Status status = Status.INCOMPLETE;
@@ -130,7 +132,7 @@ public class Transaction {
     public Transaction fireEvent() {
         status = Status.EVENT_FIRED;
 
-        TransactionEvent event = new TransactionEvent(this);
+        TransactionEvent event = new TransactionEventImpl(this);
         LapisCommonsPlugin.getGame().getEventManager().call(event);
 
         if (event.getResult() == Result.DENY) status = Status.CANCELLED;
@@ -148,11 +150,5 @@ public class Transaction {
         return status;
     }
 
-    public static enum Status {
-        INCOMPLETE,
-        EVENT_FIRED,
-        CANCELLED,
-        FAILED,
-        COMPLETE
-    }
+
 }

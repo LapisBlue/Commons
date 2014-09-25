@@ -20,16 +20,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.event;
+package blue.lapis.common.economy.api;
 
 import blue.lapis.common.economy.Transaction;
-import org.spongepowered.api.event.Cancellable;
+import blue.lapis.common.economy.account.EconomyAccount;
 
-/**
- * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to change its details before it
- * is applied.
- */
-public interface TransactionEvent extends Cancellable, EconomyEvent {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-    public Transaction getTransaction();
+public interface TransactionAPI {
+
+    static enum Status {
+        INCOMPLETE,
+        EVENT_FIRED,
+        CANCELLED,
+        FAILED,
+        COMPLETE
+    }
+
+    Transaction withInitiator(Object o);
+
+    Transaction withTarget(Object o);
+
+    Transaction withReason(Object o);
+
+    EconomyAccount getAccount();
+
+    @Nullable
+    Object getReason();
+
+    @Nullable
+    Object getInitiator();
+
+    @Nullable
+    Object getTarget();
+
+    double getDelta();
+
+    @Nonnull
+    Status getStatus();
+
+    @Nonnull
+    Transaction add(double amount);
+
+    @Nonnull
+    Transaction subtract(double amount);
+
+    @Nonnull
+    Transaction multiplyBy(double amount);
+
+    @Nonnull
+    Transaction divideBy(double amount);
+
+    @Nonnull
+    Transaction fireEvent();
+
+    Status commit();
 }

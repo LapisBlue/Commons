@@ -20,16 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.event;
+package blue.lapis.common.economy.api;
 
-import blue.lapis.common.economy.Transaction;
-import org.spongepowered.api.event.Cancellable;
+import blue.lapis.common.economy.account.AccountSystem;
 
-/**
- * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to change its details before it
- * is applied.
- */
-public interface TransactionEvent extends Cancellable, EconomyEvent {
+public interface EconomyAPI {
 
-    public Transaction getTransaction();
+    AccountSystem getAccountSystem();
+
+    String formatCurrency(double amount, String prefix);
 }
