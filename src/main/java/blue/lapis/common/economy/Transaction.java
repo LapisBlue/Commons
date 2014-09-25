@@ -143,7 +143,8 @@ public class Transaction implements TransactionAPI {
 
     public Status commit() {
         if (status != Status.EVENT_FIRED) {
-            throw new IllegalStateException("Expected transaction state: EVENT_FIRED. Instead found " + status.name());
+            throw new IllegalStateException(
+                    "Expected transaction state: EVENT_FIRED. Instead found " + status.name());
         }
         status = (account.apply(this)) ? Status.COMPLETE : Status.FAILED;
 

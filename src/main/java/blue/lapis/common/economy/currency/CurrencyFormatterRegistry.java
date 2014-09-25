@@ -22,12 +22,12 @@
  */
 package blue.lapis.common.economy.currency;
 
-import java.util.Map;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import javax.annotation.Nonnull;
-
 import blue.lapis.common.economy.api.custom.CurrencyFormatter;
 import com.google.common.collect.Maps;
+
+import javax.annotation.Nonnull;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  *

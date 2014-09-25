@@ -25,18 +25,16 @@ package blue.lapis.commons.test;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.PlayerTokenParser;
 import blue.lapis.common.command.impl.StandardTokenizer;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.Player;
-import org.spongepowered.api.event.state.PreInitializationEvent;
-
 import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.event.state.PreInitializationEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

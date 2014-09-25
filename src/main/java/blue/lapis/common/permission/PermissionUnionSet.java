@@ -32,7 +32,7 @@ public class PermissionUnionSet extends PermissionSet {
     @Override
     public void calculate() {
         BitSet temp = new BitSet();
-        for(PermissionSet parent : getParents()) {
+        for (PermissionSet parent : getParents()) {
             temp.or(parent.getDerivedPermissions());
         }
         this.setDerivedPermissions(temp);
