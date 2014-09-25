@@ -22,15 +22,18 @@
  */
 package blue.lapis.common.economy.account;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
 public interface AccountSystem {
 
-    List<EconomyAccount> getAccounts(Object owner);
+    @Nonnull
+    List<EconomyAccount> getAccounts(@Nonnull Object owner);
 
     @Nullable
-    EconomyAccount getAccount(Object owner, String accountName);
+    EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName);
 
-    EconomyAccount createAccount(Object owner, String accountName);
+    @Nonnull
+    EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName);
 }

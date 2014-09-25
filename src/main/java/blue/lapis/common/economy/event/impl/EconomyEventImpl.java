@@ -20,60 +20,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.api;
+package blue.lapis.common.economy.event.impl;
 
-import blue.lapis.common.economy.Transaction;
 import blue.lapis.common.economy.account.EconomyAccount;
+import blue.lapis.common.economy.event.EconomyEvent;
+import com.google.common.base.Preconditions;
+import org.spongepowered.api.event.BaseEvent;
+import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public interface TransactionAPI {
+public class EconomyEventImpl extends BaseEvent implements EconomyEvent {
 
-    static enum Status {
-        INCOMPLETE,
-        EVENT_FIRED,
-        CANCELLED,
-        FAILED,
-        COMPLETE
+    private final EconomyAccount account;
+    private Result result = Result.NO_RESULT;
+    private boolean cancelled = false;
+
+    protected EconomyEventImpl(@Nonnull EconomyAccount account) {
+        this.account = Preconditions.checkNotNull(account, "account");
     }
 
-    Transaction withInitiator(Object o);
-
-    Transaction withTarget(Object o);
-
-    Transaction withReason(Object o);
-
-    EconomyAccount getAccount();
-
-    @Nullable
-    Object getReason();
-
-    @Nullable
-    Object getInitiator();
-
-    @Nullable
-    Object getTarget();
-
-    double getDelta();
-
+    @Override
     @Nonnull
-    Status getStatus();
+    public EconomyAccount getAccount() {
+        return account;
+    }
 
-    @Nonnull
-    Transaction add(double amount);
+    /*
+    //Uncomment when BaseEvent stops being stupid.
 
-    @Nonnull
-    Transaction subtract(double amount);
+    @Override
+    public boolean isCancellable() {
+        return true;
+    }
 
-    @Nonnull
-    Transaction multiply(double amount);
+    @Override
+    public Result getResult() {
+        return result;
+    }
 
-    @Nonnull
-    Transaction divide(double amount);
+    @Override
+    public void setResult(Result result) {
+        this.result = result;
+    }
 
-    @Nonnull
-    Transaction fireEvent();
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
 
-    Status commit();
+    @Override
+    public boolean getCancelled() {
+        return cancelled;
+    }
+    */
 }
