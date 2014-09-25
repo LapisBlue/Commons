@@ -23,7 +23,9 @@
 package blue.lapis.common.economy.account;
 
 import blue.lapis.common.economy.Transaction;
-import blue.lapis.common.economy.api.custom.CurrencyFormatter;
+import blue.lapis.common.economy.currency.CurrencyFormatter;
+
+import javax.annotation.Nonnull;
 
 /**
  * <p>Represents a single account of a single type of currency. Generally, accounts of a common currency have a
@@ -35,6 +37,7 @@ import blue.lapis.common.economy.api.custom.CurrencyFormatter;
  */
 public interface EconomyAccount {
 
+    @Nonnull
     String getID();
 
     /**
@@ -45,6 +48,7 @@ public interface EconomyAccount {
     /**
      * @return a formatter which can display this account's currency
      */
+    @Nonnull
     CurrencyFormatter getFormatter();
 
     /**
@@ -55,6 +59,6 @@ public interface EconomyAccount {
      * @return False if the transaction could not be applied, such as if it would drop a non-credit account
      * below zero.
      */
-    public boolean apply(Transaction t);
+    boolean apply(Transaction t);
 
 }

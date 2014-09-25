@@ -34,11 +34,11 @@ public final class Economy {
 
     private static Economy INSTANCE;
 
-    // singleton pattern
     private Economy() {
-        // init account system
+        // TODO
     }
 
+    @Nonnull
     public static Economy getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Economy();

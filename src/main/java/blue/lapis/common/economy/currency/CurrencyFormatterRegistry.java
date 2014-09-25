@@ -22,7 +22,6 @@
  */
 package blue.lapis.common.economy.currency;
 
-import blue.lapis.common.economy.api.custom.CurrencyFormatter;
 import com.google.common.collect.Maps;
 
 import javax.annotation.Nonnull;

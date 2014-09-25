@@ -22,8 +22,6 @@
  */
 package blue.lapis.common.economy.currency;
 
-import blue.lapis.common.economy.api.custom.CurrencyFormatter;
-
 import java.text.NumberFormat;
 
 public abstract class AbstractCurrencyFormatter implements CurrencyFormatter {

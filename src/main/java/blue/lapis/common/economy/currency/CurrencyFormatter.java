@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.api.custom;
+package blue.lapis.common.economy.currency;
 
 import javax.annotation.Nonnull;
 
