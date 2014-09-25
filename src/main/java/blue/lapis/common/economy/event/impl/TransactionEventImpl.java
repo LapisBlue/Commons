@@ -22,12 +22,9 @@
  */
 package blue.lapis.common.economy.event.impl;
 
-import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.economy.Transaction;
-import blue.lapis.common.economy.account.EconomyAccount;
 import blue.lapis.common.economy.event.TransactionEvent;
-import org.spongepowered.api.Game;
-import org.spongepowered.api.event.Result;
+import com.google.common.base.Preconditions;
 
 import javax.annotation.Nonnull;
 
@@ -35,61 +32,17 @@ import javax.annotation.Nonnull;
  * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to
  * change its details before it is applied.
  */
-public class TransactionEventImpl implements TransactionEvent {
+public class TransactionEventImpl extends BaseEconomyEvent implements TransactionEvent {
     private final Transaction transaction;
-    private boolean cancelled = false;
-    private Result result = Result.NO_RESULT;
 
     public TransactionEventImpl(@Nonnull Transaction transaction) {
+        super(Preconditions.checkNotNull(transaction, "transaction").getAccount());
         this.transaction = transaction;
     }
 
+    @Override
     @Nonnull
     public Transaction getTransaction() {
         return transaction;
-    }
-
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
-    }
-
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
-    }
-
-    @Override
-    @Nonnull
-    public EconomyAccount getAccount() {
-        return transaction.getAccount();
-    }
-
-    @Override
-    @Nonnull
-    public Game getGame() {
-        return LapisCommonsPlugin.getGame();
-    }
-
-    @Override
-    @Nonnull
-    public String getSimpleName() {
-        return "TransactionEvent";
-    }
-
-    @Override
-    public boolean isCancellable() {
-        return true;
-    }
-
-    @Override
-    @Nonnull
-    public Result getResult() {
-        return result;
-    }
-
-    @Override
-    public void setResult(@Nonnull Result result) {
-        this.result = result;
     }
 }
