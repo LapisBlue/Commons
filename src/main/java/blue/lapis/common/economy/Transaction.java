@@ -35,45 +35,53 @@ import javax.annotation.Nullable;
 /**
  *
  */
-public class Transaction {
-
+public final class Transaction {
     private Status status = Status.INCOMPLETE;
     private EconomyAccount account;
-    private Object initiator = null;
-    private Object target = null;
-    private Object reason = null;
-    private double delta = 0.0d;
-    private double balance = Double.NaN;
+    private Object initiator;
+    private Object target;
+    private Object reason;
+    private double delta;
+    private Double balance;
 
     private Transaction(EconomyAccount account) {
-        this.account = account;
+        this.account = Preconditions.checkNotNull(account, "account");
     }
 
+    @Nonnull
     public static Transaction of(EconomyAccount account) {
         return new Transaction(account);
     }
 
+    @Nonnull
     public static Transaction setBalance(EconomyAccount account, double balance) {
-        Transaction result = new Transaction(account);
+        Transaction result = of(account);
         result.balance = balance;
         return result;
     }
 
-    public Transaction withInitiator(Object o) {
-        if (status == Status.INCOMPLETE) this.initiator = o;
+    @Nonnull
+    public Transaction withInitiator(Object initiator) {
+        validateState(Status.INCOMPLETE);
+        this.initiator = initiator;
         return this;
     }
 
-    public Transaction withTarget(Object o) {
-        if (status == Status.INCOMPLETE) this.target = o;
+    @Nonnull
+    public Transaction withTarget(Object target) {
+        validateState(Status.INCOMPLETE);
+        this.target = target;
         return this;
     }
 
-    public Transaction withReason(Object o) {
-        if (status == Status.INCOMPLETE) this.reason = o;
+    @Nonnull
+    public Transaction withReason(Object reason) {
+        validateState(Status.INCOMPLETE);
+        this.reason = reason;
         return this;
     }
 
+    @Nonnull
     public EconomyAccount getAccount() {
         return account;
     }
@@ -97,8 +105,9 @@ public class Transaction {
         return delta;
     }
 
+    @Nullable
     public Double getAbsolute() {
-        return (balance==Double.NaN) ? null : balance;
+        return balance;
     }
 
     @Nonnull
@@ -138,15 +147,12 @@ public class Transaction {
 
     @Nonnull
     public Status commit() {
-        Preconditions.checkState(status==Status.INCOMPLETE,"status");
-        status = Status.EVENT_FIRED;
-
+        validateState(Status.INCOMPLETE);
         TransactionEvent event = new TransactionEventImpl(this);
         LapisCommonsPlugin.getGame().getEventManager().call(event);
 
         if (event.getResult() == Result.DENY || event.isCancelled()) {
-            status = Status.CANCELLED;
-            return status;
+            return status = Status.CANCELLED;
         }
 
         if (account.apply(this)) {
@@ -158,9 +164,13 @@ public class Transaction {
         return status;
     }
 
+    private void validateState(Status expected) {
+        Preconditions.checkState(status == expected, "Expected transaction state %s, " +
+                "found %s instead.", expected, status);
+    }
+
     static enum Status {
         INCOMPLETE,
-        EVENT_FIRED,
         CANCELLED,
         FAILED,
         COMPLETE
