@@ -42,22 +42,19 @@ public class PlayerTokenParser implements TokenParser<Player> {
     @Nonnull
     public Player parse(@Nonnull final CommandSource source, @Nonnull final String token) {
         Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
-        String matchString = token.toLowerCase();
 
-        //TODO: strip off leading p: ?
+        // TODO: strip off leading p: ?
 
-        //attempt resolving full names
+        // attempt resolving full names
         for (Player p : players) {
-            if (p.getName().toLowerCase().equals(matchString)) {
+            if (p.getName().equalsIgnoreCase(token))
                 return p;
-            }
         }
 
-        //attempt partial names
+        // attempt partial names
         for (Player p : players) {
-            if (p.getName().toLowerCase().startsWith(matchString)) {
+            if (startsWithIgnoreCase(p.getName(), token))
                 return p;
-            }
         }
 
         throw new InvalidTokenException(token, Player.class);
@@ -68,14 +65,16 @@ public class PlayerTokenParser implements TokenParser<Player> {
     public List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
         List<String> results = Lists.newArrayList();
         Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
-        String matchString = partial.toLowerCase();
 
         for (Player p : players) {
-            if (p.getName().toLowerCase().startsWith(matchString)) {
+            if (startsWithIgnoreCase(p.getName(), partial))
                 results.add(p.getName());
-            }
         }
 
         return results;
+    }
+
+    private static boolean startsWithIgnoreCase(String s, String start) {
+        return s.regionMatches(true, 0, start, 0, start.length());
     }
 }
