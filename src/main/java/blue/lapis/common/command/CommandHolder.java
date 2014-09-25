@@ -22,9 +22,9 @@
  */
 package blue.lapis.common.command;
 
-import org.spongepowered.api.command.CommandSource;
-
 import javax.annotation.Nonnull;
+
+import org.spongepowered.api.command.CommandSource;
 
 /**
  * Device which can accept Command registrations and determine, given an input line, which Command to invoke.

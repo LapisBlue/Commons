@@ -32,8 +32,8 @@ import org.spongepowered.api.event.Result;
 import javax.annotation.Nonnull;
 
 /**
- * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to
- * change its details before it is applied.
+ * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to change its details before it
+ * is applied.
  */
 public class TransactionEventImpl implements TransactionEvent {
     private final Transaction transaction;

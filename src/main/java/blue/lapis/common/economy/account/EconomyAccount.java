@@ -29,7 +29,7 @@ import blue.lapis.common.economy.api.custom.CurrencyFormatter;
  * <p>Represents a single account of a single type of currency. Generally, accounts of a common currency have a
  * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does
  * not address who or what the holder is, or the number of holders, only the balance.</p>
- * <p/>
+ *
  * <p>This interface is available for custom economy systems to implement, either to allow credit, store
  * transaction logs, or create other unforseen behaviors.</p>
  */
@@ -71,12 +71,11 @@ public interface EconomyAccount {
     CurrencyFormatter getFormatter();
 
     /**
-     * Apply a Transaction's proposed change to this EconomyAccount. The Transaction MUST be in
-     * State.EVENT_FIRED, otherwise this method can choose to throw an IllegalStateException or return false.
-     *
+     * Apply a Transaction's proposed change to this EconomyAccount. The Transaction MUST be in State.EVENT_FIRED,
+     * otherwise this method can choose to throw an IllegalStateException or return false.
      * @param t The Transaction to apply
-     * @return False if the transaction could not be applied, such as if it would drop a non-credit account
-     * below zero.
+     * @return False if the transaction could not be applied, such as if it would drop a non-credit account below
+     * zero.
      */
     public boolean apply(Transaction t);
 

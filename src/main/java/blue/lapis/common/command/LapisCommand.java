@@ -24,13 +24,15 @@ package blue.lapis.common.command;
 
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.StandardCommandRecognizer;
+
+import java.util.List;
+import javax.annotation.Nonnull;
+
 import com.google.common.collect.Lists;
+
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.plugin.PluginContainer;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 /**
  * A registered command

@@ -24,10 +24,11 @@ package blue.lapis.common.permission;
 
 import com.google.common.collect.ImmutableSet;
 
-import javax.annotation.Nonnull;
 import java.util.BitSet;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.annotation.Nonnull;
 
 /**
  * Abstract super for collections of Permissions
@@ -48,7 +49,6 @@ public abstract class PermissionSet {
 
     /**
      * Internal method for finalizing the two-way link between parent and child
-     *
      * @param set The set which is now an immediate parent of this set
      */
     protected void addParent(@Nonnull PermissionSet set) {
@@ -59,7 +59,6 @@ public abstract class PermissionSet {
 
     /**
      * Add a child to this set. Triggers a (potentially recursive) recalculate for the new node
-     *
      * @param set The new child
      */
     public void addChild(@Nonnull PermissionSet set) {
@@ -71,7 +70,7 @@ public abstract class PermissionSet {
         BitSet oldPerms = derivedPermissions;
         calculate();
         if (oldPerms.equals(derivedPermissions)) {
-            for (PermissionSet child : children) {
+            for(PermissionSet child : children) {
                 child.calculate();
             }
         }
@@ -91,7 +90,7 @@ public abstract class PermissionSet {
 
     public boolean grantsPermission(String perm) {
         int bitIndex = PermissionBitIndex.getInstance().getPermission(perm);
-        if (bitIndex < 0) return false;
+        if (bitIndex<0) return false;
         return derivedPermissions.get(bitIndex);
     }
 }

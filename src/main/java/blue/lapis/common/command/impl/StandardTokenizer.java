@@ -23,13 +23,14 @@
 package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.Tokenizer;
-import com.google.common.collect.Lists;
 
-import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.List;
+import javax.annotation.Nonnull;
+
+import com.google.common.collect.Lists;
 
 /**
  * Reference implementation of the Tokenizer; generally splits on spaces, except inside quoted strings.
