@@ -46,14 +46,14 @@ public final class Economy {
         return INSTANCE;
     }
 
+    @Nonnull
+    public static String formatCurrency(double amount, String prefix) {
+        return CurrencyFormatterRegistry.get(prefix).format(amount);
+    }
+
     @Nullable
     public AccountSystem getAccountSystem() {
         //TODO: create an instance of the account system implementation
         return null;
-    }
-
-    @Nonnull
-    public static String formatCurrency(double amount, String prefix) {
-        return CurrencyFormatterRegistry.get(prefix).format(amount);
     }
 }

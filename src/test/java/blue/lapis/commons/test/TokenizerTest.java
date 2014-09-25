@@ -42,7 +42,7 @@ import static org.mockito.Mockito.when;
 /**
  *
  */
-public class TokenizerVerification {
+public class TokenizerTest {
     LapisCommonsPlugin plugin = new LapisCommonsPlugin();
     public StandardTokenizer tokenizer = new StandardTokenizer();
     public PlayerTokenParser playerParser = new PlayerTokenParser();

@@ -41,17 +41,17 @@ final class PermissionBitIndex {
     private HashBiMap<String, Integer> data = HashBiMap.create();
     private int curIndex = 0;
 
-    public static PermissionBitIndex getInstance() {
-        if (INSTANCE == null) INSTANCE = new PermissionBitIndex();
-        return INSTANCE;
-    }
-
     /**
      * No, no, no. I make.
      *
      * @see PermissionBitIndex#getInstance()
      */
     private PermissionBitIndex() {
+    }
+
+    public static PermissionBitIndex getInstance() {
+        if (INSTANCE == null) INSTANCE = new PermissionBitIndex();
+        return INSTANCE;
     }
 
     /**

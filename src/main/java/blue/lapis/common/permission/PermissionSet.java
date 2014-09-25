@@ -37,13 +37,13 @@ public abstract class PermissionSet {
     private Set<PermissionSet> parents = new HashSet<PermissionSet>();
     private Set<PermissionSet> children = new HashSet<PermissionSet>();
 
-    protected void setDerivedPermissions(@Nonnull BitSet b) {
-        derivedPermissions = b;
-    }
-
     @Nonnull
     protected BitSet getDerivedPermissions() {
         return derivedPermissions;
+    }
+
+    protected void setDerivedPermissions(@Nonnull BitSet b) {
+        derivedPermissions = b;
     }
 
     /**

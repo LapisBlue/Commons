@@ -62,17 +62,17 @@ public class Transaction {
     }
 
     public Transaction withInitiator(Object o) {
-        if (status==Status.INCOMPLETE) this.initiator = o;
+        if (status == Status.INCOMPLETE) this.initiator = o;
         return this;
     }
 
     public Transaction withTarget(Object o) {
-        if (status==Status.INCOMPLETE) this.target = o;
+        if (status == Status.INCOMPLETE) this.target = o;
         return this;
     }
 
     public Transaction withReason(Object o) {
-        if (status==Status.INCOMPLETE) this.reason = o;
+        if (status == Status.INCOMPLETE) this.reason = o;
         return this;
     }
 
