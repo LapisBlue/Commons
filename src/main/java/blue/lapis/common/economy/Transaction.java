@@ -27,6 +27,7 @@ import blue.lapis.common.economy.account.EconomyAccount;
 import blue.lapis.common.economy.api.TransactionAPI;
 import blue.lapis.common.economy.event.TransactionEvent;
 import blue.lapis.common.economy.event.impl.TransactionEventImpl;
+import com.google.common.base.Preconditions;
 import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
@@ -135,20 +136,15 @@ public class Transaction implements TransactionAPI {
         TransactionEvent event = new TransactionEventImpl(this);
         LapisCommonsPlugin.getGame().getEventManager().call(event);
 
-        if (event.getResult() == Result.DENY) status = Status.CANCELLED;
-        if (event.isCancelled()) status = Status.CANCELLED;
-
+        if (event.getResult() == Result.DENY || event.isCancelled())
+            status = Status.CANCELLED;
         return this;
     }
 
     public Status commit() {
-        if (status != Status.EVENT_FIRED) {
-            throw new IllegalStateException(
-                    "Expected transaction state: EVENT_FIRED. Instead found " + status.name());
-        }
-        status = (account.apply(this)) ? Status.COMPLETE : Status.FAILED;
-
-        return status;
+        Preconditions.checkState(status == Status.EVENT_FIRED, "Expected transaction state %s, " +
+                "found %s instead.", Status.EVENT_FIRED, status);
+        return status = account.apply(this) ? Status.COMPLETE : Status.FAILED;
     }
 
 
