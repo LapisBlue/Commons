@@ -22,6 +22,11 @@
  */
 package blue.lapis.common.economy.event;
 
+import blue.lapis.common.economy.account.EconomyAccount;
+
+/**
+ * Called when a new {@link EconomyAccount} is created by an economy plugin.
+ */
 public interface AccountCreatedEvent extends EconomyEvent {
 
 }

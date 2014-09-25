@@ -28,6 +28,9 @@ import org.spongepowered.api.event.Event;
 
 import javax.annotation.Nonnull;
 
+/**
+ * Base interface for events related to economy.
+ */
 public interface EconomyEvent extends Event, Cancellable {
 
     @Nonnull
