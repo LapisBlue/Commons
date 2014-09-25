@@ -22,9 +22,9 @@
  */
 package blue.lapis.common.command;
 
-import javax.annotation.Nonnull;
-
 import org.spongepowered.api.command.CommandSource;
+
+import javax.annotation.Nonnull;
 
 /**
  * Simple yes-no interface: Given the CommandSource, the inputline String, and a Command, say yes or no about

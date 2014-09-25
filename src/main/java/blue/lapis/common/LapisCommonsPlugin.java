@@ -22,12 +22,11 @@
  */
 package blue.lapis.common;
 
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
-
-import org.apache.logging.log4j.Logger;
 
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's

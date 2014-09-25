@@ -22,12 +22,12 @@
  */
 package blue.lapis.common.command.token;
 
-import java.util.Map;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.google.common.collect.Maps;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Maps;
+import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Thread-safe registry/factory for {@link TokenParser}s, which resolve Strings into typesafe game objects.

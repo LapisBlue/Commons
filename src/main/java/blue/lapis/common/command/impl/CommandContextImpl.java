@@ -24,11 +24,10 @@ package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.CommandContext;
 import blue.lapis.common.command.token.InvalidTokenException;
+import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.spongepowered.api.command.CommandSource;
 
 /**
  * Lapis implementation of {@link CommandContext}

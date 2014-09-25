@@ -22,10 +22,10 @@
  */
 package blue.lapis.common.command.token;
 
-import java.util.List;
-import javax.annotation.Nonnull;
-
 import org.spongepowered.api.command.CommandSource;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * Converts a String parameter, as from a Command, into a game object of type {@code T}. Additionally,
