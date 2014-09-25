@@ -26,17 +26,16 @@ import blue.lapis.common.economy.account.EconomyAccount;
 import blue.lapis.common.economy.event.EconomyEvent;
 import com.google.common.base.Preconditions;
 import org.spongepowered.api.event.BaseEvent;
-import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
 
 public class EconomyEventImpl extends BaseEvent implements EconomyEvent {
 
     private final EconomyAccount account;
-    private Result result = Result.NO_RESULT;
-    private boolean cancelled = false;
+    /*private Result result = Result.NO_RESULT;
+    private boolean cancelled = false;*/
 
-    protected EconomyEventImpl(@Nonnull EconomyAccount account) {
+    public EconomyEventImpl(@Nonnull EconomyAccount account) {
         this.account = Preconditions.checkNotNull(account, "account");
     }
 

@@ -28,10 +28,10 @@ import org.spongepowered.api.event.Cancellable;
 import javax.annotation.Nonnull;
 
 /**
- * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to
- * change its details before it is applied.
+ * Signals that a {@link Transaction} is about to complete, and offers a chance to change its details before it
+ * is applied.
  */
-public interface TransactionEvent extends Cancellable, EconomyEvent {
+public interface TransactionEvent extends EconomyEvent, Cancellable {
 
     @Nonnull
     public Transaction getTransaction();
