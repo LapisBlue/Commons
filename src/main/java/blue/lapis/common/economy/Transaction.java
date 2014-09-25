@@ -37,7 +37,6 @@ import javax.annotation.Nullable;
  */
 public class Transaction {
 
-    private boolean isSetter = false;
     private Status status = Status.INCOMPLETE;
     private EconomyAccount account;
     private Object initiator = null;
@@ -57,7 +56,6 @@ public class Transaction {
     public static Transaction setBalance(EconomyAccount account, double balance) {
         Transaction result = new Transaction(account);
         result.balance = balance;
-        result.isSetter = true;
         return result;
     }
 
@@ -99,6 +97,10 @@ public class Transaction {
         return delta;
     }
 
+    public Double getAbsolute() {
+        return (balance==Double.NaN) ? null : balance;
+    }
+
     @Nonnull
     public Status getStatus() {
         return status;
@@ -129,7 +131,14 @@ public class Transaction {
     }
 
     @Nonnull
-    public Transaction fireEvent() {
+    public Transaction setAbsolute(double amount) {
+        balance = amount;
+        return this;
+    }
+
+    @Nonnull
+    public Status commit() {
+        Preconditions.checkState(status==Status.INCOMPLETE,"status");
         status = Status.EVENT_FIRED;
 
         TransactionEvent event = new TransactionEventImpl(this);
@@ -137,14 +146,9 @@ public class Transaction {
 
         if (event.getResult() == Result.DENY || event.isCancelled()) {
             status = Status.CANCELLED;
+            return status;
         }
 
-        return this;
-    }
-
-    public Status commit() {
-        Preconditions.checkState(status == Status.EVENT_FIRED, "Expected transaction state %s, " +
-                "found %s instead.", Status.EVENT_FIRED, status);
         if (account.apply(this)) {
             status = Status.COMPLETE;
         } else {

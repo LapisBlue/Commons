@@ -43,29 +43,6 @@ public interface EconomyAccount {
     double getBalance();
 
     /**
-     * Sets a new currency balance on this account
-     *
-     * @param balance The new balance for this account to carry
-     */
-    void setBalance(double balance);
-
-    /**
-     * Deposits currency into this account
-     *
-     * @param amount The amount of currency to deposit
-     * @return The new balance on this account
-     */
-    double add(double amount);
-
-    /**
-     * Withdraws currency from this account
-     *
-     * @param amount The amount of currency to withdraw
-     * @return The new balance on this account
-     */
-    double subtract(double amount);
-
-    /**
      * @return a formatter which can display this account's currency
      */
     CurrencyFormatter getFormatter();
