@@ -25,11 +25,14 @@ package blue.lapis.common.economy.event;
 import blue.lapis.common.economy.Transaction;
 import org.spongepowered.api.event.Cancellable;
 
+import javax.annotation.Nonnull;
+
 /**
  * Signals that a {@link blue.lapis.common.economy.Transaction} is about to complete, and offers a chance to
  * change its details before it is applied.
  */
 public interface TransactionEvent extends Cancellable, EconomyEvent {
 
+    @Nonnull
     public Transaction getTransaction();
 }

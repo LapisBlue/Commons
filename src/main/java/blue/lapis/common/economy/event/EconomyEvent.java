@@ -25,7 +25,10 @@ package blue.lapis.common.economy.event;
 import blue.lapis.common.economy.account.EconomyAccount;
 import org.spongepowered.api.event.Event;
 
+import javax.annotation.Nonnull;
+
 public interface EconomyEvent extends Event {
 
+    @Nonnull
     EconomyAccount getAccount();
 }
