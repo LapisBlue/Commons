@@ -6,22 +6,6 @@
   <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
     <value />
   </option>
-  <option name="IMPORT_LAYOUT_TABLE">
-    <value>
-      <package name="blue.lapis" withSubpackages="true" static="false" />
-      <emptyLine />
-      <package name="java" withSubpackages="true" static="false" />
-      <package name="javax" withSubpackages="true" static="false" />
-      <emptyLine />
-      <package name="com.google.common" withSubpackages="true" static="false" />
-      <emptyLine />
-      <package name="org.spongepowered" withSubpackages="true" static="false" />
-      <emptyLine />
-      <package name="" withSubpackages="true" static="false" />
-      <emptyLine />
-      <package name="" withSubpackages="true" static="true" />
-    </value>
-  </option>
   <option name="RIGHT_MARGIN" value="112" />
   <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
   <option name="JD_ALIGN_PARAM_COMMENTS" value="false" />
@@ -34,22 +18,6 @@
     <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="5" />
     <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
       <value />
-    </option>
-    <option name="IMPORT_LAYOUT_TABLE">
-      <value>
-        <package name="blue.lapis" withSubpackages="true" static="false" />
-        <emptyLine />
-        <package name="java" withSubpackages="true" static="false" />
-        <package name="javax" withSubpackages="true" static="false" />
-        <emptyLine />
-        <package name="com.google.common" withSubpackages="true" static="false" />
-        <emptyLine />
-        <package name="org.spongepowered" withSubpackages="true" static="false" />
-        <emptyLine />
-        <package name="" withSubpackages="true" static="false" />
-        <emptyLine />
-        <package name="" withSubpackages="true" static="true" />
-      </value>
     </option>
   </GroovyCodeStyleSettings>
   <XML>
@@ -110,3 +78,4 @@
     <option name="ENUM_CONSTANTS_WRAP" value="1" />
   </codeStyleSettings>
 </code_scheme>
+
