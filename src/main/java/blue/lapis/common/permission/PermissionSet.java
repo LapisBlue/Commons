@@ -23,10 +23,10 @@
 package blue.lapis.common.permission;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 import javax.annotation.Nonnull;
 import java.util.BitSet;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -34,8 +34,8 @@ import java.util.Set;
  */
 public abstract class PermissionSet {
     private BitSet derivedPermissions = new BitSet();
-    private Set<PermissionSet> parents = new HashSet<PermissionSet>();
-    private Set<PermissionSet> children = new HashSet<PermissionSet>();
+    private Set<PermissionSet> parents = Sets.newHashSet();
+    private Set<PermissionSet> children = Sets.newHashSet();
 
     @Nonnull
     protected BitSet getDerivedPermissions() {
