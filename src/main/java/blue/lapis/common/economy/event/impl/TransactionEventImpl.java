@@ -30,6 +30,7 @@ import javax.annotation.Nonnull;
 
 public class TransactionEventImpl extends EconomyEventImpl implements TransactionEvent {
     private final Transaction transaction;
+    private boolean cancelled = false;
 
     public TransactionEventImpl(@Nonnull Transaction transaction) {
         super(Preconditions.checkNotNull(transaction, "transaction").getAccount());
@@ -40,5 +41,20 @@ public class TransactionEventImpl extends EconomyEventImpl implements Transactio
     @Nonnull
     public Transaction getTransaction() {
         return transaction;
+    }
+
+    @Override
+    public boolean isCancellable() {
+        return true;
+    }
+
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
     }
 }

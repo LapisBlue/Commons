@@ -34,7 +34,6 @@ public class EconomyEventImpl implements EconomyEvent {
 
     private final EconomyAccount account;
     private Result result = Result.NO_RESULT;
-    private boolean cancelled = false;
 
     public EconomyEventImpl(@Nonnull EconomyAccount account) {
         this.account = Preconditions.checkNotNull(account, "account");
@@ -46,12 +45,9 @@ public class EconomyEventImpl implements EconomyEvent {
         return account;
     }
 
-
-    //Uncomment when BaseEvent stops being stupid.
-
     @Override
     public boolean isCancellable() {
-        return true;
+        return false;
     }
 
     @Override
@@ -63,15 +59,4 @@ public class EconomyEventImpl implements EconomyEvent {
     public void setResult(Result result) {
         this.result = result;
     }
-
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
-    }
-
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
-    }
-
 }

@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Base interface for events related to economy.
  */
-public interface EconomyEvent extends Event, Cancellable {
+public interface EconomyEvent extends Event {
 
     @Nonnull
     EconomyAccount getAccount();
