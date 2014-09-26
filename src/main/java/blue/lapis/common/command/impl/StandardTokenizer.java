@@ -27,7 +27,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import javax.annotation.Nonnull;
-import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.List;
@@ -46,18 +45,47 @@ public class StandardTokenizer implements Tokenizer {
         tokenizer.slashStarComments(false);
 
         List<String> result = Lists.newArrayList();
-        try {
-            while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
-                if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
-                    result.add(tokenizer.sval);
-                } else if (tokenizer.ttype == StreamTokenizer.TT_NUMBER) {
-                    result.add(tokenizer.nval + "");
-                } else if (tokenizer.ttype == '"') {
-                    result.add(tokenizer.sval);
+
+        String token = "";
+        char delimiter = ' ';
+        for(int i=0; i<s.length(); i++) {
+            char cur = s.charAt(i);
+
+            if (delimiter!=' ') {
+                if (cur!=delimiter) {
+                    token += cur;
+                } else {
+                    delimiter = ' ';
+                    result.add(token);
+                    token = "";
+                }
+            } else {
+                if (cur=='"') {
+                    delimiter = '"';
+                    continue;
+                } else {
+                    if (Character.isWhitespace(cur)) {
+                        if (!token.isEmpty()) {
+                            result.add(token);
+                            token = "";
+                        }
+                    } else {
+                        if (Character.isLetterOrDigit(cur)) {
+                            token += cur;
+                        } else {
+                            //Commit both the existing token and this new symbol
+                            if (!token.isEmpty()) {
+                                result.add(token);
+                                token = "";
+                            }
+                            result.add(""+cur);
+                        }
+                    }
                 }
             }
-        } catch (IOException ignored) {
         }
+        if (!token.isEmpty()) result.add(token);
+
         return ImmutableList.copyOf(result);
     }
 }

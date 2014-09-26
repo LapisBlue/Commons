@@ -62,14 +62,16 @@ public class TokenizerTest {
     public void identifiers() {
         //Would prefer that "81"->81, rather than converting it into double notation.
         //Would prefer that { } [ ] either became their own tokens or delimited token begin/end
-        ImmutableList<String> tokens = tokenizer.getTokens("one two three four 81 {} six [ ]");
-        Assert.assertArrayEquals(new String[]{"one", "two", "three", "four", "81.0", "six"}, tokens.toArray());
+        ImmutableList<String> tokens = tokenizer.getTokens("one two three four 81{ six");
+        Assert.assertArrayEquals(new String[]{"one", "two", "three", "four", "81", "{", "six"},
+                tokens.toArray());
     }
 
     @Test
     public void quotes() {
         ImmutableList<String> tokens = tokenizer.getTokens("one \"two three\" four 81 {} [ ]");
-        Assert.assertArrayEquals(new String[]{"one", "two three", "four", "81.0"}, tokens.toArray());
+        Assert.assertArrayEquals(new String[]{"one", "two three", "four", "81", "{", "}", "[", "]"},
+                tokens.toArray());
     }
 
     @Test
