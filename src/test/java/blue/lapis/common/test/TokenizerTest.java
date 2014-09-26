@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.commons.test;
+package blue.lapis.common.test;
 
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.StandardTokenizer;
