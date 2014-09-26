@@ -22,15 +22,13 @@
  */
 package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.account.AccountSystem;
 import blue.lapis.common.economy.formatter.BalanceFormatterRegistry;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public final class Economy {
-
-    private static AccountSystem accountSystem;
-
     private static Economy INSTANCE;
 
     private Economy() {
@@ -46,13 +44,22 @@ public final class Economy {
     }
 
     @Nonnull
-    public static String formatBalance(double amount, String prefix) {
+    public String formatBalance(double amount, String prefix) {
         return BalanceFormatterRegistry.get(prefix).format(amount);
     }
 
     @Nonnull
-    public AccountSystem getAccountSystem() {
-        //TODO: create an instance of the account system implementation
+    public List<EconomyAccount> getAccounts(@Nonnull Object owner) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Nullable
+    public EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Nonnull
+    public EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName) {
         throw new UnsupportedOperationException();
     }
 }

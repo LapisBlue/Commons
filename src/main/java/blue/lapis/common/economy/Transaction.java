@@ -23,7 +23,6 @@
 package blue.lapis.common.economy;
 
 import blue.lapis.common.LapisCommonsPlugin;
-import blue.lapis.common.economy.account.EconomyAccount;
 import blue.lapis.common.economy.event.TransactionEvent;
 import blue.lapis.common.economy.event.impl.TransactionEventImpl;
 import com.google.common.base.Preconditions;

@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.economy.event;
 
-import blue.lapis.common.economy.account.EconomyAccount;
+import blue.lapis.common.economy.EconomyAccount;
 
 /**
  * Called when an {@link EconomyAccount} is deleted.

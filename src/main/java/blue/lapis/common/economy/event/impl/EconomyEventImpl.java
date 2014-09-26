@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.economy.event.impl;
 
-import blue.lapis.common.economy.account.EconomyAccount;
+import blue.lapis.common.economy.EconomyAccount;
 import blue.lapis.common.economy.event.EconomyEvent;
 import com.google.common.base.Preconditions;
 //import org.spongepowered.api.event.BaseEvent;

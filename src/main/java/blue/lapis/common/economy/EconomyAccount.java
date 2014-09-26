@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.account;
+package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.Transaction;
 import blue.lapis.common.economy.formatter.BalanceFormatter;

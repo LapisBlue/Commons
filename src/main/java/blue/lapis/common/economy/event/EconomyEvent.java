@@ -22,8 +22,7 @@
  */
 package blue.lapis.common.economy.event;
 
-import blue.lapis.common.economy.account.EconomyAccount;
-import org.spongepowered.api.event.Cancellable;
+import blue.lapis.common.economy.EconomyAccount;
 import org.spongepowered.api.event.Event;
 
 import javax.annotation.Nonnull;
