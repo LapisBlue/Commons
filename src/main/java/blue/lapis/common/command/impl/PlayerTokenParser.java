@@ -53,7 +53,7 @@ public class PlayerTokenParser implements TokenParser<Player> {
 
         // attempt partial names
         for (Player p : players) {
-            if (startsWithIgnoreCase(p.getName(), token))
+            if (Parsing.startsWithIgnoreCase(p.getName(), token))
                 return p;
         }
 
@@ -67,14 +67,11 @@ public class PlayerTokenParser implements TokenParser<Player> {
         Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
 
         for (Player p : players) {
-            if (startsWithIgnoreCase(p.getName(), partial))
+            if (Parsing.startsWithIgnoreCase(p.getName(), partial))
                 results.add(p.getName());
         }
 
         return results;
     }
 
-    private static boolean startsWithIgnoreCase(String s, String start) {
-        return s.regionMatches(true, 0, start, 0, start.length());
-    }
 }

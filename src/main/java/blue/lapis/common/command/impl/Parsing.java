@@ -20,26 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 package blue.lapis.common.command.impl;
 
-import blue.lapis.common.command.CommandRecognizer;
-import blue.lapis.common.command.LapisCommand;
-import org.spongepowered.api.util.command.CommandSource;
-
-import javax.annotation.Nonnull;
-
 /**
- * Straightforward implementation of CommandRecognizer
+ * Basic parsing tasks
  */
-public class StandardCommandRecognizer implements CommandRecognizer {
-    public static final StandardCommandRecognizer INSTANCE = new StandardCommandRecognizer();
+public class Parsing {
 
-    @Override
-    public boolean recognize(@Nonnull final CommandSource source,
-                             @Nonnull final String inputLine,
-                             @Nonnull final LapisCommand command) {
-
-        return inputLine.equalsIgnoreCase(command.getName()) ||
-               Parsing.startsWithIgnoreCase(inputLine, command.getName()+" ");
+    public static boolean startsWithIgnoreCase(String s, String start) {
+        return s.regionMatches(true, 0, start, 0, start.length());
     }
+
 }
