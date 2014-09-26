@@ -34,7 +34,6 @@ import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.entity.Player;
@@ -55,10 +54,9 @@ public class TokenizerTest {
     public void initTests() {
         Game gameProxy = mock(Game.class);
         PreInitializationEvent init = mock(PreInitializationEvent.class);
-        //when(init.getGame()).thenReturn(gameProxy);
+        when(init.getGame()).thenReturn(gameProxy);
         when(init.getPluginLog()).thenReturn(LogManager.getLogger(LapisCommonsPlugin.class));
         new LapisCommonsPlugin().initialize(init);
-        LapisCommonsPlugin.setGame(gameProxy);
     }
 
     @Test

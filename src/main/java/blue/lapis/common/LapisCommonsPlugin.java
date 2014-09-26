@@ -52,17 +52,13 @@ public class LapisCommonsPlugin {
         return instance.game;
     }
 
-    public static void setGame(@Nonnull Game game) {
-        instance.game = game;
-    }
-
     public static Logger getLogger() {
         return instance.logger;
     }
 
     @SpongeEventHandler
     public void initialize(PreInitializationEvent event) {
-        //this.game = event.getGame();
+        this.game = event.getGame();
         this.logger = event.getPluginLog();
     }
 }
