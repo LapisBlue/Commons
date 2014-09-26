@@ -27,8 +27,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import javax.annotation.Nonnull;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
 import java.util.List;
 
 /**
@@ -39,11 +37,6 @@ public class StandardTokenizer implements Tokenizer {
     @Nonnull
     @Override
     public ImmutableList<String> getTokens(@Nonnull final String s) {
-        StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(s));
-        tokenizer.eolIsSignificant(false);
-        tokenizer.slashSlashComments(false);
-        tokenizer.slashStarComments(false);
-
         List<String> result = Lists.newArrayList();
 
         String token = "";
