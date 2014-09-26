@@ -53,6 +53,6 @@ public final class Economy {
     @Nonnull
     public AccountSystem getAccountSystem() {
         //TODO: create an instance of the account system implementation
-        return null;
+        throw new UnsupportedOperationException();
     }
 }
