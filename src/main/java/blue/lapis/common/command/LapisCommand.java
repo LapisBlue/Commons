@@ -28,8 +28,7 @@ import blue.lapis.common.command.impl.StandardCommandRecognizer;
 import blue.lapis.common.command.impl.StandardTokenizer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import javax.annotation.Nonnull;

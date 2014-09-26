@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.command;
 
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.util.command.CommandSource;
 
 import javax.annotation.Nonnull;
 

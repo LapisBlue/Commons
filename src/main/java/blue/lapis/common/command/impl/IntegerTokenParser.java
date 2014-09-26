@@ -25,7 +25,7 @@ package blue.lapis.common.command.impl;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.util.command.CommandSource;
 
 import javax.annotation.Nonnull;
 import java.util.List;

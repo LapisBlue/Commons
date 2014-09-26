@@ -28,6 +28,8 @@ import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 
+import javax.annotation.Nonnull;
+
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's
  * available for declared dependencies and gets onto the ClassLoader to be used.
@@ -50,13 +52,17 @@ public class LapisCommonsPlugin {
         return instance.game;
     }
 
+    public static void setGame(@Nonnull Game game) {
+        instance.game = game;
+    }
+
     public static Logger getLogger() {
         return instance.logger;
     }
 
     @SpongeEventHandler
     public void initialize(PreInitializationEvent event) {
-        this.game = event.getGame();
+        //this.game = event.getGame();
         this.logger = event.getPluginLog();
     }
 }
