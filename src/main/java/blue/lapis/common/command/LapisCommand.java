@@ -23,7 +23,10 @@
 package blue.lapis.common.command;
 
 import blue.lapis.common.LapisCommonsPlugin;
+import blue.lapis.common.command.impl.CommandContextImpl;
 import blue.lapis.common.command.impl.StandardCommandRecognizer;
+import blue.lapis.common.command.impl.StandardTokenizer;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Player;
@@ -37,13 +40,13 @@ import java.util.List;
  */
 public class LapisCommand<S extends CommandSource> implements CommandHolder, CommandInvocationTarget<S> {
 
-    private CommandRecognizer recognizer;
+    private CommandRecognizer recognizer = StandardCommandRecognizer.INSTANCE;
+    private Tokenizer tokenizer = new StandardTokenizer();
     private List<LapisCommand> commands = Lists.newArrayList();
     private String name;
 
     public LapisCommand(@Nonnull final String name) {
         this.name = name;
-        recognizer = StandardCommandRecognizer.INSTANCE;
     }
 
     @Override
@@ -65,12 +68,17 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void fireCommand(@Nonnull final CommandSource source, @Nonnull final String inputline) {
+        //Tokenize inputline
+        ImmutableList<String> tokens = tokenizer.getTokens(inputline);
+
         //Construct a context
         CommandContext context;
-        if (source instanceof Player) {
-            //TODO: Generate CommandContext<Player> - API is not solid yet!
-        }
+
+        context = new CommandContextImpl(source)
+            .withLine(inputline)
+            .withTokens(tokens);
     }
 
     public void invoke(@Nonnull CommandContext<S> context) {

@@ -22,59 +22,47 @@
  */
 package blue.lapis.common.command.impl;
 
-import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
-import com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.entity.Player;
 
 import javax.annotation.Nonnull;
-import java.util.Collection;
 import java.util.List;
 
 /**
- * Converts a Player name into an online {@link Player}.
+ * Converts tokens into Integers, much like the name would suggest.
  */
-public class PlayerTokenParser implements TokenParser<Player> {
-
-    @Override
+public class IntegerTokenParser implements TokenParser<Integer> {
     @Nonnull
-    public Player parse(@Nonnull final CommandSource source, @Nonnull final String token) {
-        Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
-
-        // TODO: strip off leading "p:" ?
-
-        // attempt resolving full names
-        for (Player p : players) {
-            if (p.getName().equalsIgnoreCase(token))
-                return p;
+    @Override
+    public Integer parse(@Nonnull CommandSource source, @Nonnull String token) {
+        try {
+            return Integer.valueOf(token.trim());
+        } catch (NumberFormatException e) {
+            throw new InvalidTokenException(token, Integer.class);
         }
-
-        // attempt partial names
-        for (Player p : players) {
-            if (startsWithIgnoreCase(p.getName(), token))
-                return p;
-        }
-
-        throw new InvalidTokenException(token, Player.class);
     }
 
-    @Override
     @Nonnull
-    public List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
-        List<String> results = Lists.newArrayList();
-        Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
+    @Override
+    public List<String> suggest(@Nonnull CommandSource source, String token) {
+        String match = token.trim();
+        if (match.length()==0) return ImmutableList.of("1");
+        char ch = match.charAt(0);
 
-        for (Player p : players) {
-            if (startsWithIgnoreCase(p.getName(), partial))
-                results.add(p.getName());
+        if (Character.isDigit(ch)) {
+            try {
+                //Parse it out into an integer and return it back. This trims off any garbage.
+                return ImmutableList.of(Integer.valueOf(match).toString());
+            } catch (NumberFormatException e) {
+                //The first character was a digit. We checked.
+                //This code section is probably unreachable but I like to be prepared for the impossible.
+                return ImmutableList.of(""+ch);
+            }
+        } else {
+            //This String is invalid, so suggest a number
+            return ImmutableList.of("1");
         }
-
-        return results;
-    }
-
-    private static boolean startsWithIgnoreCase(String s, String start) {
-        return s.regionMatches(true, 0, start, 0, start.length());
     }
 }

@@ -23,6 +23,7 @@
 package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.Tokenizer;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import javax.annotation.Nonnull;
@@ -38,7 +39,7 @@ public class StandardTokenizer implements Tokenizer {
 
     @Nonnull
     @Override
-    public String[] getTokens(@Nonnull final String s) {
+    public ImmutableList<String> getTokens(@Nonnull final String s) {
         StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(s));
         tokenizer.eolIsSignificant(false);
         tokenizer.slashSlashComments(false);
@@ -57,6 +58,6 @@ public class StandardTokenizer implements Tokenizer {
             }
         } catch (IOException ignored) {
         }
-        return result.toArray(new String[result.size()]);
+        return ImmutableList.copyOf(result);
     }
 }

@@ -22,6 +22,8 @@
  */
 package blue.lapis.common.command;
 
+import com.google.common.collect.ImmutableList;
+
 import javax.annotation.Nonnull;
 
 /**
@@ -30,5 +32,5 @@ import javax.annotation.Nonnull;
 public interface Tokenizer {
 
     @Nonnull
-    String[] getTokens(@Nonnull final String s);
+    ImmutableList<String> getTokens(@Nonnull final String s);
 }

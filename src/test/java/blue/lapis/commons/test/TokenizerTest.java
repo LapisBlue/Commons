@@ -25,6 +25,7 @@ package blue.lapis.commons.test;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.PlayerTokenParser;
 import blue.lapis.common.command.impl.StandardTokenizer;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
@@ -53,14 +54,14 @@ public class TokenizerTest {
 
     @Test
     public void identifiers() {
-        String[] tokens = tokenizer.getTokens("one two three four 81 {} six [ ]");
-        Assert.assertArrayEquals(new String[]{"one", "two", "three", "four", "81.0", "six"}, tokens);
+        ImmutableList<String> tokens = tokenizer.getTokens("one two three four 81 {} six [ ]");
+        Assert.assertArrayEquals(new String[]{"one", "two", "three", "four", "81.0", "six"}, tokens.toArray());
     }
 
     @Test
     public void quotes() {
-        String[] tokens = tokenizer.getTokens("one \"two three\" four 81 {} [ ]");
-        Assert.assertArrayEquals(new String[]{"one", "two three", "four", "81.0"}, tokens);
+        ImmutableList<String> tokens = tokenizer.getTokens("one \"two three\" four 81 {} [ ]");
+        Assert.assertArrayEquals(new String[]{"one", "two three", "four", "81.0"}, tokens.toArray());
     }
 
     @Test

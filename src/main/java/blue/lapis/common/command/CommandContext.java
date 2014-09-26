@@ -22,6 +22,7 @@
  */
 package blue.lapis.common.command;
 
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
@@ -49,7 +50,7 @@ public interface CommandContext<S extends CommandSource> {
      * @return the tokens in String format, as determined by the Tokenizer for this command
      */
     @Nonnull
-    public String[] getTokens();
+    public ImmutableList<String> getTokens();
 
     @Nullable
     public <T> T get(Class<T> clazz, int argNum);

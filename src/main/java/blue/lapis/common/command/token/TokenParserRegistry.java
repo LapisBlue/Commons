@@ -22,7 +22,10 @@
  */
 package blue.lapis.common.command.token;
 
+import blue.lapis.common.command.impl.IntegerTokenParser;
+import blue.lapis.common.command.impl.PlayerTokenParser;
 import com.google.common.collect.Maps;
+import org.spongepowered.api.entity.Player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,6 +39,12 @@ public class TokenParserRegistry {
 
     private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private static final Map<Class<?>, TokenParser<?>> tokenParserMap = Maps.newHashMap();
+
+    static {
+        register(Player.class,  new PlayerTokenParser());
+        register(Integer.class, new IntegerTokenParser());
+    }
+
 
     @SuppressWarnings("unchecked")
     @Nullable

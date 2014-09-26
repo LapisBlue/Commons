@@ -24,20 +24,26 @@ package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.CommandContext;
 import blue.lapis.common.command.token.InvalidTokenException;
+import blue.lapis.common.command.token.TokenParser;
+import blue.lapis.common.command.token.TokenParserRegistry;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import org.spongepowered.api.command.CommandSource;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Lapis implementation of {@link CommandContext}
  */
 public class CommandContextImpl<S extends CommandSource> implements CommandContext<S> {
 
-    private final S source;
-    private String line = "";
-    private String[] tokens = new String[0];
-    private Object[] args = new Object[0];
+    private final     S           source;
+    private String                line   = "";
+    private ImmutableList<String> tokens = ImmutableList.of();
+    private List<Object>          args   = Lists.newArrayList();
 
     /**
      * Create an empty context for a command to run in.
@@ -62,23 +68,41 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
 
     @Override
     @Nonnull
-    public String[] getTokens() {
-        return tokens.clone(); //prevent tampering
+    public ImmutableList<String> getTokens() {
+        return tokens;
     }
 
     @Override
     @Nullable
     @SuppressWarnings("unchecked")
     public <T> T get(Class<T> clazz, int argNum) {
-        if (args.length <= argNum) return null;
+        Preconditions.checkState(args.size()==tokens.size()); //invariant
+        Preconditions.checkArgument(argNum>=0);
 
-        if (clazz.isAssignableFrom(args[argNum].getClass())) {
-            return (T) args[argNum];
+        //Requesting past the end of args is still valid
+        if (args.size() <= argNum) return null;
+
+        Object o = args.get(argNum);
+        //Just-in-time resolve the argument if we need to
+        if (o==null) {
+            try {
+                TokenParser<T> parser = TokenParserRegistry.get(clazz);
+                String token = tokens.get(argNum);
+                assert(token!=null); //Also invariant. Tokenizer is not allowed to produce nulls.
+                T t = parser.parse(source, token);
+                args.set(argNum,t);
+                return t;
+            } catch (Throwable ignored) {}
+            return null;
+        }
+
+        if (clazz.isAssignableFrom(o.getClass())) {
+            return (T) args.get(argNum);
         } else {
             //convenience fallbacks
-            if (clazz.equals(String.class)) return (T) args[argNum].toString();
+            if (clazz.equals(String.class)) return (T) args.get(argNum).toString();
 
-            throw new InvalidTokenException(args[argNum].getClass().getSimpleName(), clazz);
+            throw new InvalidTokenException(args.get(argNum).getClass().getSimpleName(), clazz);
         }
     }
 
@@ -88,7 +112,7 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
      * @param line the raw input line
      */
     @Nonnull
-    public CommandContext withLine(@Nonnull final String line) {
+    public CommandContextImpl<S> withLine(@Nonnull final String line) {
         this.line = line;
         return this;
     }
@@ -97,8 +121,8 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
      * Sets the parsed tokens
      */
     @Nonnull
-    public CommandContext withTokens(@Nonnull final String[] tokens) {
-        this.tokens = tokens;
+    public CommandContextImpl<S> withTokens(@Nonnull final List<String> tokens) {
+        this.tokens = ImmutableList.copyOf(tokens);
         return this;
     }
 }
