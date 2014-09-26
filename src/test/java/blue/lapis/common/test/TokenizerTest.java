@@ -42,11 +42,14 @@ import org.spongepowered.api.event.state.PreInitializationEvent;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TokenizerTest {
     private StandardTokenizer tokenizer = new StandardTokenizer();
+    private CommandSource commandSource = mock(CommandSource.class);
 
     @Before
     public void initTests() {
@@ -63,15 +66,13 @@ public class TokenizerTest {
         //Would prefer that "81"->81, rather than converting it into double notation.
         //Would prefer that { } [ ] either became their own tokens or delimited token begin/end
         ImmutableList<String> tokens = tokenizer.getTokens("one two three four 81{ six");
-        Assert.assertArrayEquals(new String[]{"one", "two", "three", "four", "81", "{", "six"},
-                tokens.toArray());
+        assertEquals(tokens, ImmutableList.of("one", "two", "three", "four", "81", "{", "six"));
     }
 
     @Test
     public void quotes() {
         ImmutableList<String> tokens = tokenizer.getTokens("one \"two three\" four 81 {} [ ]");
-        Assert.assertArrayEquals(new String[]{"one", "two three", "four", "81", "{", "}", "[", "]"},
-                tokens.toArray());
+        assertEquals(tokens, ImmutableList.of("one", "two three", "four", "81", "{", "}", "[", "]"));
     }
 
     @Test
@@ -86,19 +87,22 @@ public class TokenizerTest {
         when(LapisCommonsPlugin.getGame().getOnlinePlayers()).thenReturn(playerList);
 
         TokenParser<Player> parser = TokenParserRegistry.get(Player.class);
-        String resolution = parser.parse(null, "Lo").getName();
-        Assert.assertEquals("Lorem", resolution);
-        resolution = parser.parse(null, "Foo").getName();
-        Assert.assertEquals("Foo", resolution);
+        assertNotNull(parser);
+
+        String resolution = parser.parse(commandSource, "Lo").getName();
+        assertEquals("Lorem", resolution);
+        resolution = parser.parse(commandSource, "Foo").getName();
+        assertEquals("Foo", resolution);
     }
 
     @Test
     public void resolveIntegers() {
         TokenParser<Integer> parser = TokenParserRegistry.get(Integer.class);
+        assertNotNull(parser);
 
-        Assert.assertEquals(   1, (long)parser.parse(null,   "1"  ));
-        Assert.assertEquals( 678, (long)parser.parse(null, "678"));
-        Assert.assertEquals(  -2, (long)parser.parse(null,  "-2"  ));
+        assertEquals(1, (long) parser.parse(commandSource, "1"));
+        assertEquals(678, (long) parser.parse(commandSource, "678"));
+        assertEquals(-2, (long) parser.parse(commandSource, "-2"));
     }
 
     @Test
@@ -114,11 +118,10 @@ public class TokenizerTest {
 
 
     public void assertParseFail(TokenParser t, String s) throws AssertionFailedError {
-        CommandSource source = Mockito.mock(CommandSource.class);
         try {
-            t.parse(source, s);
+            t.parse(commandSource, s);
             Assert.fail("No exception was thrown.");
-        } catch (InvalidTokenException e) {}
+        } catch (InvalidTokenException ignored) {}
     }
 
 }
