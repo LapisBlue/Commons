@@ -26,7 +26,6 @@ import blue.lapis.common.economy.account.AccountSystem;
 import blue.lapis.common.economy.formatter.BalanceFormatterRegistry;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public final class Economy {
 
@@ -47,11 +46,11 @@ public final class Economy {
     }
 
     @Nonnull
-    public static String formatCurrency(double amount, String prefix) {
+    public static String formatBalance(double amount, String prefix) {
         return BalanceFormatterRegistry.get(prefix).format(amount);
     }
 
-    @Nullable
+    @Nonnull
     public AccountSystem getAccountSystem() {
         //TODO: create an instance of the account system implementation
         return null;
