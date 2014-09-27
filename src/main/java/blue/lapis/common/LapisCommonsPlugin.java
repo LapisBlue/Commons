@@ -33,7 +33,6 @@ import javax.annotation.Nonnull;
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's
  * available for declared dependencies and gets onto the ClassLoader to be used.
- * @{link TestNotExisting}
  */
 @Plugin(id = "lapis-commons", name = "LapisCommons", version = "1.0.0-SNAPSHOT")
 public class LapisCommonsPlugin {
