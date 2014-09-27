@@ -12,6 +12,5 @@ env:
 after_success:
   - |
       if [ "$BUILD_LEADER" = "YES" ] && [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
-          ./javadocs
-        fi
+        ./javadocs
       fi
