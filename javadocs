@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$BUILD_LEADER" = "YES" ] && [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
+if [ "$TRAVIS_JDK_VERSION" = "oraclejdk7" ]; then
     git config --global user.name "Travis-CI"
     git config --global user.email "noreply@travis-ci.com"
     git clone https://${GH_TOKEN}@github.com/LapisBlue/Javadocs .jd
