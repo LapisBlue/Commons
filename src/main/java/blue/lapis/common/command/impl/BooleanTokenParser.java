@@ -33,8 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BooleanTokenParser implements TokenParser<Boolean> {
-    private static final ImmutableList<String> TRUE = ImmutableList.of("true", "yes", "on");
-    private static final ImmutableList<String> FALSE = ImmutableList.of("false", "no", "off");
+    private static final ImmutableList<String> TRUE = ImmutableList.of("1", "true", "yes", "on");
+    private static final ImmutableList<String> FALSE = ImmutableList.of("0", "false", "no", "off");
 
     @Nonnull
     @Override

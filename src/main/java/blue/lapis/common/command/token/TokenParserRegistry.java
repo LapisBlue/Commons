@@ -22,6 +22,7 @@
  */
 package blue.lapis.common.command.token;
 
+import blue.lapis.common.command.impl.BooleanTokenParser;
 import blue.lapis.common.command.impl.IntegerTokenParser;
 import blue.lapis.common.command.impl.PlayerTokenParser;
 import com.google.common.collect.Maps;
@@ -43,6 +44,7 @@ public class TokenParserRegistry {
     static {
         register(Player.class,  new PlayerTokenParser());
         register(Integer.class, new IntegerTokenParser());
+        register(Boolean.class, new BooleanTokenParser());
     }
 
 
