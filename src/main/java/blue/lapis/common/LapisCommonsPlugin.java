@@ -28,7 +28,7 @@ import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's
@@ -37,28 +37,43 @@ import javax.annotation.Nonnull;
 @Plugin(id = "lapis-commons", name = "LapisCommons", version = "1.0.0-SNAPSHOT")
 public class LapisCommonsPlugin {
     private static LapisCommonsPlugin instance;
-    private Logger logger;
-    private Game game;
+    private static Logger logger;
+    private static Game game;
 
-    public LapisCommonsPlugin() {
-        instance = this;
-    }
-
+    /**
+     * Gets the instance of the LapisCommons plugin.
+     *
+     * @return The currently loaded plugin instance or null if the plugin is not loaded.
+     */
+    @Nullable
     public static LapisCommonsPlugin getInstance() {
         return instance;
     }
 
+    /**
+     * Gets the instance the {@link Game} instance of the current server implementation.
+     *
+     * @return The game instance of the server implementation or null if the plugin is not loaded.
+     */
+    @Nullable
     public static Game getGame() {
-        return instance.game;
+        return game;
     }
 
+    /**
+     * Gets the plugin logger of the LapisCommons plugin.
+     *
+     * @return The plugin logger for this plugin or null if the plugin is not loaded
+     */
+    @Nullable
     public static Logger getLogger() {
-        return instance.logger;
+        return logger;
     }
 
     @SpongeEventHandler
     public void initialize(PreInitializationEvent event) {
-        this.game = event.getGame();
-        this.logger = event.getPluginLog();
+        instance = this;
+        game = event.getGame();
+        logger = event.getPluginLog();
     }
 }
