@@ -8,7 +8,7 @@ if [ "$TRAVIS_JDK_VERSION" = "oraclejdk8" ]; then
         git rm -r commons
         cp -r ../build/docs/javadoc commons
         git add -A
-        git commit -m "Update $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+        git commit -m "Update to $TRAVIS_COMMIT (Build $TRAVIS_BUILD_NUMBER)"
         git push origin gh-pages
     }
 fi
