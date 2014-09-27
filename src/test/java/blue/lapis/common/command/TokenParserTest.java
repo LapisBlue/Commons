@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.command;
 
-import blue.lapis.common.LapisCommons;
+import blue.lapis.common.CommonsTests;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
 import blue.lapis.common.command.token.TokenParserRegistry;
@@ -46,12 +46,12 @@ public class TokenParserTest {
 
     @Before
     public void initTests() {
-        LapisCommons.mockPlugin();
+        CommonsTests.mockPlugin();
     }
 
     @Test
     public void resolvePlayers() {
-        LapisCommons.mockPlayers("Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot");
+        CommonsTests.mockPlayers("Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot");
 
         TokenParser<Player> parser = getParser(Player.class);
 
@@ -61,7 +61,7 @@ public class TokenParserTest {
 
     @Test
     public void invalidPlayers() {
-        LapisCommons.mockPlayers("Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot");
+        CommonsTests.mockPlayers("Foo", "Bar", "Baz", "Lorem", "Ipsum", "Marco", "Polo", "Foot");
 
         TokenParser<Player> parser = getParser(Player.class);
 

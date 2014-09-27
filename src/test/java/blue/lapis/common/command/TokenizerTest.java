@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.command;
 
-import blue.lapis.common.LapisCommons;
+import blue.lapis.common.CommonsTests;
 import blue.lapis.common.command.impl.StandardTokenizer;
 import com.google.common.collect.ImmutableList;
 import org.junit.Before;
@@ -37,7 +37,7 @@ public class TokenizerTest {
 
     @Before
     public void initTests() {
-        LapisCommons.mockPlugin();
+        CommonsTests.mockPlugin();
     }
 
     @Test

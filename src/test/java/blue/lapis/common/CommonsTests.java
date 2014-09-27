@@ -34,7 +34,7 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class LapisCommons {
+public final class CommonsTests {
 
     public static void mockPlugin() {
         Game gameProxy = mock(Game.class);
