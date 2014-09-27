@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$TRAVIS_JDK_VERSION" = "oraclejdk7" ]; then
+if [ "$TRAVIS_JDK_VERSION" = "oraclejdk8" ]; then
     git config --global user.name "Travis-CI"
     git config --global user.email "noreply@travis-ci.com"
     git clone https://${GH_TOKEN}@github.com/LapisBlue/Javadocs .jd
