@@ -110,6 +110,7 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
      * Sets the raw input line, minus the recognized command.
      *
      * @param line the raw input line
+     * @return This Object for further modification
      */
     @Nonnull
     public CommandContextImpl<S> withLine(@Nonnull final String line) {
@@ -119,6 +120,8 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
 
     /**
      * Sets the parsed tokens
+     * @param tokens The raw tokens as defined by the Tokenizer for this command
+     * @return This object for further modification
      */
     @Nonnull
     public CommandContextImpl<S> withTokens(@Nonnull final List<String> tokens) {

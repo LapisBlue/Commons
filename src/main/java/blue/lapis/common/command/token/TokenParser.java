@@ -49,7 +49,8 @@ public interface TokenParser<T> {
     /**
      * Get tab-complete suggestions for this parser
      *
-     * @param token The parser to generate tab-complete suggestions for
+     * @param source The Player, CommandBlock, etc. responsible for this token
+     * @param token The token to generate tab-complete suggestions for
      * @return a List of possible completions, or an empty List if none are available
      */
     @Nonnull
