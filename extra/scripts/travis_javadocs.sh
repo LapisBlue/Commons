@@ -2,11 +2,12 @@
 if [ "$TRAVIS_JDK_VERSION" = "oraclejdk8" ]; then
     git config --global user.name "Travis-CI"
     git config --global user.email "noreply@travis-ci.com"
-    git clone https://${GH_TOKEN}@github.com/LapisBlue/Javadocs .jd
-    javadoc -sourcepath src/main/java -d .jd/common/ -subpackages blue.lapis
+    git clone https://github.com/LapisBlue/Javadocs.git .jd
+    ./gradlew javadoc -x :SpongeAPI:javadoc
     cd .jd/
-    git add .
-    git add -u .
+    git rm -r commons
+    cp -r ../build/docs/javadoc commons
+    git add -A
     git commit -m "Update $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
     git push origin gh-pages
 fi
