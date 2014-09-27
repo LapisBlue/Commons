@@ -9,5 +9,5 @@ notifications:
 env:
   global:
     secure: Od8YNVi6KSYrqRbuD0j6b6om0JicHuJv459/BeWM5JDMMISIlZsYA8A3vHmoIt5MhjlTz7AccFt9pvWLvIytc2xvBNtHbO7ZS1hwF4krKADUC0CS5uaRI3YX/lJFx6Gmy0ePWWU6/JUvqVwKqmVEvL4yUc1+4PP0R+vckNHUydU=
-after_sucess:
+after_success:
   - ./javadocs
