@@ -3,7 +3,7 @@ git config --global user.name "Travis-CI"
 git config --global user.email "noreply@travis-ci.com"
 git clone https://${GH_TOKEN}@github.com/LapisBlue/Javadocs .jd
 javadoc -sourcepath src/main/java -d .jd/common/ -subpackages blue.lapis
-cd javadocs
+cd .jd/
 git add .
 git add -u .
 git commit -m "Update $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
