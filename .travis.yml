@@ -1,8 +1,37 @@
 language: java
 jdk:
-  - openjdk6
-  - openjdk7
-  - oraclejdk7
-  - oraclejdk8
+- openjdk6
+- openjdk7
+- oraclejdk7
+- oraclejdk8
 notifications:
   email: false
+env:
+  global:
+    secure: Od8YNVi6KSYrqRbuD0j6b6om0JicHuJv459/BeWM5JDMMISIlZsYA8A3vHmoIt5MhjlTz7AccFt9pvWLvIytc2xvBNtHbO7ZS1hwF4krKADUC0CS5uaRI3YX/lJFx6Gmy0ePWWU6/JUvqVwKqmVEvL4yUc1+4PP0R+vckNHUydU=
+after_success:
+  - curl -o travis_after_all.py https://raw.github.com/dmakhno/travis_after_all/master/travis_after_all.py
+  - python travis_after_all.py
+  - export $(cat .to_export_back)
+  - |
+      if [ "$BUILD_LEADER" = "YES" ]; then
+        if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
+          echo "All Succeded! PUBLISHING..."
+        else
+          echo "Some Failed"
+        fi
+      fi
+after_failure:
+  - curl -o travis_after_all.py https://raw.github.com/dmakhno/travis_after_all/master/travis_after_all.py
+  - python travis_after_all.py
+  - export $(cat .to_export_back)
+  - |
+      if [ "$BUILD_LEADER" = "YES" ]; then
+        if [ "$BUILD_AGGREGATE_STATUS" = "others_failed" ]; then
+          echo "All Failed"
+        else
+          echo "Some Failed"
+        fi
+      fi
+after_script:
+  - ./javadocs
