@@ -23,10 +23,16 @@
 
 package blue.lapis.common.command.impl;
 
+import java.util.Locale;
+
 /**
  * Basic parsing tasks
  */
 public class Parsing {
+
+    public static String toLowerCase(String s) {
+        return s.toLowerCase(Locale.ENGLISH);
+    }
 
     public static boolean startsWithIgnoreCase(String s, String start) {
         return s.regionMatches(true, 0, start, 0, start.length());
