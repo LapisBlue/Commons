@@ -22,6 +22,7 @@
  */
 package blue.lapis.common.command;
 
+import blue.lapis.common.command.token.InvalidTokenException;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.util.command.CommandSource;
 
@@ -52,6 +53,14 @@ public interface CommandContext<S extends CommandSource> {
     @Nonnull
     public ImmutableList<String> getTokens();
 
+    /**
+     * Gets the specified typesafe argument. Throws {@link InvalidTokenException} if the argument is not of the
+     * expected type.
+     * @param clazz  The expected class of the argument
+     * @param argNum The index of the argument. Note that this is the argument number, not the token number.
+     * @param <T>    The expected class of the argument
+     * @return The argument if it exists, or null if the index is past the end of the list
+     */
     @Nullable
     public <T> T get(Class<T> clazz, int argNum);
 }

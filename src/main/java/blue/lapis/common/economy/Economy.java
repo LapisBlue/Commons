@@ -28,8 +28,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/**
+ * Represents the economy as a whole. This class is currently under API scrutiny,
+ * so details may change frequently.
+ */
 public final class Economy {
     private static Economy INSTANCE;
+
+    /*
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private HashMap<Object, EconomyAccount> accounts = Maps.newHashMap();
+    */
 
     private Economy() {
         // TODO
