@@ -45,7 +45,6 @@ public class LapisCommonsPlugin {
      *
      * @return The currently loaded plugin instance or null if the plugin is not loaded.
      */
-    @Nullable
     public static LapisCommonsPlugin getInstance() {
         return instance;
     }
@@ -55,7 +54,6 @@ public class LapisCommonsPlugin {
      *
      * @return The game instance of the server implementation or null if the plugin is not loaded.
      */
-    @Nullable
     public static Game getGame() {
         return game;
     }
@@ -65,7 +63,6 @@ public class LapisCommonsPlugin {
      *
      * @return The plugin logger for this plugin or null if the plugin is not loaded
      */
-    @Nullable
     public static Logger getLogger() {
         return logger;
     }
