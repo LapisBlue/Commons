@@ -38,6 +38,8 @@ dependencies {
 javadoc {
     // Don't create Javadocs for implementation packages
     exclude '**/impl'
+    options.linksOffline 'http://docs.oracle.com/javase/8/docs/api/',
+                         'http://docs.oracle.com/javase/8/docs/api/'
 }
 
 // License header formatting
