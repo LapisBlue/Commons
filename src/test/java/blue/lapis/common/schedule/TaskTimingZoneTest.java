@@ -47,34 +47,34 @@ public class TaskTimingZoneTest {
 
     @Test
     public void batchLimit() {
-        String test = "";
+        StringBuilder test = new StringBuilder();
 
         zone.resetPeriod();
 
         for (int i = 0; i < 12; i++) {
             LapisTask task = zone.next();
-            if (task != null) test += task.toString();
+            if (task != null) test.append(task);
         }
 
-        Assert.assertEquals("ABC", test);
+        Assert.assertEquals("ABC", test.toString());
     }
 
     @Test
     public void lapLimit() {
-        String test = "";
+        StringBuilder test = new StringBuilder();
         zone.setTasksPerBatch(1000);
         zone.resetPeriod();
         for (int i = 0; i < 100; i++) {
             LapisTask task = zone.next();
-            if (task != null) test += task.toString();
+            if (task != null) test.append(task);
         }
 
-        Assert.assertEquals("ABCD", test);
+        Assert.assertEquals("ABCD", test.toString());
     }
 
     @Test
     public void lapLimitWithPhase() {
-        String test = "";
+        StringBuilder test = new StringBuilder();
         zone.setTasksPerBatch(1000);
         zone.resetPeriod();
         LapisTask a = zone.next();
@@ -83,45 +83,45 @@ public class TaskTimingZoneTest {
         zone.resetPeriod();
         for (int i = 0; i < 100; i++) {
             LapisTask task = zone.next();
-            if (task != null) test += task.toString();
+            if (task != null) test.append(task);
         }
 
-        Assert.assertEquals("CDAB", test);
+        Assert.assertEquals("CDAB", test.toString());
     }
 
     @Test
     public void roundRobin() {
-        String test = "";
+        StringBuilder test = new StringBuilder();
         zone.setTasksPerBatch(3);
 
         for (int i = 0; i < 8; i++) {
-            test += "|";
+            test.append('|');
             zone.resetPeriod();
-            test += zone.next();
-            test += zone.next();
-            test += zone.next();
+            test.append(zone.next())
+                    .append(zone.next())
+                    .append(zone.next());
         }
 
-        Assert.assertEquals("|ABC|DAB|CDA|BCD|ABC|DAB|CDA|BCD", test);
+        Assert.assertEquals("|ABC|DAB|CDA|BCD|ABC|DAB|CDA|BCD", test.toString());
     }
 
     @Test
     public void removals() {
-        String test = "";
+        StringBuilder test = new StringBuilder();
 
         zone.remove(c);
         zone.setTasksPerBatch(3);
         zone.resetPeriod();
 
         for (int i = 0; i < 8; i++) {
-            test += "|";
+            test.append('|');
             zone.resetPeriod();
-            test += zone.next();
-            test += zone.next();
-            test += zone.next();
+            test.append(zone.next())
+                    .append(zone.next())
+                    .append(zone.next());
         }
 
-        Assert.assertEquals("|ABD|ABD|ABD|ABD|ABD|ABD|ABD|ABD", test);
+        Assert.assertEquals("|ABD|ABD|ABD|ABD|ABD|ABD|ABD|ABD", test.toString());
     }
 
 
