@@ -1,7 +1,6 @@
 // Apply Gradle plugins
 plugins {
     id 'java'
-    id 'maven'
     id 'eclipse'
     id 'idea'
 
