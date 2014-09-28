@@ -40,10 +40,10 @@ import java.util.List;
  */
 public class CommandContextImpl<S extends CommandSource> implements CommandContext<S> {
 
-    private final     S           source;
-    private String                line   = "";
+    private final S source;
+    private String line = "";
     private ImmutableList<String> tokens = ImmutableList.of();
-    private List<Object>          args   = Lists.newArrayList();
+    private List<Object> args = Lists.newArrayList();
 
     /**
      * Create an empty context for a command to run in.
@@ -76,21 +76,21 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
     @Nullable
     @SuppressWarnings("unchecked")
     public <T> T get(Class<T> clazz, int argNum) {
-        Preconditions.checkState(args.size()==tokens.size()); //invariant
-        Preconditions.checkArgument(argNum>=0);
+        Preconditions.checkState(args.size() == tokens.size()); //invariant
+        Preconditions.checkArgument(argNum >= 0);
 
         //Requesting past the end of args is still valid
         if (args.size() <= argNum) return null;
 
         Object o = args.get(argNum);
         //Just-in-time resolve the argument if we need to
-        if (o==null) {
+        if (o == null) {
             try {
                 TokenParser<T> parser = TokenParserRegistry.get(clazz);
                 String token = tokens.get(argNum);
-                assert(token!=null); //Also invariant. Tokenizer is not allowed to produce nulls.
+                assert (token != null); //Also invariant. Tokenizer is not allowed to produce nulls.
                 T t = parser.parse(source, token);
-                args.set(argNum,t);
+                args.set(argNum, t);
                 return t;
             } catch (Throwable ignored) {}
             return null;
@@ -120,6 +120,7 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
 
     /**
      * Sets the parsed tokens
+     *
      * @param tokens The raw tokens as defined by the Tokenizer for this command
      * @return This object for further modification
      */

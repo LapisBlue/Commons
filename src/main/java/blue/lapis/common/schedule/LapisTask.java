@@ -27,5 +27,6 @@ package blue.lapis.common.schedule;
  */
 public interface LapisTask {
     boolean run(TaskContext context);
+
     boolean isRunning();
 }

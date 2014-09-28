@@ -33,8 +33,8 @@ public final class TaskContext {
     private boolean isTickBased = true;
 
     protected void setCurrentTick(long tick) {
-        long addedTime = tick-lastTick;
-        nextTick-=addedTime;
+        long addedTime = tick - lastTick;
+        nextTick -= addedTime;
         lastTick = tick; //global tick time for the server
     }
 
@@ -54,9 +54,9 @@ public final class TaskContext {
 
         //Very difficult case. Hopefully this is right.
         long now = System.currentTimeMillis();
-        if (nextTime-now < 0) return 0L;
-        double millis = nextTime-now;
-        long ticks = (long)(millis*20.0/1000.0);
+        if (nextTime - now < 0) return 0L;
+        double millis = nextTime - now;
+        long ticks = (long) (millis * 20.0 / 1000.0);
         return ticks;
     }
 }

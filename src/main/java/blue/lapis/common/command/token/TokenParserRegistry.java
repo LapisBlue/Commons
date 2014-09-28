@@ -42,7 +42,7 @@ public class TokenParserRegistry {
     private static final Map<Class<?>, TokenParser<?>> tokenParserMap = Maps.newHashMap();
 
     static {
-        register(Player.class,  new PlayerTokenParser());
+        register(Player.class, new PlayerTokenParser());
         register(Integer.class, new IntegerTokenParser());
         register(Boolean.class, new BooleanTokenParser());
     }

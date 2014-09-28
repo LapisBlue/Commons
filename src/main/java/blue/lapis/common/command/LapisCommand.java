@@ -28,8 +28,8 @@ import blue.lapis.common.command.impl.StandardCommandRecognizer;
 import blue.lapis.common.command.impl.StandardTokenizer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.util.command.CommandSource;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -76,8 +76,8 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
         CommandContext context;
 
         context = new CommandContextImpl(source)
-            .withLine(inputline)
-            .withTokens(tokens);
+                .withLine(inputline)
+                .withTokens(tokens);
     }
 
     public void invoke(@Nonnull CommandContext<S> context) {

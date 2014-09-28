@@ -22,7 +22,6 @@
  */
 package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.Transaction;
 import blue.lapis.common.economy.formatter.BalanceFormatter;
 
 import javax.annotation.Nonnull;

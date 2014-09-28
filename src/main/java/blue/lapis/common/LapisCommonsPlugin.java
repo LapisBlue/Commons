@@ -28,8 +28,6 @@ import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 
-import javax.annotation.Nullable;
-
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's
  * available for declared dependencies and gets onto the ClassLoader to be used.

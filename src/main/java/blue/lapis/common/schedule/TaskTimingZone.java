@@ -41,31 +41,33 @@ import java.util.ArrayList;
  */
 class TaskTimingZone {
     private ArrayList<LapisTask> incoming = Lists.newArrayList();
-    private ArrayList<LapisTask> tasks    = Lists.newArrayList();
+    private ArrayList<LapisTask> tasks = Lists.newArrayList();
     private ArrayList<LapisTask> outgoing = Lists.newArrayList();
-    private int loc    = -1; //Location of the last task returned
+    private int loc = -1; //Location of the last task returned
     private int lapLoc = -1; //Location before the first item returned
-    private int tasksPerBatch  = 10;
+    private int tasksPerBatch = 10;
     private int tasksThisBatch = 0;
-    private boolean lapStart   = true;
-    TaskTimingZone up   = null;
+    private boolean lapStart = true;
+    TaskTimingZone up = null;
     TaskTimingZone down = null;
 
     public void resetPeriod() {
         tasks.addAll(incoming);
         incoming.clear();
 
-        for(LapisTask t : outgoing) {
+        for (LapisTask t : outgoing) {
             int removal = tasks.indexOf(t);
-            if (loc>=removal) loc--; if (loc<-1) loc = -1;
-            if (lapLoc>=removal) lapLoc--; if (lapLoc<0) lapLoc=0;
-            if (removal>=0) tasks.remove(removal);
+            if (loc >= removal) loc--;
+            if (loc < -1) loc = -1;
+            if (lapLoc >= removal) lapLoc--;
+            if (lapLoc < 0) lapLoc = 0;
+            if (removal >= 0) tasks.remove(removal);
         }
         outgoing.clear();
 
 
         lapLoc = loc;
-        if (lapLoc<0) lapLoc = tasks.size()-1;
+        if (lapLoc < 0) lapLoc = tasks.size() - 1;
 
         tasksThisBatch = 0;
         lapStart = true;
@@ -74,17 +76,17 @@ class TaskTimingZone {
 
     @Nullable
     public LapisTask next() {
-        if (tasksThisBatch>=tasksPerBatch) return null;
-        if (loc==lapLoc && !lapStart) return null;
+        if (tasksThisBatch >= tasksPerBatch) return null;
+        if (loc == lapLoc && !lapStart) return null;
         tasksThisBatch++;
         loc++;
-        if (loc>=tasks.size()) loc = 0;
-        lapStart=false;
+        if (loc >= tasks.size()) loc = 0;
+        lapStart = false;
         return tasks.get(loc);
     }
 
     public boolean hasNext() {
-        return (loc!=lapLoc);
+        return (loc != lapLoc);
     }
 
     public void insert(LapisTask task) {
@@ -100,7 +102,7 @@ class TaskTimingZone {
     }
 
     public void setTasksPerBatch(int tasksPerBatch) {
-        Preconditions.checkArgument(tasksPerBatch>0,
+        Preconditions.checkArgument(tasksPerBatch > 0,
                 "TasksPerBatch must be more than zero - otherwise no tasks will execute!");
 
         this.tasksPerBatch = tasksPerBatch;

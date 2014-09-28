@@ -48,7 +48,7 @@ public class IntegerTokenParser implements TokenParser<Integer> {
     @Override
     public List<String> suggest(@Nonnull CommandSource source, String token) {
         String match = token.trim();
-        if (match.length()==0) return ImmutableList.of("1");
+        if (match.length() == 0) return ImmutableList.of("1");
         char ch = match.charAt(0);
 
         if (Character.isDigit(ch)) {
@@ -58,7 +58,7 @@ public class IntegerTokenParser implements TokenParser<Integer> {
             } catch (NumberFormatException e) {
                 //The first character was a digit. We checked.
                 //This code section is probably unreachable but I like to be prepared for the impossible.
-                return ImmutableList.of(""+ch);
+                return ImmutableList.of("" + ch);
             }
         } else {
             //This String is invalid, so suggest a number

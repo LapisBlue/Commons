@@ -40,6 +40,6 @@ public class StandardCommandRecognizer implements CommandRecognizer {
                              @Nonnull final LapisCommand command) {
 
         return inputLine.equalsIgnoreCase(command.getName()) ||
-               Parsing.startsWithIgnoreCase(inputLine, command.getName()+" ");
+                Parsing.startsWithIgnoreCase(inputLine, command.getName() + " ");
     }
 }

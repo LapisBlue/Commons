@@ -51,9 +51,9 @@ public class TaskTimingZoneTest {
 
         zone.resetPeriod();
 
-        for(int i=0; i<12; i++) {
+        for (int i = 0; i < 12; i++) {
             LapisTask task = zone.next();
-            if (task!=null) test+=task.toString();
+            if (task != null) test += task.toString();
         }
 
         Assert.assertEquals("ABC", test);
@@ -64,9 +64,9 @@ public class TaskTimingZoneTest {
         String test = "";
         zone.setTasksPerBatch(1000);
         zone.resetPeriod();
-        for(int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             LapisTask task = zone.next();
-            if (task!=null) test+=task.toString();
+            if (task != null) test += task.toString();
         }
 
         Assert.assertEquals("ABCD", test);
@@ -81,9 +81,9 @@ public class TaskTimingZoneTest {
         LapisTask b = zone.next();
 
         zone.resetPeriod();
-        for(int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             LapisTask task = zone.next();
-            if (task!=null) test+=task.toString();
+            if (task != null) test += task.toString();
         }
 
         Assert.assertEquals("CDAB", test);
@@ -94,12 +94,12 @@ public class TaskTimingZoneTest {
         String test = "";
         zone.setTasksPerBatch(3);
 
-        for(int i=0; i<8; i++) {
-            test+="|";
+        for (int i = 0; i < 8; i++) {
+            test += "|";
             zone.resetPeriod();
-            test+=zone.next();
-            test+=zone.next();
-            test+=zone.next();
+            test += zone.next();
+            test += zone.next();
+            test += zone.next();
         }
 
         Assert.assertEquals("|ABC|DAB|CDA|BCD|ABC|DAB|CDA|BCD", test);
@@ -113,12 +113,12 @@ public class TaskTimingZoneTest {
         zone.setTasksPerBatch(3);
         zone.resetPeriod();
 
-        for(int i=0; i<8; i++) {
-            test+="|";
+        for (int i = 0; i < 8; i++) {
+            test += "|";
             zone.resetPeriod();
-            test+=zone.next();
-            test+=zone.next();
-            test+=zone.next();
+            test += zone.next();
+            test += zone.next();
+            test += zone.next();
         }
 
         Assert.assertEquals("|ABD|ABD|ABD|ABD|ABD|ABD|ABD|ABD", test);

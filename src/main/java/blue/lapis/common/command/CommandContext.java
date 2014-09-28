@@ -56,9 +56,10 @@ public interface CommandContext<S extends CommandSource> {
     /**
      * Gets the specified typesafe argument. Throws {@link InvalidTokenException} if the argument is not of the
      * expected type.
-     * @param clazz  The expected class of the argument
+     *
+     * @param clazz The expected class of the argument
      * @param argNum The index of the argument. Note that this is the argument number, not the token number.
-     * @param <T>    The expected class of the argument
+     * @param <T> The expected class of the argument
      * @return The argument if it exists, or null if the index is past the end of the list
      */
     @Nullable

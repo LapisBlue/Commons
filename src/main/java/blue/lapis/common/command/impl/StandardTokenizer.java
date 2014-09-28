@@ -41,11 +41,11 @@ public class StandardTokenizer implements Tokenizer {
 
         String token = "";
         char delimiter = ' ';
-        for(int i=0; i<s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
 
-            if (delimiter!=' ') {
-                if (cur!=delimiter) {
+            if (delimiter != ' ') {
+                if (cur != delimiter) {
                     token += cur;
                 } else {
                     delimiter = ' ';
@@ -53,7 +53,7 @@ public class StandardTokenizer implements Tokenizer {
                     token = "";
                 }
             } else {
-                if (cur=='"') {
+                if (cur == '"') {
                     delimiter = '"';
                     continue;
                 } else {
@@ -71,7 +71,7 @@ public class StandardTokenizer implements Tokenizer {
                                 result.add(token);
                                 token = "";
                             }
-                            result.add(""+cur);
+                            result.add("" + cur);
                         }
                     }
                 }

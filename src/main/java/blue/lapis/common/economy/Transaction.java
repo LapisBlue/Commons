@@ -48,10 +48,10 @@ import javax.annotation.Nullable;
  * <p>Additionally, Transactions are aware of their {@link Status}. As they are being built, and once they are
  * fully built, they are INCOMPLETE. After calling {@link #commit()} they will be in one of three states:</p>
  * <ul>
- *     <li>CANCELLED: If a listener has cancelled the related TransactionEvent before it could be applied</li>
- *     <li>FAILED:    If an EconomyAccount has rejected this Transaction and is unchanged</li>
- *     <li>COMPLETE:  If the Transaction has successfully committed and its proposed changes are reflected in
- *     the EconomyAccount</li>
+ * <li>CANCELLED: If a listener has cancelled the related TransactionEvent before it could be applied</li>
+ * <li>FAILED:    If an EconomyAccount has rejected this Transaction and is unchanged</li>
+ * <li>COMPLETE:  If the Transaction has successfully committed and its proposed changes are reflected in
+ * the EconomyAccount</li>
  * </ul>
  *
  * <p>This class has a fluent building and calling syntax. Typically a transaction might look like:</p>
@@ -70,12 +70,12 @@ public final class Transaction {
 
     private final EconomyAccount account;
 
-    private Status status       = Status.INCOMPLETE;
-    private Object initiator    = null;
-    private Object target       = null;
-    private Object reason       = null;
-    private double delta        = 0.0d;
-    private Double balance      = null;
+    private Status status = Status.INCOMPLETE;
+    private Object initiator = null;
+    private Object target = null;
+    private Object reason = null;
+    private double delta = 0.0d;
+    private Double balance = null;
 
     private Transaction(EconomyAccount account) {
         this.account = Preconditions.checkNotNull(account, "account");
@@ -127,8 +127,9 @@ public final class Transaction {
      *
      * <p>This method may not be called after the Transaction has left INCOMPLETE Status.</p>
      *
-     * @param reason An identifying characteristic of this Transaction. Often this is a String representing what
-     *               was purchased, but can be arbitrary data for event listeners to use.
+     * @param reason An identifying characteristic of this Transaction. Often this is a String representing
+     * what
+     * was purchased, but can be arbitrary data for event listeners to use.
      * @return This object for further modification
      */
     @Nonnull
@@ -146,6 +147,7 @@ public final class Transaction {
      *
      * @param balance The new "absolute" balance for this account
      * @return This object for further modification
+     *
      * @see #add(double)
      * @see #subtract(double)
      */
@@ -197,7 +199,7 @@ public final class Transaction {
 
     /**
      * @return The new balance which this Transaction specifies for the account, or null if this transaction is
-     *         a relative gain/loss
+     * a relative gain/loss
      */
     @Nullable
     public Double getAbsolute() {
@@ -214,6 +216,7 @@ public final class Transaction {
 
     /**
      * Express a payment or increase in the account's balance.
+     *
      * @param amount The amount to increase the account balance by
      * @return This object for further modification
      */
@@ -225,6 +228,7 @@ public final class Transaction {
 
     /**
      * Express a withdrawal or loss to the account's balance.
+     *
      * @param amount The amount to reduce the account balance by
      * @return This object for further modification
      */
@@ -236,6 +240,7 @@ public final class Transaction {
 
     /**
      * Express a constant balance that the account should be changed to
+     *
      * @param amount The amount that the new account balance should be
      * @return This object for further modification
      */
@@ -246,9 +251,11 @@ public final class Transaction {
     }
 
     /**
-     * Causes a TransactionEvent to be fired for this Transaction, and if the event is not cancelled, hands this
+     * Causes a TransactionEvent to be fired for this Transaction, and if the event is not cancelled, hands
+     * this
      * Transaction to the EconomyAccount for final processing. If everything goes well there, the status is
      * updated to COMPLETE.
+     *
      * @return The status of this Transaction; either CANCELLED, FAILED, or COMPLETE.
      */
     @Nonnull
@@ -277,15 +284,25 @@ public final class Transaction {
     }
 
     static enum Status {
-        /** The Transaction is still being built or has not been submitted to the event yet. **/
+        /**
+         * The Transaction is still being built or has not been submitted to the event yet. *
+         */
         INCOMPLETE,
-        /** The Transaction is currently in a TransactionEvent **/
+        /**
+         * The Transaction is currently in a TransactionEvent *
+         */
         IN_TRANSIT,
-        /** The Transaction was submitted to the event, but the event was cancelled by a listener.**/
+        /**
+         * The Transaction was submitted to the event, but the event was cancelled by a listener.*
+         */
         CANCELLED,
-        /** The Transaction was submitted to the EconomyAccount for final processing, but was rejected.**/
+        /**
+         * The Transaction was submitted to the EconomyAccount for final processing, but was rejected.*
+         */
         FAILED,
-        /** The Transaction was submitted to the EconomyAccount and its final processing was successful.**/
+        /**
+         * The Transaction was submitted to the EconomyAccount and its final processing was successful.*
+         */
         COMPLETE
     }
 

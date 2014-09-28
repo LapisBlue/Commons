@@ -22,18 +22,14 @@
  */
 package blue.lapis.common.schedule;
 
-import com.google.common.collect.Lists;
-
-import java.util.ArrayList;
-
 /**
  *
  */
 public final class Scheduler {
     private static final Scheduler instance = new Scheduler();
     private TaskTimingZone immediate = new TaskTimingZone();
-    private TaskTimingZone waiting   = new TaskTimingZone();
-    private TaskTimingZone dormant   = new TaskTimingZone();
+    private TaskTimingZone waiting = new TaskTimingZone();
+    private TaskTimingZone dormant = new TaskTimingZone();
 
     public static Scheduler getInstance() {
         return instance;
