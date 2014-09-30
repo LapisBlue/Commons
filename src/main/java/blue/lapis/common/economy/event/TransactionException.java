@@ -1,6 +1,6 @@
 /*
  * LapisCommons
- * Copyright (c) 2014, LapisDev <https://github.com/LapisBlue>
+ * Copyright (c) 2014, Lapis <https://github.com/LapisBlue>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package blue.lapis.common.economy.event;
 
 import blue.lapis.common.economy.Transaction;

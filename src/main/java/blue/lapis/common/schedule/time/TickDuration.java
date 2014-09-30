@@ -42,7 +42,7 @@ public class TickDuration implements Duration {
 
     @Override
     public RealDuration asRealDuration() {
-        return new RealDuration((long)(ticks*Time.TICKS_TO_MILLIS));
+        return new RealDuration((long) (ticks * Time.TICKS_TO_MILLIS));
     }
 
     @Override
@@ -52,6 +52,6 @@ public class TickDuration implements Duration {
 
     @Override
     public String toString() {
-        return ticks+" Ticks";
+        return ticks + " Ticks";
     }
 }

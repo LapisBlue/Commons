@@ -24,7 +24,6 @@ package blue.lapis.common.schedule.time;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -63,11 +62,11 @@ public final class RealTime implements Time {
     }
 
     public RealTime plus(RealDuration d) {
-        return new RealTime(timestamp+d.asMilliseconds());
+        return new RealTime(timestamp + d.asMilliseconds());
     }
 
     public RealTime minus(RealDuration d) {
-        return new RealTime(timestamp-d.asMilliseconds());
+        return new RealTime(timestamp - d.asMilliseconds());
     }
 
     public RealTime add(RealDuration d) {
@@ -79,7 +78,7 @@ public final class RealTime implements Time {
     }
 
     public RealDuration minus(RealTime other) {
-        return new RealDuration(this.timestamp-other.timestamp);
+        return new RealDuration(this.timestamp - other.timestamp);
     }
 
     public RealDuration subtract(RealTime other) {

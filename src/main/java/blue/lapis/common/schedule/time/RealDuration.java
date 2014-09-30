@@ -23,33 +23,32 @@
 package blue.lapis.common.schedule.time;
 
 import javax.annotation.Nonnull;
-import java.text.DateFormat;
 
 /**
  *
  */
 public class RealDuration implements Duration {
     public static final double CENTURIES_TO_MILLIS = 3.155692597470e12;
-    public static final double MILLIS_TO_CENTURIES = 1/CENTURIES_TO_MILLIS;
+    public static final double MILLIS_TO_CENTURIES = 1 / CENTURIES_TO_MILLIS;
     public static final double DECADES_TO_MILLIS = 3.15569259747e11;
-    public static final double MILLIS_TO_DECADES = 1/DECADES_TO_MILLIS;
+    public static final double MILLIS_TO_DECADES = 1 / DECADES_TO_MILLIS;
     public static final double YEARS_TO_MILLIS = 3.15569e10;
 
     public static final double MONTHS_TO_MILLIS = 2.62974e9;
-    public static final double MILLIS_TO_MONTHS = 1.0/MONTHS_TO_MILLIS;
+    public static final double MILLIS_TO_MONTHS = 1.0 / MONTHS_TO_MILLIS;
     public static final double WEEKS_TO_MILLIS = 6.048e8;
-    public static final double MILLIS_TO_WEEKS = 1.0/WEEKS_TO_MILLIS;
-    public static final double DAYS_TO_MILLIS =  8.64e7;
-    public static final double MILLIS_TO_DAYS = 1.0/DAYS_TO_MILLIS;
+    public static final double MILLIS_TO_WEEKS = 1.0 / WEEKS_TO_MILLIS;
+    public static final double DAYS_TO_MILLIS = 8.64e7;
+    public static final double MILLIS_TO_DAYS = 1.0 / DAYS_TO_MILLIS;
     public static final double HOURS_TO_MILLIS = 3.60e6;
-    public static final double MILLIS_TO_HOURS = 1.0/HOURS_TO_MILLIS;
+    public static final double MILLIS_TO_HOURS = 1.0 / HOURS_TO_MILLIS;
     public static final double MINUTES_TO_MILLIS = 6.0e4;
-    public static final double MILLIS_TO_MINUTES = 1.0/MINUTES_TO_MILLIS;
+    public static final double MILLIS_TO_MINUTES = 1.0 / MINUTES_TO_MILLIS;
     public static final double SECONDS_TO_MILLIS = 1.0e3;
-    public static final double MILLIS_TO_SECONDS = 1.0/SECONDS_TO_MILLIS;
+    public static final double MILLIS_TO_SECONDS = 1.0 / SECONDS_TO_MILLIS;
 
     //public static final double YEARS_TO_MILLIS = 12*MONTHS_TO_MILLIS;
-    public static final double MILLIS_TO_YEARS = 1.0/YEARS_TO_MILLIS;
+    public static final double MILLIS_TO_YEARS = 1.0 / YEARS_TO_MILLIS;
 
 
     private long milliseconds = 0L;
@@ -65,47 +64,47 @@ public class RealDuration implements Duration {
 
     @Nonnull
     public static RealDuration seconds(final double num) {
-        return new RealDuration((long)(num*SECONDS_TO_MILLIS));
+        return new RealDuration((long) (num * SECONDS_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration minutes(final double num) {
-        return new RealDuration((long)(num*MINUTES_TO_MILLIS));
+        return new RealDuration((long) (num * MINUTES_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration hours(final double num) {
-        return new RealDuration((long)(num*HOURS_TO_MILLIS));
+        return new RealDuration((long) (num * HOURS_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration days(final double num) {
-        return new RealDuration((long)(num*DAYS_TO_MILLIS));
+        return new RealDuration((long) (num * DAYS_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration weeks(final double num) {
-        return new RealDuration((long)(num*WEEKS_TO_MILLIS));
+        return new RealDuration((long) (num * WEEKS_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration months(final double num) {
-        return new RealDuration((long)(num*MONTHS_TO_MILLIS));
+        return new RealDuration((long) (num * MONTHS_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration years(final double num) {
-        return new RealDuration((long)(num*YEARS_TO_MILLIS));
+        return new RealDuration((long) (num * YEARS_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration decades(final double num) {
-        return new RealDuration((long)(num*DECADES_TO_MILLIS));
+        return new RealDuration((long) (num * DECADES_TO_MILLIS));
     }
 
     @Nonnull
     public static RealDuration centuries(final double num) {
-        return new RealDuration((long)(num*CENTURIES_TO_MILLIS));
+        return new RealDuration((long) (num * CENTURIES_TO_MILLIS));
     }
 
     public long asMilliseconds() {
@@ -113,45 +112,45 @@ public class RealDuration implements Duration {
     }
 
     public double asSeconds() {
-        return milliseconds*MILLIS_TO_SECONDS;
+        return milliseconds * MILLIS_TO_SECONDS;
     }
 
     public double asMinutes() {
-        return milliseconds*MILLIS_TO_MINUTES;
+        return milliseconds * MILLIS_TO_MINUTES;
     }
 
     public double asHours() {
-        return milliseconds*MILLIS_TO_HOURS;
+        return milliseconds * MILLIS_TO_HOURS;
     }
 
     public double asDays() {
-        return milliseconds*MILLIS_TO_DAYS;
+        return milliseconds * MILLIS_TO_DAYS;
     }
 
     public double asWeeks() {
-        return milliseconds*MILLIS_TO_WEEKS;
+        return milliseconds * MILLIS_TO_WEEKS;
     }
 
     public double asMonths() {
-        return milliseconds*MILLIS_TO_MONTHS;
+        return milliseconds * MILLIS_TO_MONTHS;
     }
 
     public double asYears() {
-        return milliseconds*MILLIS_TO_YEARS;
+        return milliseconds * MILLIS_TO_YEARS;
     }
 
     public double asDecades() {
-        return milliseconds*MILLIS_TO_DECADES;
+        return milliseconds * MILLIS_TO_DECADES;
     }
 
     public double asCenturies() {
-        return milliseconds*MILLIS_TO_CENTURIES;
+        return milliseconds * MILLIS_TO_CENTURIES;
     }
 
     @Override
     @Nonnull
     public TickDuration asTickDuration() {
-        return new TickDuration((long)(milliseconds*Time.MILLIS_TO_TICKS));
+        return new TickDuration((long) (milliseconds * Time.MILLIS_TO_TICKS));
     }
 
     @Override
@@ -182,7 +181,7 @@ public class RealDuration implements Duration {
 
     @Override
     public String toString() {
-        if (milliseconds==0) return "zero";
+        if (milliseconds == 0) return "zero";
 
         return new ToStringBuilder(milliseconds)
                 .process(YEARS_TO_MILLIS, MILLIS_TO_YEARS, "years")
@@ -204,21 +203,21 @@ public class RealDuration implements Duration {
         public ToStringBuilder(long initialTime) {
             this.temp = initialTime;
 
-            if (temp<0) {
+            if (temp < 0) {
                 builder.append('-');
                 temp = -temp;
             }
         }
 
         public ToStringBuilder process(double forward, double inverse, String suffix) {
-            if (temp>=forward) {
+            if (temp >= forward) {
                 if (!first) builder.append(' ');
-                long d = (long)(temp*inverse);
-                temp-=(long)(d*forward);
+                long d = (long) (temp * inverse);
+                temp -= (long) (d * forward);
                 builder.append(d);
                 builder.append(' ');
                 builder.append(suffix);
-                first=false;
+                first = false;
             }
             return this;
         }

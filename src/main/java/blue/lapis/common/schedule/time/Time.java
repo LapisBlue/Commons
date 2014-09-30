@@ -34,37 +34,37 @@ public interface Time {
         private long time = 0L;
 
         public DurationBuilder years(long l) {
-            time += (long)(l*RealDuration.YEARS_TO_MILLIS);
+            time += (long) (l * RealDuration.YEARS_TO_MILLIS);
             return this;
         }
 
         public DurationBuilder months(long l) {
-            time += (long)(l*RealDuration.MONTHS_TO_MILLIS);
+            time += (long) (l * RealDuration.MONTHS_TO_MILLIS);
             return this;
         }
 
         public DurationBuilder weeks(long l) {
-            time += (long)(l*RealDuration.WEEKS_TO_MILLIS);
+            time += (long) (l * RealDuration.WEEKS_TO_MILLIS);
             return this;
         }
 
         public DurationBuilder days(long l) {
-            time += (long)(l*RealDuration.DAYS_TO_MILLIS);
+            time += (long) (l * RealDuration.DAYS_TO_MILLIS);
             return this;
         }
 
         public DurationBuilder hours(long l) {
-            time += (long)(l*RealDuration.HOURS_TO_MILLIS);
+            time += (long) (l * RealDuration.HOURS_TO_MILLIS);
             return this;
         }
 
         public DurationBuilder minutes(long l) {
-            time += (long)(l*RealDuration.MINUTES_TO_MILLIS);
+            time += (long) (l * RealDuration.MINUTES_TO_MILLIS);
             return this;
         }
 
         public DurationBuilder seconds(long l) {
-            time += (long)(l*RealDuration.SECONDS_TO_MILLIS);
+            time += (long) (l * RealDuration.SECONDS_TO_MILLIS);
             return this;
         }
 

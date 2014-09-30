@@ -39,16 +39,16 @@ public class TimeTest {
 
     @Test
     public void reversible() {
-        long fiveSeconds = (long)RealDuration.minutes(RealDuration.seconds(5).asMinutes()).asSeconds();
+        long fiveSeconds = (long) RealDuration.minutes(RealDuration.seconds(5).asMinutes()).asSeconds();
         Assert.assertEquals(5L, fiveSeconds);
 
-        fiveSeconds = (long)RealDuration.centuries(RealDuration.seconds(5).asCenturies()).asSeconds();
+        fiveSeconds = (long) RealDuration.centuries(RealDuration.seconds(5).asCenturies()).asSeconds();
         Assert.assertEquals(5L, fiveSeconds);
     }
 
     @Test
     public void knownAmounts() {
-        long twoMinutes = (long)RealDuration.seconds(120).asMinutes();
+        long twoMinutes = (long) RealDuration.seconds(120).asMinutes();
         Assert.assertEquals(2L, twoMinutes);
 
         //TODO: large, out-of-phase known amounts
@@ -67,7 +67,8 @@ public class TimeTest {
         Assert.assertEquals(Duration.ONE_MINUTE.asMilliseconds(), RealDuration.seconds(60).asMilliseconds());
 
         //This one *seems* kind of superfluous, but it's good to run it through the whole wringer anyway.
-        Assert.assertEquals(Duration.ONE_SECOND.asMilliseconds(), RealDuration.milliseconds(1000).asMilliseconds());
+        Assert.assertEquals(Duration.ONE_SECOND.asMilliseconds(),
+                RealDuration.milliseconds(1000).asMilliseconds());
     }
 
     @Test

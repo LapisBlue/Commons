@@ -44,6 +44,7 @@ public interface Duration {
      */
 
     RealDuration asRealDuration();
+
     TickDuration asTickDuration();
 
     /*
@@ -58,55 +59,55 @@ public interface Duration {
 
     public static class Seconds extends RealDuration {
         public Seconds(long num) {
-            super((long)(num*SECONDS_TO_MILLIS));
+            super((long) (num * SECONDS_TO_MILLIS));
         }
     }
 
     public static class Minutes extends RealDuration {
         public Minutes(long num) {
-            super((long)(num*MINUTES_TO_MILLIS));
+            super((long) (num * MINUTES_TO_MILLIS));
         }
     }
 
     public static class Hours extends RealDuration {
         public Hours(long num) {
-            super((long)(num*HOURS_TO_MILLIS));
+            super((long) (num * HOURS_TO_MILLIS));
         }
     }
 
     public static class Days extends RealDuration {
         public Days(long num) {
-            super((long)(num*DAYS_TO_MILLIS));
+            super((long) (num * DAYS_TO_MILLIS));
         }
     }
 
     public static class Weeks extends RealDuration {
         public Weeks(long num) {
-            super((long)(num*WEEKS_TO_MILLIS));
+            super((long) (num * WEEKS_TO_MILLIS));
         }
     }
 
     public static class Months extends RealDuration {
         public Months(long num) {
-            super((long)(num*MONTHS_TO_MILLIS));
+            super((long) (num * MONTHS_TO_MILLIS));
         }
     }
 
     public static class Years extends RealDuration {
         public Years(long num) {
-            super((long)(num*YEARS_TO_MILLIS));
+            super((long) (num * YEARS_TO_MILLIS));
         }
     }
 
     public static class Decades extends RealDuration {
         public Decades(long num) {
-            super((long)(num*DECADES_TO_MILLIS));
+            super((long) (num * DECADES_TO_MILLIS));
         }
     }
 
     public static class Centuries extends RealDuration {
         public Centuries(long num) {
-            super((long)(num*CENTURIES_TO_MILLIS));
+            super((long) (num * CENTURIES_TO_MILLIS));
         }
     }
 

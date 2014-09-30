@@ -293,7 +293,7 @@ public final class Transaction {
     public void fireSuccess() {
         validateState(Status.PROCESSING);
         status = Status.COMPLETE;
-        if (callback!=null) {
+        if (callback != null) {
             callback.onSuccess(this);
         }
     }
@@ -301,11 +301,13 @@ public final class Transaction {
     /**
      * Called by an EconomyAccount to indicate to the initiating program that the transaction was unable to be
      * completed.
+     *
+     * @param t The reason for the failed transaction or null if unknown.
      */
     public void fireFailure(Throwable t) {
         validateState(Status.PROCESSING);
         status = Status.FAILED;
-        if (callback!=null) {
+        if (callback != null) {
             callback.onFailure((t != null) ? t : new TransactionException("Transaction failed.", this));
         }
     }

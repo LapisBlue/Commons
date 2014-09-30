@@ -49,6 +49,7 @@ public final class TickTime implements Time {
     /**
      * Estimates the actual time this tick will (or did) fire on, based on the current real and tick time, and
      * an estimated 20 ticks per second.
+     *
      * @return A RealTime estimating when this tick fires
      */
     public RealTime toRealTime() {
@@ -62,12 +63,12 @@ public final class TickTime implements Time {
 
     @Nonnull
     public TickTime add(TickDuration duration) {
-        return new TickTime(time+duration.getTicks());
+        return new TickTime(time + duration.getTicks());
     }
 
     @Nonnull
     public TickTime subtract(TickDuration duration) {
-        return new TickTime(time-duration.getTicks());
+        return new TickTime(time - duration.getTicks());
     }
 
     @Nonnull
@@ -81,6 +82,6 @@ public final class TickTime implements Time {
     }
 
     public TickDuration minus(TickTime other) {
-        return new TickDuration(time-other.time);
+        return new TickDuration(time - other.time);
     }
 }
