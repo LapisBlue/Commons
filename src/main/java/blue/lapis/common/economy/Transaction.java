@@ -24,8 +24,10 @@ package blue.lapis.common.economy;
 
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.economy.event.TransactionEvent;
+import blue.lapis.common.economy.event.TransactionException;
 import blue.lapis.common.economy.event.impl.TransactionEventImpl;
 import com.google.common.base.Preconditions;
+import com.google.common.util.concurrent.FutureCallback;
 import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
@@ -45,16 +47,15 @@ import javax.annotation.Nullable;
  * but can wind up holding many auxiliary details of a transaction. It is recommended but not required for a
  * conforming EconomyAccount to ignore these three elements.</p>
  *
- * <p>Additionally, Transactions are aware of their {@link Status}. As they are being built, and once they are
- * fully built, they are INCOMPLETE. After calling {@link #commit()} they will be in one of three states:</p>
- * <ul>
- * <li>CANCELLED: If a listener has cancelled the related TransactionEvent before it could be applied</li>
- * <li>FAILED:    If an EconomyAccount has rejected this Transaction and is unchanged</li>
- * <li>COMPLETE:  If the Transaction has successfully committed and its proposed changes are reflected in
- * the EconomyAccount</li>
- * </ul>
+ * <p>Transactions are also state machines. They begin in the INCOMPLETE state, and fluent builder methods can
+ * be called in this state. When the transaction is built and ready to invoke, {@link #commit(FutureCallback)}
+ * should be called, and the Transaction's state will change into IN_TRANSIT. While in transit, an event
+ * is fired, and the EconomyAccount (and the Transaction) may be cancelled or modified by listeners. If
+ * cancelled, the state changes to CANCELLED. If not, the state changes to PROCESSING, and the Transaction is
+ * submitted to the EconomyAccount. The account then (later) indicates success or failure,
+ * resulting in the COMPLETE or FAILED state, respectively.</p>
  *
- * <p>This class has a fluent building and calling syntax. Typically a transaction might look like:</p>
+ * <p>The typical calling pattern for a transaction is:</p>
  *
  * <pre>
  *     Transaction t = Transaction.on(myFriendsAccount)
@@ -62,8 +63,16 @@ import javax.annotation.Nullable;
  *         .withTarget(myFriend)
  *         .withReason("My friend is awesome!!!!11111!111")
  *         .add(9001)
- *         .commit();
- *     if (t.getStatus())!= Transaction.Status.COMPLETE) System.out.println(":(");
+ *         .commit(new FutureCallback&lt;Transaction&gt;(){
+ *             &#64;Override
+ *             public void onFailure(Throwable t) {
+ *                 System.out.println("Boo!");
+ *             }
+ *             &#64;Override
+ *             public void onSuccess(Transaction t) {
+ *                 System.out.println("Yay!");
+ *             }
+ *         });
  * </pre>
  */
 public final class Transaction {
@@ -76,6 +85,8 @@ public final class Transaction {
     private Object reason = null;
     private double delta = 0.0d;
     private Double balance = null;
+
+    private FutureCallback<Transaction> callback = null;
 
     private Transaction(EconomyAccount account) {
         this.account = Preconditions.checkNotNull(account, "account");
@@ -252,30 +263,51 @@ public final class Transaction {
 
     /**
      * Causes a TransactionEvent to be fired for this Transaction, and if the event is not cancelled, hands
-     * this
-     * Transaction to the EconomyAccount for final processing. If everything goes well there, the status is
-     * updated to COMPLETE.
+     * this Transaction to the EconomyAccount for final processing. This final processing may complete
+     * asynchronously, and may fail, so it's important to register a FutureCallback to handle the result of the
+     * transaction.
      *
-     * @return The status of this Transaction; either CANCELLED, FAILED, or COMPLETE.
+     * @param onResult A callback for when the transaction is complete
      */
-    @Nonnull
-    public Status commit() {
+    public void commit(FutureCallback<Transaction> onResult) {
         validateState(Status.INCOMPLETE);
         status = Status.IN_TRANSIT;
         TransactionEvent event = new TransactionEventImpl(this);
         LapisCommonsPlugin.getGame().getEventManager().call(event);
 
         if (event.getResult() == Result.DENY || event.isCancelled()) {
-            return status = Status.CANCELLED;
+            status = Status.CANCELLED;
+            onResult.onFailure(new TransactionException("Transaction cancelled.", this));
+            return;
         }
+        status = Status.PROCESSING;
 
-        if (account.apply(this)) {
-            status = Status.COMPLETE;
-        } else {
-            status = Status.FAILED;
+        this.callback = onResult;
+        account.apply(this);
+    }
+
+    /**
+     * Called by an EconomyAccount to indicate to the initiating program that the transaction has completed
+     * successfully.
+     */
+    public void fireSuccess() {
+        validateState(Status.PROCESSING);
+        status = Status.COMPLETE;
+        if (callback!=null) {
+            callback.onSuccess(this);
         }
+    }
 
-        return status;
+    /**
+     * Called by an EconomyAccount to indicate to the initiating program that the transaction was unable to be
+     * completed.
+     */
+    public void fireFailure(Throwable t) {
+        validateState(Status.PROCESSING);
+        status = Status.FAILED;
+        if (callback!=null) {
+            callback.onFailure((t != null) ? t : new TransactionException("Transaction failed.", this));
+        }
     }
 
     private void validateState(Status expected) {
@@ -285,23 +317,27 @@ public final class Transaction {
 
     static enum Status {
         /**
-         * The Transaction is still being built or has not been submitted to the event yet. *
+         * The Transaction is still being built or has not been submitted to the event yet.
          */
         INCOMPLETE,
         /**
-         * The Transaction is currently in a TransactionEvent *
+         * The Transaction is currently in a TransactionEvent
          */
         IN_TRANSIT,
         /**
-         * The Transaction was submitted to the event, but the event was cancelled by a listener.*
+         * The Transaction is currently waiting for the EconomyAccount to finish final processing.
+         */
+        PROCESSING,
+        /**
+         * The Transaction was submitted to the event, but the event was cancelled by a listener.
          */
         CANCELLED,
         /**
-         * The Transaction was submitted to the EconomyAccount for final processing, but was rejected.*
+         * The Transaction was submitted to the EconomyAccount for final processing, but was rejected.
          */
         FAILED,
         /**
-         * The Transaction was submitted to the EconomyAccount and its final processing was successful.*
+         * The Transaction was submitted to the EconomyAccount and its final processing was successful.
          */
         COMPLETE
     }

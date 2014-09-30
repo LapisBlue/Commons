@@ -54,9 +54,8 @@ public interface EconomyAccount {
      * State.EVENT_FIRED, otherwise this method can choose to throw an IllegalStateException or return false.
      *
      * @param t The Transaction to apply
-     * @return False if the transaction could not be applied, such as if it would drop a non-credit account
      * below zero.
      */
-    boolean apply(Transaction t);
+    void apply(Transaction t);
 
 }
