@@ -25,12 +25,8 @@ package blue.lapis.common.economy;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 
 public interface AccountService {
-
-    @Nonnull
-    public List<EconomyAccount> getAccounts(@Nonnull Object owner);
 
     @Nullable
     public EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName);
