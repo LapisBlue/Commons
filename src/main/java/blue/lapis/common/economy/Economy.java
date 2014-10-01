@@ -33,6 +33,7 @@ import java.util.List;
  * so details may change frequently.
  */
 public final class Economy {
+
     private static Economy INSTANCE;
 
     /*
@@ -50,6 +51,10 @@ public final class Economy {
             INSTANCE = new Economy();
         }
         return INSTANCE;
+    }
+
+    public void registerAccountService(AccountService accountService)  {
+        throw new UnsupportedOperationException();
     }
 
     @Nonnull
