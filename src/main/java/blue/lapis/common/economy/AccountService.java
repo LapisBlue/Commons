@@ -23,9 +23,10 @@
 
 package blue.lapis.common.economy;
 
+import com.google.common.collect.ImmutableSet;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 
 public interface AccountService {
 
@@ -33,7 +34,10 @@ public interface AccountService {
     boolean hasAccount(@Nonnull Object owner, @Nonnull String accountName);
 
     @Nullable
-    List<String> getAccountNames(@Nonnull Object owner);
+    ImmutableSet<String> getAccountNames(@Nonnull Object owner);
+
+    @Nullable
+    ImmutableSet<EconomyAccount> getAccounts(@Nonnull Object owner);
 
     @Nullable
     EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName);
