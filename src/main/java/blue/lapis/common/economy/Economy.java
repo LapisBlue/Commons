@@ -49,19 +49,19 @@ public final class Economy {
         return INSTANCE;
     }
 
-    public void registerAccountService(String prefix, AccountService accountService) {
-        registerAccountService(prefix, accountService, false);
+    public void registerAccountService(String namespace, AccountService accountService) {
+        registerAccountService(namespace, accountService, false);
     }
 
-    public void registerAccountService(String prefix, AccountService accountService, boolean defaultService) {
+    public void registerAccountService(String namespace, AccountService accountService, boolean defaultService) {
         throw new UnsupportedOperationException();
     }
 
-    public void setDefaultAccountService(String prefix) {
+    public void setDefaultAccountService(String namespace) {
         throw new UnsupportedOperationException();
     }
 
-    public AccountService getAccountService(String prefix) {
+    public AccountService getAccountService(String namespace) {
         throw new UnsupportedOperationException();
     }
 
@@ -69,8 +69,8 @@ public final class Economy {
         throw new UnsupportedOperationException();
     }
 
-    // getAccountService.formatBalance(prefix, amount)
-    public String formatBalance(String prefix, double amount) {
-        return getAccountService(prefix).formatBalance(prefix, amount);
+    // getAccountService.formatBalance(namespace, amount)
+    public String formatBalance(String namespace, double amount) {
+        return getAccountService(namespace).formatBalance(namespace, amount);
     }
 }

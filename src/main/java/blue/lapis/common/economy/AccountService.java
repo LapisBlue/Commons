@@ -41,5 +41,5 @@ public interface AccountService {
     @Nonnull
     EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName);
 
-    String formatBalance(String prefix, double amound);
+    String formatBalance(String namespace, double amound);
 }
