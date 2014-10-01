@@ -67,5 +67,9 @@ public class TransactionTest {
 
         Transaction t2 = Transaction.on(account).subtract(1234);
         assertEquals(-1234.0, t2.getDelta(), 0);
+
+        Transaction t3 = Transaction.on(account).setAbsolute(1234);
+        assertEquals(1234, t3.getAbsolute().doubleValue(), 0);
+        assertEquals(0, t3.getDelta(), 0);
     }
 }
