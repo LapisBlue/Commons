@@ -49,6 +49,9 @@ public interface EconomyAccount {
      */
     BalanceFormatter getFormatter();
 
+    // getFormatter.format(getBalance())
+    String getFormattedBalance();
+
     /**
      * Apply a Transaction's proposed change to this EconomyAccount. The Transaction MUST be in
      * State.EVENT_FIRED, otherwise this method can choose to throw an IllegalStateException or return false.

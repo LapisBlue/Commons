@@ -22,16 +22,13 @@
  */
 package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.formatter.BalanceFormatterRegistry;
-
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Represents the economy as a whole. This class is currently under API scrutiny,
  * so details may change frequently.
  */
-public final class Economy implements AccountService{
+public final class Economy {
 
     private static Economy INSTANCE;
 
@@ -52,24 +49,28 @@ public final class Economy implements AccountService{
         return INSTANCE;
     }
 
-    public void registerAccountService(AccountService accountService)  {
+    public void registerAccountService(String prefix, AccountService accountService) {
+        registerAccountService(prefix, accountService, false);
+    }
+
+    public void registerAccountService(String prefix, AccountService accountService, boolean defaultService) {
         throw new UnsupportedOperationException();
     }
 
-    @Nonnull
-    public String formatBalance(double amount, String prefix) {
-        return BalanceFormatterRegistry.get(prefix).format(amount);
-    }
-
-    @Override
-    @Nullable
-    public EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName) {
+    public void setDefaultAccountService(String prefix) {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    @Nonnull
-    public EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName) {
+    public AccountService getAccountService(String prefix) {
         throw new UnsupportedOperationException();
+    }
+
+    public AccountService getDefaultAccountService() {
+        throw new UnsupportedOperationException();
+    }
+
+    // getAccountService.formatBalance(prefix, amount)
+    public String formatBalance(String prefix, double amount) {
+        return getAccountService(prefix).formatBalance(prefix, amount);
     }
 }
