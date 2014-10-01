@@ -47,13 +47,12 @@ import javax.annotation.Nullable;
  * but can wind up holding many auxiliary details of a transaction. It is recommended but not required for a
  * conforming EconomyAccount to ignore these three elements.</p>
  *
- * <p>Transactions are also state machines. They begin in the INCOMPLETE state, and fluent builder methods can
- * be called in this state. When the transaction is built and ready to invoke, {@link #commit(FutureCallback)}
- * should be called, and the Transaction's state will change into IN_TRANSIT. While in transit, an event
- * is fired, and the EconomyAccount (and the Transaction) may be cancelled or modified by listeners. If
- * cancelled, the state changes to CANCELLED. If not, the state changes to PROCESSING, and the Transaction is
- * submitted to the EconomyAccount. The account then (later) indicates success or failure,
- * resulting in the COMPLETE or FAILED state, respectively.</p>
+ * <p>The typical lifecycle of a Transaction starts with a fluent builder syntax. When all the information
+ * desired is specified, {@link #commit(FutureCallback)} is called, and an event is fired. If that event is
+ * cancelled, the FutureCallback's onFailure is called immediately. If not, the Transaction is handed off to
+ * the EconomyAccount specified. At this point the Transaction may complete asynchronously. In the end, either
+ * onSuccess or onFailure is called on the callback, and the Transaction is either complete or failed,
+ * respectively.
  *
  * <p>The typical calling pattern for a transaction is:</p>
  *
@@ -218,14 +217,6 @@ public final class Transaction {
     }
 
     /**
-     * @return How far along we are in this Transaction, whether it has succeeded, or in what way it failed.
-     */
-    @Nonnull
-    public Status getStatus() {
-        return status;
-    }
-
-    /**
      * Express a payment or increase in the account's balance.
      *
      * @param amount The amount to increase the account balance by
@@ -317,7 +308,7 @@ public final class Transaction {
                 "found %s instead.", expected, status);
     }
 
-    static enum Status {
+    private static enum Status {
         /**
          * The Transaction is still being built or has not been submitted to the event yet.
          */
