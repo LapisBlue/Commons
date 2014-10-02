@@ -46,4 +46,15 @@ public interface AccountService {
     EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName);
 
     String formatBalance(String namespace, double amound);
+
+
+    String getDefaultAccountName();
+
+    // getAccount(owner, getDefaultAccountName())
+    @Nullable
+    EconomyAccount getDefaultAccount(@Nonnull Object owner);
+
+    // createDefaultAccount(owner, getDefaultAccountName())
+    @Nonnull
+    EconomyAccount createDefaultAccount(@Nonnull Object owner);
 }
