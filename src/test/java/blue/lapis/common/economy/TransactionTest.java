@@ -23,6 +23,7 @@
 package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.formatter.BalanceFormatter;
+import blue.lapis.common.economy.impl.AbstractEconomyAccount;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -36,7 +37,7 @@ public class TransactionTest {
 
     @Test
     public void getterSetterTest() {
-        EconomyAccount account = new EconomyAccount() {
+        EconomyAccount account = new AbstractEconomyAccount() {
             @Nonnull
             @Override
             public String getID() {
