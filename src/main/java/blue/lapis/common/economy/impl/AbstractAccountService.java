@@ -39,11 +39,11 @@ public abstract class AbstractAccountService implements AccountService {
     @Nullable
     @Override
     public EconomyAccount getDefaultAccount(@Nonnull Object owner) {
-        return getAccount(owner, getDefaultAccountName());
+        return getAccount(owner, getDefaultAccountName(owner));
     }
     @Nonnull
     @Override
     public EconomyAccount createDefaultAccount(@Nonnull Object owner) {
-        return createAccount(owner, getDefaultAccountName());
+        return createAccount(owner, getDefaultAccountName(owner));
     }
 }

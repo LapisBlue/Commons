@@ -48,7 +48,7 @@ public interface AccountService {
     String formatBalance(String namespace, double amound);
 
 
-    String getDefaultAccountName();
+    String getDefaultAccountName(@Nonnull Object owner);
 
     // getAccount(owner, getDefaultAccountName())
     @Nullable
