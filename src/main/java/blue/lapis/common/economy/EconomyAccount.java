@@ -25,6 +25,7 @@ package blue.lapis.common.economy;
 import blue.lapis.common.economy.formatter.BalanceFormatter;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * <p>Represents a single account of a single type of currency. Generally, accounts of a common currency have a
@@ -47,9 +48,11 @@ public interface EconomyAccount {
     /**
      * @return a formatter which can display this account's currency
      */
+    @Nullable
     BalanceFormatter getFormatter();
 
     // getFormatter.format(getBalance())
+    @Nullable
     String getFormattedBalance();
 
     /**

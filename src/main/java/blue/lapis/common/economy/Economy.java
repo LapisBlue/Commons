@@ -71,6 +71,6 @@ public final class Economy {
 
     // getAccountService.formatBalance(namespace, amount)
     public String formatBalance(String namespace, double amount) {
-        return getAccountService(namespace).formatBalance(namespace, amount);
+        return getAccountService(namespace).formatBalance(amount);
     }
 }

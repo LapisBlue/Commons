@@ -38,12 +38,21 @@ public abstract class AbstractAccountService implements AccountService {
 
     @Nullable
     @Override
-    public EconomyAccount getDefaultAccount(@Nonnull Object owner) {
-        return getAccount(owner, getDefaultAccountName(owner));
+    public String formatBalance(double amount) {
+        return getFormatter() != null ? getFormatter().format(amount) : null;
     }
-    @Nonnull
+
+    @Nullable
+    @Override
+    public EconomyAccount getDefaultAccount(@Nonnull Object owner) {
+        String defaultAccountName = getDefaultAccountName(owner);
+        return defaultAccountName != null ? getAccount(owner, defaultAccountName) : null;
+    }
+
+    @Nullable
     @Override
     public EconomyAccount createDefaultAccount(@Nonnull Object owner) {
-        return createAccount(owner, getDefaultAccountName(owner));
+        String defaultAccountName = getDefaultAccountName(owner);
+        return defaultAccountName != null ? createAccount(owner, defaultAccountName) : null;
     }
 }

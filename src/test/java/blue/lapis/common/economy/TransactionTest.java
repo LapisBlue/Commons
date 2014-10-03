@@ -37,7 +37,7 @@ public class TransactionTest {
 
     @Test
     public void getterSetterTest() {
-        EconomyAccount account = new AbstractEconomyAccount() {
+        EconomyAccount account = new AbstractEconomyAccount(null) {
             @Nonnull
             @Override
             public String getID() {

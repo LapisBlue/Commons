@@ -23,10 +23,24 @@
 
 package blue.lapis.common.economy.impl;
 
+import blue.lapis.common.economy.AccountService;
 import blue.lapis.common.economy.EconomyAccount;
+import blue.lapis.common.economy.formatter.BalanceFormatter;
 
 public abstract class AbstractEconomyAccount implements EconomyAccount {
 
+    protected AccountService accountService;
+
+
+    public AbstractEconomyAccount(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    @Override
+    public BalanceFormatter getFormatter() {
+        return this.accountService.getFormatter();
+    }
+    
     @Override
     public String getFormattedBalance() {
         return getFormatter().format(getBalance());

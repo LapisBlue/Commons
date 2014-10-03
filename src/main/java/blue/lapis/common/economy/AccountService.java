@@ -23,6 +23,7 @@
 
 package blue.lapis.common.economy;
 
+import blue.lapis.common.economy.formatter.BalanceFormatter;
 import com.google.common.collect.ImmutableSet;
 
 import javax.annotation.Nonnull;
@@ -45,9 +46,13 @@ public interface AccountService {
     @Nonnull
     EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName);
 
-    String formatBalance(String namespace, double amound);
+    @Nullable
+    BalanceFormatter getFormatter();
 
+    @Nullable
+    String formatBalance(double amount);
 
+    @Nullable
     String getDefaultAccountName(@Nonnull Object owner);
 
     // getAccount(owner, getDefaultAccountName())
@@ -55,6 +60,7 @@ public interface AccountService {
     EconomyAccount getDefaultAccount(@Nonnull Object owner);
 
     // createDefaultAccount(owner, getDefaultAccountName())
-    @Nonnull
+    // null if no default account configured
+    @Nullable
     EconomyAccount createDefaultAccount(@Nonnull Object owner);
 }
