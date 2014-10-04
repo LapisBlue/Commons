@@ -8,8 +8,7 @@ notifications:
   email: false
 env:
   global:
-    - LAPIS_DEPLOY=https://github.com/LapisBlue/Deploy.git
-    - DEPLOY_ROOT=/tmp/lapis/deploy
+    - LAPIS_DEPLOY=https://github.com/LapisBlue/Deploy.git DEPLOY_ROOT=/tmp/lapis/deploy
     - secure: WtEeGDHXX9F8ozizapxpSq7lZgNFjeSkq7DqlI8t0k9AiEejAjeXe0b7nqFpo0y2rCjs+rjpmEM3g9+J1RljuYujBSiUqtsIPcuY2OfeO5ESITlBuPhZpC5sqfDe+JkbxozIhURV63628eAeYoQZnKxO1Jq5R9Tk/05khpvB1U0=
 after_success:
   - git clone $LAPIS_DEPLOY $DEPLOY_ROOT &&
