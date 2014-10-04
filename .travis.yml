@@ -8,9 +8,6 @@ notifications:
   email: false
 env:
   global:
-    - LAPIS_DEPLOY=https://github.com/LapisBlue/Deploy.git
-    - DEPLOY_ROOT=/tmp/lapis/deploy
-    - secure: KaNtP9g/EvsE/cB/SFkfKrbGa8DfBaRkIuKJPK2uArtgN0AGiZ+biugu8x0VY3MFfbLtBfWFipIV15NHVgkeb7b5fFtNvGUaXOke4sLAqe9EXiUNufqlWPXmIKqK+lKOS7guSAaLpovnVDrBUkJF1IHOl9iXKARrFtw1D0Dn2ys=
+    secure: Od8YNVi6KSYrqRbuD0j6b6om0JicHuJv459/BeWM5JDMMISIlZsYA8A3vHmoIt5MhjlTz7AccFt9pvWLvIytc2xvBNtHbO7ZS1hwF4krKADUC0CS5uaRI3YX/lJFx6Gmy0ePWWU6/JUvqVwKqmVEvL4yUc1+4PP0R+vckNHUydU=
 after_success:
-  # TODO: Publish Commons to Maven repo
-  - git clone $LAPIS_DEPLOY $DEPLOY_ROOT && $DEPLOY_ROOT/javadocs.sh commons "./gradlew javadoc -x :SpongeAPI:javadoc" build/docs/javadoc
+  - '[ "$TRAVIS_JDK_VERSION" = "oraclejdk8" ] && git clone https://${GH_TOKEN}@github.com/LapisBlue/Javadocs .jd && ./.jd/generate commons "./gradlew javadoc -x :SpongeAPI:javadoc" build/docs/javadoc'
