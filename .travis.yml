@@ -13,6 +13,4 @@ env:
     - secure: KaNtP9g/EvsE/cB/SFkfKrbGa8DfBaRkIuKJPK2uArtgN0AGiZ+biugu8x0VY3MFfbLtBfWFipIV15NHVgkeb7b5fFtNvGUaXOke4sLAqe9EXiUNufqlWPXmIKqK+lKOS7guSAaLpovnVDrBUkJF1IHOl9iXKARrFtw1D0Dn2ys=
 after_success:
   # TODO: Publish Commons to Maven repo
-  - git clone $LAPIS_DEPLOY $DEPLOY_ROOT && {
-        $DEPLOY_ROOT/javadocs.sh commons "./gradlew javadoc -x :SpongeAPI:javadoc" build/docs/javadoc
-    }
+  - git clone $LAPIS_DEPLOY $DEPLOY_ROOT && $DEPLOY_ROOT/javadocs.sh commons "./gradlew javadoc -x :SpongeAPI:javadoc" build/docs/javadoc
