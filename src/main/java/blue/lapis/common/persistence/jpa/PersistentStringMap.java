@@ -41,7 +41,7 @@ public class PersistentStringMap {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @ElementCollection
     @JoinTable(name = "ATTRIBUTE_VALUE_RANGE", joinColumns = @JoinColumn(name = "ID"))
@@ -49,11 +49,11 @@ public class PersistentStringMap {
     @Column(name = "MAP_VALUE")
     private Map<String, String> backingMap = new HashMap<String, String>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

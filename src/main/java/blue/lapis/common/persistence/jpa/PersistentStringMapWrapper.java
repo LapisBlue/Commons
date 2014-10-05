@@ -40,15 +40,15 @@ import java.util.Set;
 public class PersistentStringMapWrapper implements PersistentMap<String, String> {
 
     private EntityManager em;
-    private Long mapId;
+    private long mapId;
 
-    public PersistentStringMapWrapper(EntityManager em, Long mapId) {
+    public PersistentStringMapWrapper(EntityManager em, long mapId) {
         this.em = em;
         this.mapId = mapId;
     }
 
     @Override
-    public Long getId() {
+    public long getId() {
         return mapId;
     }
 
@@ -197,7 +197,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
 
         PersistentStringMapWrapper that = (PersistentStringMapWrapper) o;
 
-        if (!mapId.equals(that.mapId)) {
+        if (mapId != that.mapId) {
             return false;
         }
 
@@ -206,7 +206,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
 
     @Override
     public int hashCode() {
-        return mapId.hashCode();
+        return Long.valueOf(mapId).hashCode();
     }
 
     /**

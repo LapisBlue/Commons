@@ -33,5 +33,5 @@ public interface PersistentData {
      *
      * @return id of the persisted collection
      */
-    Long getId();
+    long getId();
 }
