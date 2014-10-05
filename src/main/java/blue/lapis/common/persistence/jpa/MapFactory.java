@@ -31,18 +31,33 @@ import javax.persistence.EntityTransaction;
 /**
  * Factory class that creates database-backed collections for convenience
  */
-public class JPAMapFactory {
+public class MapFactory {
 
     // FIXME this should be fetched from the Sponge API ServiceManager as soon as sponge provides JPA
     private static JPAService jpaService = new JPAProvider("jdbc:mysql://localhost:3306/jpatest_");
 
-    public static Map<String,String> newStringMap(){
+    public static PersistentMap<String,String> newPersistentStringMap(){
         // fetch our entity manager
         EntityManager em = jpaService.getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
+
         EntityTransaction t = em.getTransaction();
         t.begin();
+
         PersistentStringMap map = new PersistentStringMap();
         em.persist(map);
+
+        t.commit();
+
+        return new PersistentStringMapWrapper(em,map.getId());
+    }
+
+    public static Map<String,String> findPersistentStringMap(Long mapId){
+        // fetch our entity manager
+        EntityManager em = jpaService.getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
+
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        PersistentStringMap map = em.find(PersistentStringMap.class,mapId);
         t.commit();
 
         return new PersistentStringMapWrapper(em,map.getId());

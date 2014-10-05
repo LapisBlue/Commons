@@ -37,7 +37,7 @@ import javax.persistence.EntityTransaction;
  * Wrapper class that abstracts all the JPA pain like transactions
  * and entity manager.
  */
-public class PersistentStringMapWrapper implements Map<String,String> {
+public class PersistentStringMapWrapper implements PersistentMap<String,String> {
 
     private EntityManager em;
     private Long mapId;
@@ -50,7 +50,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
     /**
      * Returns the backing maps id
      */
-    public Long getMapId(){
+
+    @Override
+    public Long getId() {
         return mapId;
     }
 

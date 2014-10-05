@@ -27,9 +27,6 @@ import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.eclipse.persistence.internal.jpa.deployment.SEPersistenceUnitInfo;
 import org.eclipse.persistence.jpa.PersistenceProvider;
 
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -97,12 +94,7 @@ public class JPAProvider implements JPAService {
         punit.setPersistenceUnitName("sponge-eclipselink");
         punit.setClassLoader(ClassLoader.getSystemClassLoader());
 
-        Path currentRelativePath = Paths.get("");
-        try {
-            punit.setPersistenceUnitRootUrl(currentRelativePath.toUri().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        punit.setPersistenceUnitRootUrl(getClass().getProtectionDomain().getCodeSource().getLocation());
 
         // would be could to use java8 here -.-
         List<String> classNames = new ArrayList<String>();

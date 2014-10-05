@@ -48,9 +48,11 @@ public class JPAProviderTest {
             // create DB, fails if it doesn't exsist (we should check first)
             createDB();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("SQL Exception, DB missing");
+            return;
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("JDBC Driver missing, exiting test.");
+            return;
         }
 
         // create a JPAService

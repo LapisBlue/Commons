@@ -22,14 +22,14 @@
  */
 package blue.lapis.common.persistence;
 
-import blue.lapis.common.persistence.jpa.JPAMapFactory;
-import org.apache.commons.lang3.RandomStringUtils;
+import blue.lapis.common.persistence.jpa.MapFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -39,13 +39,24 @@ public class PersistentMapTest {
 
     @Test
     public void testMap(){
-        Map<String,String> testMap = JPAMapFactory.newStringMap();
+
+        Map<String,String> testMap;
+        try {
+            testMap = MapFactory.newPersistentStringMap();
+        }catch (Exception e){
+            System.out.println("Cannot create DB backed map, exiting early.");
+            return;
+        }
+
+
+
         Map<String,String> referenceMap = new HashMap<String, String>();
+        Random rand = new Random(0xBEEF);
 
         System.out.println(testMap.toString());
         for(int i=0;i<1000;i++) {
-            String randKey = RandomStringUtils.randomAlphabetic(3);
-            String randVal = RandomStringUtils.randomAlphabetic(8);
+            String randKey = randomKey(rand,2000);
+            String randVal = randomValue(rand);
             testMap.put(randKey, randVal);
             referenceMap.put(randKey, randVal);
         }
@@ -61,13 +72,13 @@ public class PersistentMapTest {
 
         // does contains work?
         for(int i=0;i<1000;i++) {
-            String randKey = RandomStringUtils.randomAlphabetic(5);
+            String randKey = randomKey(rand,2000);
             Assert.assertEquals(referenceMap.containsKey(randKey),testMap.containsKey(randKey));
         }
 
-        // does contains work?
+        // does remove work?
         for(int i=0;i<1000;i++) {
-            String randKey = RandomStringUtils.randomAlphabetic(5);
+            String randKey = randomKey(rand,2000);
             Assert.assertEquals(referenceMap.remove(randKey),testMap.remove(randKey));
         }
 
@@ -99,4 +110,11 @@ public class PersistentMapTest {
         }
     }
 
+    private static String randomKey(Random rand,int pool){
+        return Long.toHexString(rand.nextInt(pool));
+    }
+
+    private static String randomValue(Random rand){
+        return Long.toHexString(rand.nextLong());
+    }
 }
