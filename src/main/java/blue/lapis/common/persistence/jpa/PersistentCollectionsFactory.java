@@ -31,7 +31,7 @@ import javax.persistence.EntityTransaction;
 /**
  * Factory class that creates database-backed collections for convenience
  */
-public class MapFactory {
+public class PersistentCollectionsFactory {
 
     // FIXME this should be fetched from the Sponge API ServiceManager as soon as sponge provides JPA
     private static JPAService jpaService = new JPAProvider("jdbc:mysql://localhost:3306/jpatest_");

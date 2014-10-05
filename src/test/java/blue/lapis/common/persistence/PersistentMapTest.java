@@ -22,7 +22,7 @@
  */
 package blue.lapis.common.persistence;
 
-import blue.lapis.common.persistence.jpa.MapFactory;
+import blue.lapis.common.persistence.jpa.PersistentCollectionsFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,7 +42,7 @@ public class PersistentMapTest {
 
         Map<String,String> testMap;
         try {
-            testMap = MapFactory.newPersistentStringMap();
+            testMap = PersistentCollectionsFactory.newPersistentStringMap();
         }catch (Exception e){
             System.out.println("Cannot create DB backed map, exiting early.");
             return;
