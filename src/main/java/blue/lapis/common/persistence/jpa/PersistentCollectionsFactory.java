@@ -22,8 +22,9 @@
  */
 package blue.lapis.common.persistence.jpa;
 
+import blue.lapis.common.persistence.collections.PersistentMap;
+
 import java.util.Collections;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -35,6 +36,8 @@ public class PersistentCollectionsFactory {
 
     // FIXME this should be fetched from the Sponge API ServiceManager as soon as sponge provides JPA
     private static JPAService jpaService = new JPAProvider("jdbc:mysql://localhost:3306/jpatest_");
+
+    // TODO we should only fetch one EntityManager (JPAProvider should cache this)
 
     public static PersistentMap<String,String> newPersistentStringMap(){
         // fetch our entity manager
@@ -51,7 +54,7 @@ public class PersistentCollectionsFactory {
         return new PersistentStringMapWrapper(em,map.getId());
     }
 
-    public static Map<String,String> findPersistentStringMap(Long mapId){
+    public static PersistentMap<String,String> findPersistentStringMap(Long mapId){
         // fetch our entity manager
         EntityManager em = jpaService.getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
 
@@ -62,5 +65,4 @@ public class PersistentCollectionsFactory {
 
         return new PersistentStringMapWrapper(em,map.getId());
     }
-
 }

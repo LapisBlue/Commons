@@ -23,6 +23,7 @@
 package blue.lapis.common.persistence.jpa;
 
 
+import blue.lapis.common.persistence.collections.PersistentMap;
 import com.google.common.base.Function;
 
 import java.util.Collection;

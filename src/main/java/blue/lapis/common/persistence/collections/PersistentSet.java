@@ -1,4 +1,4 @@
-package blue.lapis.common.persistence.jpa;
+package blue.lapis.common.persistence.collections;
 
 import java.util.Set;
 

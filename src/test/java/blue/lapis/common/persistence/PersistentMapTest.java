@@ -23,6 +23,7 @@
 package blue.lapis.common.persistence;
 
 import blue.lapis.common.persistence.jpa.PersistentCollectionsFactory;
+import blue.lapis.common.persistence.collections.PersistentMap;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class PersistentMapTest {
     @Test
     public void testMap(){
 
-        Map<String,String> testMap;
+        PersistentMap<String,String> testMap;
         try {
             testMap = PersistentCollectionsFactory.newPersistentStringMap();
         }catch (Exception e){
@@ -48,12 +49,12 @@ public class PersistentMapTest {
             return;
         }
 
-
-
         Map<String,String> referenceMap = new HashMap<String, String>();
         Random rand = new Random(0xBEEF);
 
         System.out.println(testMap.toString());
+        long id = testMap.getId();
+
         for(int i=0;i<1000;i++) {
             String randKey = randomKey(rand,2000);
             String randVal = randomValue(rand);
@@ -108,6 +109,16 @@ public class PersistentMapTest {
                 Assert.assertTrue(testSet.contains(entry));
             }
         }
+
+        // test if we can fetch it again
+
+        PersistentMap<String,String> persistedMap = PersistentCollectionsFactory.findPersistentStringMap(id);
+
+        // all entries persisted? TODO: same tests as above
+        for (String key : referenceMap.keySet()) {
+            Assert.assertEquals(referenceMap.get(key),persistedMap.get(key));
+        }
+
     }
 
     private static String randomKey(Random rand,int pool){

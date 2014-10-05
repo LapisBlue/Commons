@@ -1,4 +1,4 @@
-package blue.lapis.common.persistence.jpa;
+package blue.lapis.common.persistence.collections;
 
 /**
  * Created on 05.10.2014.
