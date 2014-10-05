@@ -30,6 +30,7 @@ public interface PersistentData {
     /**
      * Returns the id that identifies this collection, this is the only way to
      * get an old persisted collection.
+     *
      * @return id of the persisted collection
      */
     Long getId();

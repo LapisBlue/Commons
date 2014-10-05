@@ -26,14 +26,13 @@ import blue.lapis.common.persistence.jpa.sponge.JPAProvider;
 import blue.lapis.common.persistence.jpa.sponge.JPAService;
 import org.junit.Test;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 /**
  * Tests for the JPA Provider
@@ -43,7 +42,7 @@ public class JPAProviderTest {
     private static final String DB = "test2";
 
     @Test
-    public void connectTest(){
+    public void connectTest() {
         try {
             // create DB, fails if it doesn't exsist (we should check first)
             createDB();
@@ -75,13 +74,13 @@ public class JPAProviderTest {
 
     private void createDB() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/","root","1234");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "1234");
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
             int ret = stmt.executeUpdate("CREATE DATABASE jpatest_" + DB);
-        }finally {
-            if(stmt!=null) {
+        } finally {
+            if (stmt != null) {
                 stmt.close();
             }
         }

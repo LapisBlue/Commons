@@ -22,9 +22,6 @@
  */
 package blue.lapis.common.persistence.jpa;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -33,21 +30,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.MapKeyColumn;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A JPA Entity that wraps a map, do not use directly
  */
 @Entity
-public class PersistentStringMap{
+public class PersistentStringMap {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @ElementCollection
-    @JoinTable(name="ATTRIBUTE_VALUE_RANGE", joinColumns=@JoinColumn(name="ID"))
-    @MapKeyColumn(name="MAP_KEY")
-    @Column(name="MAP_VALUE")
+    @JoinTable(name = "ATTRIBUTE_VALUE_RANGE", joinColumns = @JoinColumn(name = "ID"))
+    @MapKeyColumn(name = "MAP_KEY")
+    @Column(name = "MAP_VALUE")
     private Map<String, String> backingMap = new HashMap<String, String>();
 
     public Long getId() {

@@ -27,6 +27,6 @@ import java.util.Map;
 /**
  * Interface for persistent maps.
  */
-public interface PersistentMap<K,V>  extends PersistentData,Map<K,V> {
+public interface PersistentMap<K, V> extends PersistentData, Map<K, V> {
 
 }

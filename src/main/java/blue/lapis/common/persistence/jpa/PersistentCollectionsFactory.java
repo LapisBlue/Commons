@@ -26,10 +26,9 @@ import blue.lapis.common.persistence.collections.PersistentMap;
 import blue.lapis.common.persistence.jpa.sponge.JPAProvider;
 import blue.lapis.common.persistence.jpa.sponge.JPAService;
 
-import java.util.Collections;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.Collections;
 
 /**
  * Factory class that creates database-backed collections for convenience
@@ -41,9 +40,10 @@ public class PersistentCollectionsFactory {
 
     // TODO we should only fetch one EntityManager (JPAProvider should cache this)
 
-    public static PersistentMap<String,String> newPersistentStringMap(){
+    public static PersistentMap<String, String> newPersistentStringMap() {
         // fetch our entity manager
-        EntityManager em = jpaService.getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
+        EntityManager em = jpaService
+                .getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
 
         EntityTransaction t = em.getTransaction();
         t.begin();
@@ -53,18 +53,19 @@ public class PersistentCollectionsFactory {
 
         t.commit();
 
-        return new PersistentStringMapWrapper(em,map.getId());
+        return new PersistentStringMapWrapper(em, map.getId());
     }
 
-    public static PersistentMap<String,String> findPersistentStringMap(Long mapId){
+    public static PersistentMap<String, String> findPersistentStringMap(Long mapId) {
         // fetch our entity manager
-        EntityManager em = jpaService.getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
+        EntityManager em = jpaService
+                .getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
 
         EntityTransaction t = em.getTransaction();
         t.begin();
-        PersistentStringMap map = em.find(PersistentStringMap.class,mapId);
+        PersistentStringMap map = em.find(PersistentStringMap.class, mapId);
         t.commit();
 
-        return new PersistentStringMapWrapper(em,map.getId());
+        return new PersistentStringMapWrapper(em, map.getId());
     }
 }

@@ -22,8 +22,8 @@
  */
 package blue.lapis.common.persistence;
 
-import blue.lapis.common.persistence.jpa.PersistentCollectionsFactory;
 import blue.lapis.common.persistence.collections.PersistentMap;
+import blue.lapis.common.persistence.jpa.PersistentCollectionsFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,24 +39,24 @@ import java.util.Set;
 public class PersistentMapTest {
 
     @Test
-    public void testMap(){
+    public void testMap() {
 
-        PersistentMap<String,String> testMap;
+        PersistentMap<String, String> testMap;
         try {
             testMap = PersistentCollectionsFactory.newPersistentStringMap();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Cannot create DB backed map, exiting early.");
             return;
         }
 
-        Map<String,String> referenceMap = new HashMap<String, String>();
+        Map<String, String> referenceMap = new HashMap<String, String>();
         Random rand = new Random(0xBEEF);
 
         System.out.println(testMap.toString());
         long id = testMap.getId();
 
-        for(int i=0;i<1000;i++) {
-            String randKey = randomKey(rand,2000);
+        for (int i = 0; i < 1000; i++) {
+            String randKey = randomKey(rand, 2000);
             String randVal = randomValue(rand);
             testMap.put(randKey, randVal);
             referenceMap.put(randKey, randVal);
@@ -67,20 +67,20 @@ public class PersistentMapTest {
 
         // all entries persisted?
         for (String key : referenceMap.keySet()) {
-            Assert.assertEquals(referenceMap.get(key),testMap.get(key));
+            Assert.assertEquals(referenceMap.get(key), testMap.get(key));
 
         }
 
         // does contains work?
-        for(int i=0;i<1000;i++) {
-            String randKey = randomKey(rand,2000);
-            Assert.assertEquals(referenceMap.containsKey(randKey),testMap.containsKey(randKey));
+        for (int i = 0; i < 1000; i++) {
+            String randKey = randomKey(rand, 2000);
+            Assert.assertEquals(referenceMap.containsKey(randKey), testMap.containsKey(randKey));
         }
 
         // does remove work?
-        for(int i=0;i<1000;i++) {
-            String randKey = randomKey(rand,2000);
-            Assert.assertEquals(referenceMap.remove(randKey),testMap.remove(randKey));
+        for (int i = 0; i < 1000; i++) {
+            String randKey = randomKey(rand, 2000);
+            Assert.assertEquals(referenceMap.remove(randKey), testMap.remove(randKey));
         }
 
         // still same size?
@@ -112,20 +112,20 @@ public class PersistentMapTest {
 
         // test if we can fetch it again
 
-        PersistentMap<String,String> persistedMap = PersistentCollectionsFactory.findPersistentStringMap(id);
+        PersistentMap<String, String> persistedMap = PersistentCollectionsFactory.findPersistentStringMap(id);
 
         // all entries persisted? TODO: same tests as above
         for (String key : referenceMap.keySet()) {
-            Assert.assertEquals(referenceMap.get(key),persistedMap.get(key));
+            Assert.assertEquals(referenceMap.get(key), persistedMap.get(key));
         }
 
     }
 
-    private static String randomKey(Random rand,int pool){
+    private static String randomKey(Random rand, int pool) {
         return Long.toHexString(rand.nextInt(pool));
     }
 
-    private static String randomValue(Random rand){
+    private static String randomValue(Random rand) {
         return Long.toHexString(rand.nextLong());
     }
 }

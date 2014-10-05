@@ -24,22 +24,21 @@
 package blue.lapis.common.persistence.jpa.sponge;
 
 
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Nullable;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
+import java.util.Map;
 
 /**
- *  Returns a JPA {@link EntityManager} that can be used as a persistence provider.
- *
+ * Returns a JPA {@link EntityManager} that can be used as a persistence provider.
  */
 public interface JPAService {
 
     /**
      * Returns an EntityManager,
+     *
      * @param databaseId id that identifies the backing datasource
      * @param entities All {@link Entity} annotated classed that should be managed
      * @return an {@link EntityManager} for the datasource identified with databaseId
@@ -48,8 +47,10 @@ public interface JPAService {
 
     /**
      * Returns an EntityManagerFactory for
+     *
      * @param databaseId id that identifies the backing datasource
      * @return an {@link EntityManager} for the datasource identified with databaseId
      */
-    EntityManagerFactory getEntityManagerFactory(String databaseId, @Nullable Map<String, String> options, List<Class> entities);
+    EntityManagerFactory getEntityManagerFactory(String databaseId, @Nullable Map<String, String> options,
+                                                 List<Class> entities);
 }

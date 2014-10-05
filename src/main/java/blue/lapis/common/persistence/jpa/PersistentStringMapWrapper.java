@@ -26,19 +26,18 @@ package blue.lapis.common.persistence.jpa;
 import blue.lapis.common.persistence.collections.PersistentMap;
 import com.google.common.base.Function;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
-
 import javax.annotation.Nullable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Wrapper class that abstracts all the JPA pain like transactions
  * and entity manager.
  */
-public class PersistentStringMapWrapper implements PersistentMap<String,String> {
+public class PersistentStringMapWrapper implements PersistentMap<String, String> {
 
     private EntityManager em;
     private Long mapId;
@@ -114,7 +113,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
             @Nullable
             @Override
             public String apply(@Nullable Map<String, String> input) {
-                return input.put(key,value);
+                return input.put(key, value);
             }
         });
     }
@@ -214,17 +213,18 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
      * Prints the id of the backing map
      */
     @Override
-    public String toString(){
-        return String.format("Map id: %d",mapId);
+    public String toString() {
+        return String.format("Map id: %d", mapId);
     }
 
     /**
      * Helper method that manages transactions and database access
+     *
      * @param operation Operation to perform.
      * @param <R> Return type.
      * @return the result from the operation.
      */
-    private <R> R operateOnMap(MapOperation<R> operation){
+    private <R> R operateOnMap(MapOperation<R> operation) {
         EntityTransaction t = em.getTransaction();
         t.begin();
 
@@ -235,5 +235,5 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         return r;
     }
 
-    private static interface MapOperation<T> extends Function<Map<String,String>,T>{}
+    private static interface MapOperation<T> extends Function<Map<String, String>, T> {}
 }

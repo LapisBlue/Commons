@@ -27,14 +27,13 @@ import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.eclipse.persistence.internal.jpa.deployment.SEPersistenceUnitInfo;
 import org.eclipse.persistence.jpa.PersistenceProvider;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.spi.PersistenceUnitTransactionType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.spi.PersistenceUnitTransactionType;
 
 /**
  * {@inheritDoc}
@@ -45,7 +44,7 @@ public class JPAProvider implements JPAService {
 
     private static final String PUNIT_NAME = "sponge";
 
-    private Map<String,String> datasourceProperties;
+    private Map<String, String> datasourceProperties;
     private String jdbcUrlPrefix;
 
     public JPAProvider(String jdbcUrlPrefix) {
@@ -64,28 +63,29 @@ public class JPAProvider implements JPAService {
      */
     @Override
     public EntityManager getEntityManager(String databaseId, List<Class> entities) {
-        Map<String,String> mOptions = Maps.newHashMap();
+        Map<String, String> mOptions = Maps.newHashMap();
         mOptions.putAll(datasourceProperties);
         // try to create tables if not exsisting
         mOptions.put(PersistenceUnitProperties.DDL_GENERATION, "create-tables");
-        return getEntityManagerFactory(databaseId, mOptions,entities).createEntityManager();
+        return getEntityManagerFactory(databaseId, mOptions, entities).createEntityManager();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public EntityManagerFactory getEntityManagerFactory(String databaseId, Map<String, String> options, List<Class> entities) {
+    public EntityManagerFactory getEntityManagerFactory(String databaseId, Map<String, String> options,
+                                                        List<Class> entities) {
         //---- assemble the persistence.xml / properties
-        Map<String,String> mOptions = Maps.newHashMap();
+        Map<String, String> mOptions = Maps.newHashMap();
         // any custom options?
-        if(options!=null) {
+        if (options != null) {
             mOptions.putAll(options);
         }
         // overwrite with properties from sponge if necessary
         mOptions.putAll(datasourceProperties);
         // set the URL: PREFIX + databaseId
-        mOptions.put(PersistenceUnitProperties.JDBC_URL,generateJDBCUrl(databaseId));
+        mOptions.put(PersistenceUnitProperties.JDBC_URL, generateJDBCUrl(databaseId));
 
         // assemble a persistence.xml dynamically
         SEPersistenceUnitInfo punit = new SEPersistenceUnitInfo();
@@ -112,7 +112,7 @@ public class JPAProvider implements JPAService {
         return provider.createContainerEntityManagerFactory(punit, mOptions);
     }
 
-    private String generateJDBCUrl(String databaseId){
+    private String generateJDBCUrl(String databaseId) {
         return jdbcUrlPrefix.concat(databaseId);
     }
 }
