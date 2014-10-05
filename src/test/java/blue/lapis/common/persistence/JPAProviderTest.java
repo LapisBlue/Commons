@@ -40,7 +40,7 @@ import javax.persistence.EntityTransaction;
  */
 public class JPAProviderTest {
 
-    private static final String DB = "lapis";
+    private static final String DB = "test2";
 
     @Test
     public void connectTest(){

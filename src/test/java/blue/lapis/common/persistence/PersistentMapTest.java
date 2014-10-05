@@ -23,18 +23,19 @@
 package blue.lapis.common.persistence;
 
 import blue.lapis.common.persistence.jpa.JPAMapFactory;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+import java.util.Set;
 
 /**
  * Tests for the PersistentMaps
  */
 public class PersistentMapTest {
-
-    private static Random random = new Random();
 
     @Test
     public void testMap(){
@@ -42,7 +43,60 @@ public class PersistentMapTest {
         Map<String,String> referenceMap = new HashMap<String, String>();
 
         System.out.println(testMap.toString());
+        for(int i=0;i<1000;i++) {
+            String randKey = RandomStringUtils.randomAlphabetic(3);
+            String randVal = RandomStringUtils.randomAlphabetic(8);
+            testMap.put(randKey, randVal);
+            referenceMap.put(randKey, randVal);
+        }
 
-        testMap.put("Hello","World");
+        // same size?
+        Assert.assertEquals(referenceMap.size(), testMap.size());
+
+        // all entries persisted?
+        for (String key : referenceMap.keySet()) {
+            Assert.assertEquals(referenceMap.get(key),testMap.get(key));
+
+        }
+
+        // does contains work?
+        for(int i=0;i<1000;i++) {
+            String randKey = RandomStringUtils.randomAlphabetic(5);
+            Assert.assertEquals(referenceMap.containsKey(randKey),testMap.containsKey(randKey));
+        }
+
+        // does contains work?
+        for(int i=0;i<1000;i++) {
+            String randKey = RandomStringUtils.randomAlphabetic(5);
+            Assert.assertEquals(referenceMap.remove(randKey),testMap.remove(randKey));
+        }
+
+        // still same size?
+        Assert.assertEquals(referenceMap.size(), testMap.size());
+        {
+            Set<Map.Entry<String, String>> referenceSet = referenceMap.entrySet();
+            Set<Map.Entry<String, String>> testSet = testMap.entrySet();
+            Assert.assertEquals(referenceSet.size(), testSet.size());
+            for (Map.Entry<String, String> entry : referenceSet) {
+                Assert.assertTrue(testSet.contains(entry));
+            }
+        }
+        {
+            Set<String> referenceSet = referenceMap.keySet();
+            Set<String> testSet = testMap.keySet();
+            Assert.assertEquals(referenceSet.size(), testSet.size());
+            for (String entry : referenceSet) {
+                Assert.assertTrue(testSet.contains(entry));
+            }
+        }
+        {
+            Collection<String> referenceSet = referenceMap.values();
+            Collection<String> testSet = testMap.values();
+            Assert.assertEquals(referenceSet.size(), testSet.size());
+            for (String entry : referenceSet) {
+                Assert.assertTrue(testSet.contains(entry));
+            }
+        }
     }
+
 }

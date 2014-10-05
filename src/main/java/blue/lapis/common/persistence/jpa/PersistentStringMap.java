@@ -33,13 +33,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.MapKeyColumn;
-import javax.persistence.Table;
 
 /**
  * A JPA Entity that wraps a map, do not use directly
  */
 @Entity
-@Table(name = "PERSISTENTSTRINGMAPS")
 public class PersistentStringMap{
 
     @Id
@@ -48,13 +46,9 @@ public class PersistentStringMap{
 
     @ElementCollection
     @JoinTable(name="ATTRIBUTE_VALUE_RANGE", joinColumns=@JoinColumn(name="ID"))
-    @MapKeyColumn(name="KEY")
-    @Column(name="VALUE")
+    @MapKeyColumn(name="MAP_KEY")
+    @Column(name="MAP_VALUE")
     private Map<String, String> backingMap = new HashMap<String, String>();
-
-    protected PersistentStringMap() {
-
-    }
 
     public Long getId() {
         return id;
