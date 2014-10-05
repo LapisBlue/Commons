@@ -109,7 +109,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
 
     @Override
     public String put(final String key, final String value) {
-        return operateOnMap(new MapOperation<String>() {
+        return operateTransactionalOnMap(new MapOperation<String>() {
             @Nullable
             @Override
             public String apply(@Nullable Map<String, String> input) {
@@ -120,7 +120,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
 
     @Override
     public String remove(final Object key) {
-        return operateOnMap(new MapOperation<String>() {
+        return operateTransactionalOnMap(new MapOperation<String>() {
             @Nullable
             @Override
             public String apply(@Nullable Map<String, String> input) {
@@ -131,7 +131,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
 
     @Override
     public void putAll(final Map<? extends String, ? extends String> m) {
-        operateOnMap(new MapOperation<Object>() {
+        operateTransactionalOnMap(new MapOperation<Object>() {
             @Nullable
             @Override
             public Object apply(@Nullable Map<String, String> input) {
@@ -143,7 +143,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
 
     @Override
     public void clear() {
-        operateOnMap(new MapOperation<Void>() {
+        operateTransactionalOnMap(new MapOperation<Void>() {
             @Nullable
             @Override
             public Void apply(@Nullable Map<String, String> input) {
@@ -224,7 +224,7 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
      * @param <R> Return type.
      * @return the result from the operation.
      */
-    private <R> R operateOnMap(MapOperation<R> operation) {
+    private <R> R operateTransactionalOnMap(MapOperation<R> operation) {
         EntityTransaction t = em.getTransaction();
         t.begin();
 
@@ -232,6 +232,19 @@ public class PersistentStringMapWrapper implements PersistentMap<String, String>
         R r = operation.apply(map.getBackingMap());
 
         t.commit();
+        return r;
+    }
+
+    /**
+     * Helper method that manages transactions and database access
+     *
+     * @param operation Operation to perform.
+     * @param <R> Return type.
+     * @return the result from the operation.
+     */
+    private <R> R operateOnMap(MapOperation<R> operation) {
+        PersistentStringMap map = em.find(PersistentStringMap.class, mapId);
+        R r = operation.apply(map.getBackingMap());
         return r;
     }
 
