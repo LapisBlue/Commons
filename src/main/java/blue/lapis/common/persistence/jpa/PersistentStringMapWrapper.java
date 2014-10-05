@@ -1,3 +1,25 @@
+/*
+ * LapisCommons
+ * Copyright (c) 2014, Lapis <https://github.com/LapisBlue>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package blue.lapis.common.persistence.jpa;
 
 
@@ -12,8 +34,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 /**
- * Created on 05.10.2014.
- * @author Thomas
+ * Wrapper class that abstracts all the JPA pain like transactions
+ * and entity manager.
  */
 public class PersistentStringMapWrapper implements Map<String,String> {
 
@@ -25,10 +47,16 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         this.mapId = mapId;
     }
 
+    /**
+     * Returns the backing maps id
+     */
     public Long getMapId(){
         return mapId;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int size() {
         return operateOnMap(new MapOperation<Integer>() {
@@ -40,6 +68,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty() {
         return operateOnMap(new MapOperation<Boolean>() {
@@ -51,6 +82,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean containsKey(final Object key) {
         return operateOnMap(new MapOperation<Boolean>() {
@@ -62,6 +96,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean containsValue(final Object value) {
         return operateOnMap(new MapOperation<Boolean>() {
@@ -73,6 +110,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String get(final Object key) {
         return operateOnMap(new MapOperation<String>() {
@@ -84,6 +124,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String put(final String key, final String value) {
         return operateOnMap(new MapOperation<String>() {
@@ -95,6 +138,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String remove(final Object key) {
         return operateOnMap(new MapOperation<String>() {
@@ -106,6 +152,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void putAll(final Map<? extends String, ? extends String> m) {
         operateOnMap(new MapOperation<Object>() {
@@ -118,6 +167,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void clear() {
         operateOnMap(new MapOperation<Void>() {
@@ -130,6 +182,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<String> keySet() {
         return operateOnMap(new MapOperation<Set<String>>() {
@@ -141,6 +196,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Collection<String> values() {
         return operateOnMap(new MapOperation<Collection<String>>() {
@@ -152,6 +210,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Entry<String, String>> entrySet() {
         return operateOnMap(new MapOperation<Set<Entry<String, String>>>() {
@@ -163,6 +224,9 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -181,16 +245,28 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return mapId.hashCode();
     }
 
+    /**
+     * Prints the id of the backing map
+     */
     @Override
     public String toString(){
         return String.format("Map id: %d",mapId);
     }
 
+    /**
+     * Helper method that manages transactions and database access
+     * @param operation Operation to perform.
+     * @param <R> Return type.
+     * @return the result from the operation.
+     */
     private <R> R operateOnMap(MapOperation<R> operation){
         EntityTransaction t = em.getTransaction();
         t.begin();
@@ -202,7 +278,5 @@ public class PersistentStringMapWrapper implements Map<String,String> {
         return r;
     }
 
-    private static interface MapOperation<T> extends Function<Map<String,String>,T>{
-
-    }
+    private static interface MapOperation<T> extends Function<Map<String,String>,T>{}
 }

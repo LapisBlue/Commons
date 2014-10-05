@@ -20,36 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package blue.lapis.common.persistence.jpa;
 
-
-import java.util.List;
+import java.util.Collections;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 /**
- *  Returns a JPA {@link EntityManager} that can be used as a persistence provider.
- *
+ * Factory class that creates database-backed collections for convenience
  */
-public interface JPAService {
+public class JPAMapFactory {
 
-    /**
-     * Returns an EntityManager,
-     * @param databaseId id that identifies the backing datasource
-     * @param entities All {@link Entity} annotated classed that should be managed
-     * @return an {@link EntityManager} for the datasource identified with databaseId
-     */
-    EntityManager getEntityManager(String databaseId, List<Class> entities);
+    private static JPAService jpaService = new JPAProvider("jdbc:mysql://localhost:3306/jpatest_");
 
-    /**
-     * Returns an EntityManagerFactory for
-     * @param databaseId id that identifies the backing datasource
-     * @return an {@link EntityManager} for the datasource identified with databaseId
-     */
-    EntityManagerFactory getEntityManagerFactory(String databaseId, @Nullable Map<String, String> options, List<Class> entities);
+    public static Map<String,String> newStringMap(){
+        // fetch our entity manager
+        EntityManager em = jpaService.getEntityManager("lapis", Collections.<Class>singletonList(PersistentStringMap.class));
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        PersistentStringMap map = new PersistentStringMap();
+        em.persist(map);
+        t.commit();
+
+        return new PersistentStringMapWrapper(em,map.getId());
+    }
+
 }
