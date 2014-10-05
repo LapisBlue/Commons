@@ -27,6 +27,6 @@ import java.util.Set;
 /**
  * Interface for persistent sets.
  */
-public interface PersistentSet<T> extends PersistentCollection,Set<T> {
+public interface PersistentSet<T> extends PersistentData,Set<T> {
 
 }

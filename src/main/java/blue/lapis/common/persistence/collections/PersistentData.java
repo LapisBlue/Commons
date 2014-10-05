@@ -25,7 +25,7 @@ package blue.lapis.common.persistence.collections;
 /**
  * Interface for representing a collection that is backed by persistent storage i.e. DB of file.
  */
-public interface PersistentCollection {
+public interface PersistentData {
 
     /**
      * Returns the id that identifies this collection, this is the only way to
