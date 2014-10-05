@@ -22,8 +22,8 @@
  */
 package blue.lapis.common.persistence;
 
-import blue.lapis.common.persistence.jpa.JPAProvider;
-import blue.lapis.common.persistence.jpa.JPAService;
+import blue.lapis.common.persistence.jpa.sponge.JPAProvider;
+import blue.lapis.common.persistence.jpa.sponge.JPAService;
 import org.junit.Test;
 
 import java.sql.Connection;

@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.persistence.jpa;
+package blue.lapis.common.persistence.jpa.sponge;
 
 import com.google.common.collect.Maps;
 import org.eclipse.persistence.config.PersistenceUnitProperties;

@@ -23,6 +23,8 @@
 package blue.lapis.common.persistence.jpa;
 
 import blue.lapis.common.persistence.collections.PersistentMap;
+import blue.lapis.common.persistence.jpa.sponge.JPAProvider;
+import blue.lapis.common.persistence.jpa.sponge.JPAService;
 
 import java.util.Collections;
 

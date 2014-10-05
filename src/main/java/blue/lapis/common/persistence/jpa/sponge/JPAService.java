@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package blue.lapis.common.persistence.jpa;
+package blue.lapis.common.persistence.jpa.sponge;
 
 
 import java.util.List;

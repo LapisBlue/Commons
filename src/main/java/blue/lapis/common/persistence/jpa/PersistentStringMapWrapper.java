@@ -48,18 +48,11 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         this.mapId = mapId;
     }
 
-    /**
-     * Returns the backing maps id
-     */
-
     @Override
     public Long getId() {
         return mapId;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int size() {
         return operateOnMap(new MapOperation<Integer>() {
@@ -71,9 +64,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isEmpty() {
         return operateOnMap(new MapOperation<Boolean>() {
@@ -85,9 +75,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean containsKey(final Object key) {
         return operateOnMap(new MapOperation<Boolean>() {
@@ -99,9 +86,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean containsValue(final Object value) {
         return operateOnMap(new MapOperation<Boolean>() {
@@ -113,9 +97,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String get(final Object key) {
         return operateOnMap(new MapOperation<String>() {
@@ -127,9 +108,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String put(final String key, final String value) {
         return operateOnMap(new MapOperation<String>() {
@@ -141,9 +119,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String remove(final Object key) {
         return operateOnMap(new MapOperation<String>() {
@@ -155,9 +130,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void putAll(final Map<? extends String, ? extends String> m) {
         operateOnMap(new MapOperation<Object>() {
@@ -170,9 +142,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void clear() {
         operateOnMap(new MapOperation<Void>() {
@@ -185,9 +154,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Set<String> keySet() {
         return operateOnMap(new MapOperation<Set<String>>() {
@@ -199,9 +165,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<String> values() {
         return operateOnMap(new MapOperation<Collection<String>>() {
@@ -213,9 +176,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Set<Entry<String, String>> entrySet() {
         return operateOnMap(new MapOperation<Set<Entry<String, String>>>() {
@@ -227,9 +187,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -248,9 +205,6 @@ public class PersistentStringMapWrapper implements PersistentMap<String,String> 
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
         return mapId.hashCode();
