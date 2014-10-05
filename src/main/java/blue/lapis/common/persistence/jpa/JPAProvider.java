@@ -41,6 +41,8 @@ import javax.persistence.spi.PersistenceUnitTransactionType;
 
 /**
  * {@inheritDoc}
+ *
+ * TODO Config is hardcoded since Config API is still missing
  */
 public class JPAProvider implements JPAService {
 

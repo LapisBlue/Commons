@@ -33,6 +33,7 @@ import javax.persistence.EntityTransaction;
  */
 public class JPAMapFactory {
 
+    // FIXME this should be fetched from the Sponge API ServiceManager as soon as sponge provides JPA
     private static JPAService jpaService = new JPAProvider("jdbc:mysql://localhost:3306/jpatest_");
 
     public static Map<String,String> newStringMap(){
