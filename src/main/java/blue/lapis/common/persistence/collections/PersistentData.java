@@ -23,15 +23,15 @@
 package blue.lapis.common.persistence.collections;
 
 /**
- * Interface for representing a collection that is backed by persistent storage i.e. DB of file.
+ * Interface for identifying data that is backed by persistent storage i.e. DB of file.
  */
 public interface PersistentData {
 
     /**
      * Returns the id that identifies this collection, this is the only way to
-     * get an old persisted collection.
+     * get persisted data
      *
-     * @return id of the persisted collection
+     * @return id of the persisted data
      */
     long getId();
 }
