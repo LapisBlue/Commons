@@ -20,11 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.permission;
+package blue.lapis.common.permission.impl;
 
-import com.google.common.collect.HashBiMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * <p>Holds the global enumeration of permission nodes, and their corresponding bits in a flat bitfield.</p>
@@ -35,47 +37,46 @@ import javax.annotation.Nonnull;
  * intentionally package-private and final; actual interactions with the permission system refer to String
  * nodes. </p>
  */
-final class PermissionBitIndex {
-    private static PermissionBitIndex INSTANCE;
+final class IndexedSetIndex<T> {
 
-    private HashBiMap<String, Integer> data = HashBiMap.create();
-    private int curIndex = 0;
+    private List<T> bits = Lists.newArrayList();
 
-    /**
-     * No, no, no. I make.
-     *
-     * @see PermissionBitIndex#getInstance()
-     */
-    private PermissionBitIndex() {
-    }
+    public IndexedSetIndex() {
 
-    public static PermissionBitIndex getInstance() {
-        if (INSTANCE == null) INSTANCE = new PermissionBitIndex();
-        return INSTANCE;
     }
 
     /**
-     * Ensures that permission node {@code perm} exists in this index. If it's already in the index, the index
+     * Ensures that this object exists in this index. If it's already in the index, the index
      * remains unchanged and its existing bit number is returned.
      *
-     * @param perm The permission node being described
-     * @return The bit number which represents this permission node String
+     * @param bit The object to declare
+     * @return The bit number which represents this object
      */
-    public int declarePermission(@Nonnull String perm) {
-        if (data.containsKey(perm)) return data.get(perm);
-        data.put(perm, curIndex);
-        curIndex++;
-        return curIndex - 1;
+    public int declare(@Nonnull T bit) {
+        int existing = bits.indexOf(bit);
+        if (existing>=0) return existing;
+
+        bits.add(bit);
+        return bits.size()-1;
     }
 
     /**
-     * Finds the bit index for a permission node
+     * Finds the bit index for an indexed object
      *
-     * @param perm The permission node being queried
-     * @return The bit index of the supplied permission node, or -1 if no such entry exists.
+     * @param bit The object being queried
+     * @return The index of the supplied object, or -1 if no such entry exists.
      */
-    public int getPermission(@Nonnull String perm) {
-        if (!data.containsKey(perm)) return -1;
-        return data.get(perm);
+    public int indexOf(@Nonnull T bit) {
+        return bits.indexOf(bit);
     }
+
+    /**
+     * Get the object which this bit number stands for
+     * @param bitNumber
+     * @return
+     */
+    public T get(int bitNumber) {
+        return bits.get(bitNumber);
+    }
+
 }

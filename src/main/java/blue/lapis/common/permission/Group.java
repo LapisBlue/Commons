@@ -22,19 +22,40 @@
  */
 package blue.lapis.common.permission;
 
-import java.util.BitSet;
+import blue.lapis.common.permission.impl.StandardGroup;
+import com.google.common.collect.ImmutableSet;
+import org.spongepowered.api.service.permission.Subject;
+
+import javax.annotation.Nonnull;
 
 /**
- *
+ * Represents a collection of objects which permissions apply to, along with their inheritance
+ * relationship and any associated permissions nodes.
  */
-public class PermissionUnionSet extends PermissionSet {
+public interface Group {
 
-    @Override
-    public void calculate() {
-        BitSet temp = new BitSet();
-        for (PermissionSet parent : getParents()) {
-            temp.or(parent.getDerivedPermissions());
-        }
-        this.setDerivedPermissions(temp);
-    }
+    public static int MAX_SEARCH_DEPTH = 16;
+    public static final Group ALL_GROUPS = new StandardGroup("root");
+
+    @Nonnull
+    public String getId();
+
+    @Nonnull
+    public ImmutableSet<Group> getInheritors();
+
+    public boolean hasInheritor(@Nonnull Group superset);
+
+    public void addInheritor(@Nonnull Group superset);
+
+    @Nonnull
+    public ImmutableSet<Group> getInheritance();
+
+    public boolean inheritsFrom(Group subset);
+
+    public void inheritFrom(Group subset);
+
+    public boolean declaresPermission(String node, Group origin);
+
+    public boolean grantsPermission(String node, int depth, Group origin);
+
 }

@@ -22,6 +22,10 @@
  */
 package blue.lapis.common.command.impl;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
+
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -35,6 +39,68 @@ public class Parsing {
 
     public static boolean startsWithIgnoreCase(String s, String start) {
         return s.regionMatches(true, 0, start, 0, start.length());
+    }
+
+    public static ImmutableList<String> split(String s, String delimiter) {
+        ImmutableList.Builder<String> builder = ImmutableList.builder();
+        int tokenEnd = s.indexOf(delimiter);
+        int loc = 0;
+        while(tokenEnd>=0) {
+            if (tokenEnd>loc) {
+                builder.add(s.substring(loc, tokenEnd));
+            }
+            loc=tokenEnd+delimiter.length();
+            tokenEnd = s.indexOf(delimiter, loc);
+        }
+        if (loc<s.length()) builder.add(s.substring(loc, s.length()));
+
+        return builder.build();
+    }
+
+    public static String join(List<String> strings) {
+        int length = 0;
+        for(String s : strings) {
+            length+=s.length();
+        }
+
+        char[] value = new char[length];
+        int count = 0;
+        for(String s : strings) {
+            int len = s.length();
+            if (len == 0) continue;
+            int newCount = count + len;
+            s.getChars(0, len, value, count);
+            count = newCount;
+        }
+        return new String(value);
+    }
+
+    public static String join(List<String> strings, String delimiter) {
+        int length = 0;
+        for(String s : strings) {
+            length+=s.length();
+        }
+        length += delimiter.length()*(strings.size()-1);
+
+        char[] value = new char[length];
+        int count = 0; int numStrings = strings.size();
+        for(String s : strings) {
+            int len = s.length();
+            if (len == 0) continue;
+            int newCount = count + len;
+            s.getChars(0, len, value, count);
+            count = newCount;
+
+            numStrings--;
+            if (numStrings>0) {
+                len = delimiter.length();
+                if (len == 0) continue;
+                newCount = count + len;
+                delimiter.getChars(0, len, value, count);
+                count = newCount;
+            }
+        }
+        return new String(value);
     }
 
 }
