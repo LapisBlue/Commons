@@ -23,7 +23,6 @@
 
 package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.formatter.BalanceFormatter;
 import com.google.common.collect.ImmutableSet;
 
 import javax.annotation.Nonnull;
@@ -31,11 +30,6 @@ import javax.annotation.Nullable;
 
 public interface AccountService {
 
-    // getAccount != null
-    boolean hasAccount(@Nonnull Object owner, @Nonnull String accountName);
-
-    @Nullable
-    ImmutableSet<String> getAccountNames(@Nonnull Object owner);
 
     @Nullable
     ImmutableSet<EconomyAccount> getAccounts(@Nonnull Object owner);
@@ -46,21 +40,31 @@ public interface AccountService {
     @Nonnull
     EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName);
 
-    @Nullable
-    BalanceFormatter getFormatter();
-
-    @Nullable
-    String formatBalance(double amount);
-
-    @Nullable
-    String getDefaultAccountName(@Nonnull Object owner);
 
     // getAccount(owner, getDefaultAccountName())
     @Nullable
-    EconomyAccount getDefaultAccount(@Nonnull Object owner);
+    EconomyAccount getDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
+
 
     // createDefaultAccount(owner, getDefaultAccountName())
-    // null if no default account configured
+    @Nonnull
+    EconomyAccount createDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
+
+    // syntax sugar and for performance optimization
+
+    @Nonnull
+    String getDefaultAccountName(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
+
     @Nullable
-    EconomyAccount createDefaultAccount(@Nonnull Object owner);
+    ImmutableSet<String> getAccountNames(@Nonnull Object owner);
+
+    boolean hasAccount(@Nonnull Object owner, @Nonnull String accountName);
+
+    boolean hasDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
+
+    @Nonnull
+    EconomyAccount getOrCreateAccount(@Nonnull Object owner, String accountName) throws EconomyDefaultAccountNotSupported;
+
+    @Nonnull
+    EconomyAccount getOrCreateDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
 }

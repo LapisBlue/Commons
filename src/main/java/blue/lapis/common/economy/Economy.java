@@ -23,6 +23,7 @@
 package blue.lapis.common.economy;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Represents the economy as a whole. This class is currently under API scrutiny,
@@ -61,16 +62,13 @@ public final class Economy {
         throw new UnsupportedOperationException();
     }
 
+    @Nullable
     public AccountService getAccountService(String namespace) {
         throw new UnsupportedOperationException();
     }
 
+    @Nonnull
     public AccountService getDefaultAccountService() {
         throw new UnsupportedOperationException();
-    }
-
-    // getAccountService.formatBalance(namespace, amount)
-    public String formatBalance(String namespace, double amount) {
-        return getAccountService(namespace).formatBalance(amount);
     }
 }

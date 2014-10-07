@@ -21,15 +21,29 @@
  * SOFTWARE.
  */
 
-package blue.lapis.common.economy.impl;
+package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.EconomyAccount;
+public class ExampleShopPlugin {
 
-public abstract class AbstractEconomyAccount implements EconomyAccount {
 
-    // possible NullPointer
-    @Override
-    public String getFormattedBalance() {
-        return getFormatter().format(getBalance());
+    private final String shopAccountService = "main";
+    private final String shopAccountName = "LapisShopPlugin";
+    private EconomyAccount shopAccount;
+
+    public void shopPluginInit() {
+        EconomyAccount shopAccount = getShopAccount();
+        // getLogger("Formatted Shop Balance: " + shopAccount.getFormattedBalance());
+    }
+
+    public EconomyAccount getShopAccount() {
+        if (shopAccount == null) {
+            try {
+                shopAccount = Economy.getInstance().getAccountService(shopAccountService)
+                        .getOrCreateAccount(this, shopAccountName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return shopAccount;
     }
 }

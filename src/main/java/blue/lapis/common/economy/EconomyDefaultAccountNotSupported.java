@@ -21,15 +21,7 @@
  * SOFTWARE.
  */
 
-package blue.lapis.common.economy.impl;
+package blue.lapis.common.economy;
 
-import blue.lapis.common.economy.EconomyAccount;
-
-public abstract class AbstractEconomyAccount implements EconomyAccount {
-
-    // possible NullPointer
-    @Override
-    public String getFormattedBalance() {
-        return getFormatter().format(getBalance());
-    }
+public class EconomyDefaultAccountNotSupported extends Exception {
 }

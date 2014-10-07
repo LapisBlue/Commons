@@ -25,6 +25,7 @@ package blue.lapis.common.economy.impl;
 
 import blue.lapis.common.economy.AccountService;
 import blue.lapis.common.economy.EconomyAccount;
+import blue.lapis.common.economy.EconomyDefaultAccountNotSupported;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,21 +39,28 @@ public abstract class AbstractAccountService implements AccountService {
 
     @Nullable
     @Override
-    public String formatBalance(double amount) {
-        return getFormatter() != null ? getFormatter().format(amount) : null;
+    public EconomyAccount getDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported {
+        return getAccount(owner, getDefaultAccountName(owner));
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    public EconomyAccount getDefaultAccount(@Nonnull Object owner) {
-        String defaultAccountName = getDefaultAccountName(owner);
-        return defaultAccountName != null ? getAccount(owner, defaultAccountName) : null;
+    public EconomyAccount createDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported {
+        return createAccount(owner, getDefaultAccountName(owner));
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    public EconomyAccount createDefaultAccount(@Nonnull Object owner) {
-        String defaultAccountName = getDefaultAccountName(owner);
-        return defaultAccountName != null ? createAccount(owner, defaultAccountName) : null;
+    public EconomyAccount getOrCreateAccount(@Nonnull Object owner, String accountName) throws EconomyDefaultAccountNotSupported {
+        if (hasDefaultAccount(owner)) {
+            return getAccount(this, accountName);
+        }
+        return createAccount(this, accountName);
+    }
+
+    @Nonnull
+    @Override
+    public EconomyAccount getOrCreateDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported {
+        return getOrCreateAccount(owner, getDefaultAccountName(owner));
     }
 }
