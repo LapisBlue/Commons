@@ -30,41 +30,21 @@ import javax.annotation.Nullable;
 
 public interface AccountService {
 
-
-    @Nullable
+    @Nonnull
     ImmutableSet<EconomyAccount> getAccounts(@Nonnull Object owner);
+
+    boolean hasAccount(@Nonnull Object owner, @Nonnull String accountName);
 
     @Nullable
     EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName);
 
     @Nonnull
-    EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName);
-
-
-    // getAccount(owner, getDefaultAccountName())
-    @Nullable
-    EconomyAccount getDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
-
-
-    // createDefaultAccount(owner, getDefaultAccountName())
-    @Nonnull
-    EconomyAccount createDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
-
-    // syntax sugar and for performance optimization
-
-    @Nonnull
-    String getDefaultAccountName(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
+    EconomyAccount getOrCreateAccount(@Nonnull Object owner, @Nonnull String accountName);
 
     @Nullable
-    ImmutableSet<String> getAccountNames(@Nonnull Object owner);
-
-    boolean hasAccount(@Nonnull Object owner, @Nonnull String accountName);
-
-    boolean hasDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
+    EconomyAccount getDefaultAccount(@Nonnull Object owner);
 
     @Nonnull
-    EconomyAccount getOrCreateAccount(@Nonnull Object owner, String accountName) throws EconomyDefaultAccountNotSupported;
+    EconomyAccount getOrCreateDefaultAccount(@Nonnull Object owner);
 
-    @Nonnull
-    EconomyAccount getOrCreateDefaultAccount(@Nonnull Object owner) throws EconomyDefaultAccountNotSupported;
 }

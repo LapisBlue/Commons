@@ -33,14 +33,7 @@ public final class Economy {
 
     private static Economy INSTANCE;
 
-    /*
-    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    private HashMap<Object, EconomyAccount> accounts = Maps.newHashMap();
-    */
-
-    private Economy() {
-        // TODO
-    }
+    private Economy() {}
 
     @Nonnull
     public static Economy getInstance() {
