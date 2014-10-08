@@ -23,7 +23,7 @@
 package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.formatter.BalanceFormatter;
-import blue.lapis.common.economy.impl.AbstractEconomyAccount;
+import blue.lapis.common.economy.impl.StandardEconomyAccount;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -37,23 +37,8 @@ public class TransactionTest {
 
     @Test
     public void getterSetterTest() {
-        EconomyAccount account = new AbstractEconomyAccount() {
-            @Nonnull
-            @Override
-            public String getID() {
-                return "TestAccount";
-            }
-            @Override
-            public double getBalance() {
-                return -1;
-            }
-            @Override
-            public BalanceFormatter getFormatter() {
-                return null;
-            }
-            @Override
-            public void apply(Transaction t) {}
-        };
+        EconomyAccount account = new StandardEconomyAccount("TestAccount");
+
         Transaction t = Transaction.on(account).withInitiator("initator")
                 .withTarget("target")
                 .withReason("reason")
