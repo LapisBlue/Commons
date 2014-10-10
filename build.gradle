@@ -52,3 +52,11 @@ license {
         java = 'SLASHSTAR_STYLE'
     }
 }
+
+// Disable tests for SpongeAPI
+project(':SpongeAPI') {
+    licenseFormat.enabled = false
+    tasks.withType(VerificationTask) {
+        enabled = false
+    }
+}
