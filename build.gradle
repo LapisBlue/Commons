@@ -19,6 +19,7 @@ targetCompatibility = 1.6
 // Read source files using UTF-8
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    options.deprecation = true
 }
 
 // Project repositories
