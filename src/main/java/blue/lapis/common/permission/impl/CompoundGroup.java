@@ -40,8 +40,9 @@ public class CompoundGroup extends StandardGroup {
     public CompoundGroup(@Nonnull String name) {
         super(name);
         List<String> implication = Parsing.split(name, "=>");
-        Preconditions.checkArgument(implication.size()==2,"Must have exactly one 'implies' (=>) per compound group.");
-        List<String> terms = Parsing.split(implication.get(0),"&");
+        Preconditions.checkArgument(implication.size() == 2,
+                "Must have exactly one 'implies' (=>) per compound group.");
+        List<String> terms = Parsing.split(implication.get(0), "&");
     }
 
     @Override

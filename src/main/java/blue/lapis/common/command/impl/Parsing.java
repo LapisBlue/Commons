@@ -22,7 +22,6 @@
  */
 package blue.lapis.common.command.impl;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;
@@ -45,27 +44,27 @@ public class Parsing {
         ImmutableList.Builder<String> builder = ImmutableList.builder();
         int tokenEnd = s.indexOf(delimiter);
         int loc = 0;
-        while(tokenEnd>=0) {
-            if (tokenEnd>loc) {
+        while (tokenEnd >= 0) {
+            if (tokenEnd > loc) {
                 builder.add(s.substring(loc, tokenEnd));
             }
-            loc=tokenEnd+delimiter.length();
+            loc = tokenEnd + delimiter.length();
             tokenEnd = s.indexOf(delimiter, loc);
         }
-        if (loc<s.length()) builder.add(s.substring(loc, s.length()));
+        if (loc < s.length()) builder.add(s.substring(loc, s.length()));
 
         return builder.build();
     }
 
     public static String join(List<String> strings) {
         int length = 0;
-        for(String s : strings) {
-            length+=s.length();
+        for (String s : strings) {
+            length += s.length();
         }
 
         char[] value = new char[length];
         int count = 0;
-        for(String s : strings) {
+        for (String s : strings) {
             int len = s.length();
             if (len == 0) continue;
             int newCount = count + len;
@@ -77,14 +76,15 @@ public class Parsing {
 
     public static String join(List<String> strings, String delimiter) {
         int length = 0;
-        for(String s : strings) {
-            length+=s.length();
+        for (String s : strings) {
+            length += s.length();
         }
-        length += delimiter.length()*(strings.size()-1);
+        length += delimiter.length() * (strings.size() - 1);
 
         char[] value = new char[length];
-        int count = 0; int numStrings = strings.size();
-        for(String s : strings) {
+        int count = 0;
+        int numStrings = strings.size();
+        for (String s : strings) {
             int len = s.length();
             if (len == 0) continue;
             int newCount = count + len;
@@ -92,7 +92,7 @@ public class Parsing {
             count = newCount;
 
             numStrings--;
-            if (numStrings>0) {
+            if (numStrings > 0) {
                 len = delimiter.length();
                 if (len == 0) continue;
                 newCount = count + len;

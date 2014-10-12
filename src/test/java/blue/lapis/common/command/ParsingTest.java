@@ -40,15 +40,15 @@ public class ParsingTest {
 
     @Test
     public void splitTest() {
-        ImmutableList<String> parts = Parsing.split("qwertyuiopabczxcvbnmabcqetubc","abc");
+        ImmutableList<String> parts = Parsing.split("qwertyuiopabczxcvbnmabcqetubc", "abc");
 
-        Assert.assertArrayEquals(parts.toArray(), new String[] { "qwertyuiop", "zxcvbnm", "qetubc" });
+        Assert.assertArrayEquals(parts.toArray(), new String[]{"qwertyuiop", "zxcvbnm", "qetubc"});
     }
 
     @Test
     public void joinTest() {
         List<String> test = new ImmutableList.Builder<String>()
-                .add("Lorem", "ipsum", "dolor","sit","amet,","consectetur","adipiscing","elit")
+                .add("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit")
                 .build();
         Assert.assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", Parsing.join(test));
         Assert.assertEquals("Lorem ipsum dolor sit amet, consectetur adipiscing elit", Parsing.join(test, " "));
@@ -60,7 +60,7 @@ public class ParsingTest {
                 Parsing.split("Lorem ipsum dolor sit amet, consectetur adipiscing elit", " ")
         );
 
-        Assert.assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit",test);
+        Assert.assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", test);
     }
 
     //Uncomment to run benchmark
@@ -74,38 +74,38 @@ public class ParsingTest {
 
 
         long start = System.currentTimeMillis();
-        for(int i=0; i<iterations; i++) {
-            Parsing.split(src,delimiter);
+        for (int i = 0; i < iterations; i++) {
+            Parsing.split(src, delimiter);
         }
-        long parsingSplit = System.currentTimeMillis()-start;
+        long parsingSplit = System.currentTimeMillis() - start;
 
         start = System.currentTimeMillis();
-        for(int i=0; i<iterations; i++) {
+        for (int i = 0; i < iterations; i++) {
             src.split(pattern);
         }
-        long patternSplit = System.currentTimeMillis()-start;
+        long patternSplit = System.currentTimeMillis() - start;
 
         start = System.currentTimeMillis();
-        for(int i=0; i<iterations; i++) {
+        for (int i = 0; i < iterations; i++) {
             p.split(src);
             //src.split(pattern);
         }
-        long patternCompiled = System.currentTimeMillis()-start;
+        long patternCompiled = System.currentTimeMillis() - start;
 
         start = System.currentTimeMillis();
-        for(int i=0; i<iterations; i++) {
+        for (int i = 0; i < iterations; i++) {
             Splitter.on(delimiter).splitToList(src);
         }
-        long guava = System.currentTimeMillis()-start;
+        long guava = System.currentTimeMillis() - start;
 
-        System.out.println("pattern: "+patternSplit+" parsing: "+parsingSplit+" compiledpattern: " +
-                ""+patternCompiled + " guava: "+guava);
+        System.out.println("pattern: " + patternSplit + " parsing: " + parsingSplit + " compiledpattern: " +
+                "" + patternCompiled + " guava: " + guava);
     }
 
     //@Test
     public void benchmarkJoin() {
         List<String> test = new ImmutableList.Builder<String>()
-                .add("Lorem", "ipsum", "dolor","sit","amet,","consectetur","adipiscing","elit")
+                .add("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit")
                 .build();
 
         int iterations = 10000; //10k
@@ -119,17 +119,17 @@ public class ParsingTest {
         long builderJoin = System.currentTimeMillis()-start;
         */
         start = System.currentTimeMillis();
-        for(int i=0; i<iterations; i++) {
+        for (int i = 0; i < iterations; i++) {
             Joiner.on("asdf").join(test);
         }
-        long guavaJoin = System.currentTimeMillis()-start;
+        long guavaJoin = System.currentTimeMillis() - start;
 
         start = System.currentTimeMillis();
-        for(int i=0; i<iterations; i++) {
-            Parsing.join(test,"asdf");
+        for (int i = 0; i < iterations; i++) {
+            Parsing.join(test, "asdf");
         }
-        long parsingJoin = System.currentTimeMillis()-start;
+        long parsingJoin = System.currentTimeMillis() - start;
 
-        System.out.println("guava:"+guavaJoin+" parsing:"+parsingJoin);
+        System.out.println("guava:" + guavaJoin + " parsing:" + parsingJoin);
     }
 }

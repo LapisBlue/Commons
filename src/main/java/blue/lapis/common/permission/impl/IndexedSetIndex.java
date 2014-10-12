@@ -22,7 +22,6 @@
  */
 package blue.lapis.common.permission.impl;
 
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 
 import javax.annotation.Nonnull;
@@ -54,10 +53,10 @@ final class IndexedSetIndex<T> {
      */
     public int declare(@Nonnull T bit) {
         int existing = bits.indexOf(bit);
-        if (existing>=0) return existing;
+        if (existing >= 0) return existing;
 
         bits.add(bit);
-        return bits.size()-1;
+        return bits.size() - 1;
     }
 
     /**
@@ -72,6 +71,7 @@ final class IndexedSetIndex<T> {
 
     /**
      * Get the object which this bit number stands for
+     *
      * @param bitNumber
      * @return
      */

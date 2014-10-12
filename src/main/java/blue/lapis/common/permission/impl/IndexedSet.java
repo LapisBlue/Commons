@@ -57,19 +57,19 @@ final class IndexedSet<T> implements Iterable<T> {
 
     public void remove(T t) {
         int bit = index.indexOf(t);
-        if (bit>=0) {
+        if (bit >= 0) {
             data.clear(bit);
         }
     }
 
     public void addAll(Collection<IndexedSet<T>> sets) {
-        for(IndexedSet<T> set : sets) {
+        for (IndexedSet<T> set : sets) {
             data.or(set.data);
         }
     }
 
     public void removeAll(Collection<IndexedSet<T>> sets) {
-        for(IndexedSet<T> set : sets) {
+        for (IndexedSet<T> set : sets) {
             data.andNot(set.data);
         }
     }
@@ -84,7 +84,7 @@ final class IndexedSet<T> implements Iterable<T> {
 
     public boolean contains(T t) {
         int bitIndex = index.indexOf(t);
-        return bitIndex>=0 && data.get(bitIndex);
+        return bitIndex >= 0 && data.get(bitIndex);
     }
 
     @Override
@@ -94,20 +94,20 @@ final class IndexedSet<T> implements Iterable<T> {
 
     public ImmutableSet<T> resolve() {
         ImmutableSet.Builder<T> builder = ImmutableSet.builder();
-        for(int i=0; i<data.length(); i++) {
+        for (int i = 0; i < data.length(); i++) {
             if (data.get(i)) builder.add(index.get(i));
         }
         return builder.build();
     }
 
-    private static class IndexedSetIterator<T> implements Iterator<T>{
+    private static class IndexedSetIterator<T> implements Iterator<T> {
         private final IndexedSet<T> set;
         private int cur = 0;
         private T next;
 
         public IndexedSetIterator(IndexedSet<T> set) {
             this.set = set;
-            for(int i = 0; i<set.data.length(); i++) {
+            for (int i = 0; i < set.data.length(); i++) {
                 if (set.data.get(i)) {
                     cur = i;
                     next = set.index.get(cur);
@@ -121,17 +121,17 @@ final class IndexedSet<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return (next!=null);
+            return (next != null);
         }
 
         @Override
         @Nonnull
         public T next() {
-            if (next==null) throw new NoSuchElementException();
+            if (next == null) throw new NoSuchElementException();
             T result = next;
             next = null;
-            for(int i=cur+1; i<set.data.length(); i++) {
-                if (i>=set.data.length()) break;
+            for (int i = cur + 1; i < set.data.length(); i++) {
+                if (i >= set.data.length()) break;
                 if (set.data.get(i)) {
                     next = set.index.get(i);
                     cur = i;
@@ -144,7 +144,7 @@ final class IndexedSet<T> implements Iterable<T> {
 
         @Override
         public void remove() {
-            if (cur<set.data.length()) set.data.clear(cur);
+            if (cur < set.data.length()) set.data.clear(cur);
         }
     }
 }

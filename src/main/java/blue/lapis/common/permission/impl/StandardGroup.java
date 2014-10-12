@@ -44,7 +44,7 @@ public class StandardGroup implements Group {
 
     public Group forNode(String nodeName) {
         //in terms of iterations, this is the shortest possible search for implication/compound nodes
-        if (nodeName.indexOf('&')>=0) {
+        if (nodeName.indexOf('&') >= 0) {
 
         }
 
@@ -93,15 +93,15 @@ public class StandardGroup implements Group {
     @Override
     public boolean declaresPermission(@Nonnull final String node, final Group origin) {
         if (id.equals(node)) return true;
-        if (node.startsWith(id+'.')) return true;
+        if (node.startsWith(id + '.')) return true;
         return false;
     }
 
     @Override
     public boolean grantsPermission(@Nonnull final String node, int depth, final Group origin) {
         if (declaresPermission(node, origin)) return true;
-        if (depth>Group.MAX_SEARCH_DEPTH) return false;
-        for(Group group : immediateSubsets) {
+        if (depth > Group.MAX_SEARCH_DEPTH) return false;
+        for (Group group : immediateSubsets) {
             if (group.grantsPermission(node, depth, origin)) return true;
         }
 

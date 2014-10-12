@@ -24,7 +24,6 @@ package blue.lapis.common.permission;
 
 import blue.lapis.common.permission.impl.StandardGroup;
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.api.service.permission.Subject;
 
 import javax.annotation.Nonnull;
 
