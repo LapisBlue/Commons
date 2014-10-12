@@ -57,25 +57,21 @@ public class ParsingTest {
     @Test
     public void splitTest() {
         ImmutableList<String> parts = Parsing.split("qwertyuiopabczxcvbnmabcqetubc", "abc");
-
-        assertArrayEquals(parts.toArray(), new String[]{"qwertyuiop", "zxcvbnm", "qetubc"});
+        assertEquals(parts, ImmutableList.of("qwertyuiop", "zxcvbnm", "qetubc"));
     }
 
     @Test
     public void joinTest() {
-        List<String> test = new ImmutableList.Builder<String>()
-                .add("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit")
-                .build();
+        List<String> test = ImmutableList.of("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur",
+                "adipiscing", "elit");
         assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", Parsing.join(test));
         assertEquals("Lorem ipsum dolor sit amet, consectetur adipiscing elit", Parsing.join(test, " "));
     }
 
     @Test
     public void splitjoin() {
-        String test = Parsing.join(
-                Parsing.split("Lorem ipsum dolor sit amet, consectetur adipiscing elit", " ")
-        );
-
+        String test =
+                Parsing.join(Parsing.split("Lorem ipsum dolor sit amet, consectetur adipiscing elit", " "));
         assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", test);
     }
 
