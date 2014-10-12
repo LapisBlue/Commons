@@ -27,11 +27,12 @@ import blue.lapis.common.command.impl.Parsing;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static org.junit.Assert.*;
 
 /**
  *
@@ -39,10 +40,25 @@ import java.util.regex.Pattern;
 public class ParsingTest {
 
     @Test
+    public void toLowerCase() {
+        assertEquals(Parsing.toLowerCase("lApIsCoMmOnS"), "lapiscommons");
+        assertEquals(Parsing.toLowerCase("TEST123€€$$ßß"), "test123€€$$ßß");
+        assertEquals(Parsing.toLowerCase("LÀPÌS"), "làpìs");
+        assertEquals(Parsing.toLowerCase("ÂÊÎÔÛÄÖÜ"), "âêîôûäöü");
+    }
+
+    @Test
+    public void startsWithIgnoreCase() {
+        assertTrue(Parsing.startsWithIgnoreCase("lApIsCoMmOnS", "LaPiS"));
+        assertTrue(Parsing.startsWithIgnoreCase("ÂÊÎÔÛÄÖÜ", "âêî"));
+        assertFalse(Parsing.startsWithIgnoreCase("LAPIS", "something"));
+    }
+
+    @Test
     public void splitTest() {
         ImmutableList<String> parts = Parsing.split("qwertyuiopabczxcvbnmabcqetubc", "abc");
 
-        Assert.assertArrayEquals(parts.toArray(), new String[]{"qwertyuiop", "zxcvbnm", "qetubc"});
+        assertArrayEquals(parts.toArray(), new String[]{"qwertyuiop", "zxcvbnm", "qetubc"});
     }
 
     @Test
@@ -50,8 +66,8 @@ public class ParsingTest {
         List<String> test = new ImmutableList.Builder<String>()
                 .add("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit")
                 .build();
-        Assert.assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", Parsing.join(test));
-        Assert.assertEquals("Lorem ipsum dolor sit amet, consectetur adipiscing elit", Parsing.join(test, " "));
+        assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", Parsing.join(test));
+        assertEquals("Lorem ipsum dolor sit amet, consectetur adipiscing elit", Parsing.join(test, " "));
     }
 
     @Test
@@ -60,7 +76,7 @@ public class ParsingTest {
                 Parsing.split("Lorem ipsum dolor sit amet, consectetur adipiscing elit", " ")
         );
 
-        Assert.assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", test);
+        assertEquals("Loremipsumdolorsitamet,consecteturadipiscingelit", test);
     }
 
     //Uncomment to run benchmark
