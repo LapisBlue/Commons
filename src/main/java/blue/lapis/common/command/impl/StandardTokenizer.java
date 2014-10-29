@@ -39,45 +39,44 @@ public class StandardTokenizer implements Tokenizer {
     public ImmutableList<String> getTokens(@Nonnull final String s) {
         List<String> result = Lists.newArrayList();
 
-        String token = "";
+        StringBuilder token = new StringBuilder();
         char delimiter = ' ';
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
 
             if (delimiter != ' ') {
                 if (cur != delimiter) {
-                    token += cur;
+                    token.append(cur);
                 } else {
                     delimiter = ' ';
-                    result.add(token);
-                    token = "";
+                    result.add(token.toString());
+                    token.setLength(0); // Reset the token
                 }
             } else {
                 if (cur == '"') {
                     delimiter = '"';
-                    continue;
                 } else {
                     if (Character.isWhitespace(cur)) {
-                        if (!token.isEmpty()) {
-                            result.add(token);
-                            token = "";
+                        if (token.length() > 0) {
+                            result.add(token.toString());
+                            token.setLength(0);
                         }
                     } else {
                         if (Character.isLetterOrDigit(cur)) {
-                            token += cur;
+                            token.append(cur);
                         } else {
                             //Commit both the existing token and this new symbol
-                            if (!token.isEmpty()) {
-                                result.add(token);
-                                token = "";
+                            if (token.length() > 0) {
+                                result.add(token.toString());
+                                token.setLength(0);
                             }
-                            result.add("" + cur);
+                            result.add(String.valueOf(cur));
                         }
                     }
                 }
             }
         }
-        if (!token.isEmpty()) result.add(token);
+        if (token.length() > 0) result.add(token.toString());
 
         return ImmutableList.copyOf(result);
     }
