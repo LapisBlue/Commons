@@ -24,7 +24,7 @@ package blue.lapis.common;
 
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.event.SpongeEventHandler;
+import org.spongepowered.api.event.Subscribe;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 
@@ -65,7 +65,7 @@ public class LapisCommonsPlugin {
         return logger;
     }
 
-    @SpongeEventHandler
+    @Subscribe
     public void initialize(PreInitializationEvent event) {
         instance = this;
         game = event.getGame();
