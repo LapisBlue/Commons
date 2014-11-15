@@ -24,7 +24,7 @@ package blue.lapis.common;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.apache.logging.log4j.LogManager;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.event.state.PreInitializationEvent;
@@ -40,7 +40,7 @@ public final class CommonsTests {
         Game gameProxy = mock(Game.class);
         PreInitializationEvent init = mock(PreInitializationEvent.class);
         when(init.getGame()).thenReturn(gameProxy);
-        when(init.getPluginLog()).thenReturn(LogManager.getLogger(LapisCommonsPlugin.class));
+        when(init.getPluginLog()).thenReturn(LoggerFactory.getLogger(LapisCommonsPlugin.class));
         new LapisCommonsPlugin().initialize(init);
     }
 
