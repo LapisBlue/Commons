@@ -24,9 +24,9 @@ package blue.lapis.common;
 
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.event.Subscribe;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.util.event.Subscribe;
 
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's

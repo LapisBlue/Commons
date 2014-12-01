@@ -23,7 +23,7 @@
 package blue.lapis.common.economy.event;
 
 import blue.lapis.common.economy.EconomyAccount;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.event.Event;
 
 import javax.annotation.Nonnull;
 

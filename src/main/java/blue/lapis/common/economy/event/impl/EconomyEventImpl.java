@@ -25,7 +25,7 @@ package blue.lapis.common.economy.event.impl;
 import blue.lapis.common.economy.EconomyAccount;
 import blue.lapis.common.economy.event.EconomyEvent;
 import com.google.common.base.Preconditions;
-import org.spongepowered.api.event.Result;
+import org.spongepowered.api.util.event.callback.CallbackList;
 
 import javax.annotation.Nonnull;
 
@@ -34,7 +34,6 @@ import javax.annotation.Nonnull;
 public class EconomyEventImpl implements EconomyEvent {
 
     private final EconomyAccount account;
-    private Result result = Result.NO_RESULT;
 
     public EconomyEventImpl(@Nonnull EconomyAccount account) {
         this.account = Preconditions.checkNotNull(account, "account");
@@ -47,17 +46,7 @@ public class EconomyEventImpl implements EconomyEvent {
     }
 
     @Override
-    public boolean isCancellable() {
-        return false;
-    }
-
-    @Override
-    public Result getResult() {
-        return result;
-    }
-
-    @Override
-    public void setResult(Result result) {
-        this.result = result;
+    public CallbackList getCallbacks() {
+        throw new UnsupportedOperationException(); // TODO
     }
 }

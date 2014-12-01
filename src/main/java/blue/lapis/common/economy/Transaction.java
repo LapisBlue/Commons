@@ -28,7 +28,6 @@ import blue.lapis.common.economy.event.TransactionException;
 import blue.lapis.common.economy.event.impl.TransactionEventImpl;
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.FutureCallback;
-import org.spongepowered.api.event.Result;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -264,9 +263,9 @@ public final class Transaction {
         validateState(Status.INCOMPLETE);
         status = Status.IN_TRANSIT;
         TransactionEvent event = new TransactionEventImpl(this);
-        LapisCommonsPlugin.getGame().getEventManager().call(event);
+        LapisCommonsPlugin.getGame().getEventManager().post(event);
 
-        if (event.getResult() == Result.DENY || event.isCancelled()) {
+        if (event.isCancelled()) {
             status = Status.CANCELLED;
             onResult.onFailure(new TransactionException("Transaction cancelled.", this));
             return;

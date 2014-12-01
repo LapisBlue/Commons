@@ -26,7 +26,7 @@ import blue.lapis.common.command.impl.BooleanTokenParser;
 import blue.lapis.common.command.impl.IntegerTokenParser;
 import blue.lapis.common.command.impl.PlayerTokenParser;
 import com.google.common.collect.Maps;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -30,7 +30,7 @@ import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.command.CommandSource;
 
 import javax.annotation.Nonnull;

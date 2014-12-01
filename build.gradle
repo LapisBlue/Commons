@@ -25,11 +25,12 @@ tasks.withType(JavaCompile) {
 // Project repositories
 repositories {
     mavenCentral()
+    maven { url 'http://repo.spongepowered.org/Sponge/maven' }
 }
 
 // Project dependencies
 dependencies {
-    compile project('SpongeAPI') // TODO: Change to Maven dependency hosted in the future
+    compile 'org.spongepowered:spongeapi:1.1-SNAPSHOT'
     testCompile 'junit:junit:4.11'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
     testCompile 'org.mockito:mockito-core:1.10.8'
@@ -51,18 +52,5 @@ license {
     strictCheck true
     mapping {
         java = 'SLASHSTAR_STYLE'
-    }
-}
-
-// Disable tests for SpongeAPI
-project('SpongeAPI') {
-    afterEvaluate { project ->
-        javadoc.enabled = false
-        javadocJar.enabled = false
-        sourceJar.enabled = false
-        licenseFormat.enabled = false
-        tasks.withType(VerificationTask) {
-            enabled = false
-        }
     }
 }

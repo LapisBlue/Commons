@@ -44,11 +44,6 @@ public class TransactionEventImpl extends EconomyEventImpl implements Transactio
     }
 
     @Override
-    public boolean isCancellable() {
-        return true;
-    }
-
-    @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
     }

@@ -23,7 +23,7 @@
 package blue.lapis.common.economy.event;
 
 import blue.lapis.common.economy.Transaction;
-import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.util.event.Cancellable;
 
 import javax.annotation.Nonnull;
 

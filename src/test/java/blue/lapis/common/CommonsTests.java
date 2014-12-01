@@ -26,7 +26,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 
 import java.util.List;
