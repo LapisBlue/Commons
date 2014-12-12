@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <code_scheme name="LapisCommons">
+  <option name="AUTODETECT_INDENTS" value="false" />
   <option name="USE_FQ_CLASS_NAMES_IN_JAVADOC" value="false" />
   <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="2147483647" />
   <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
     <value />
   </option>
-  <option name="RIGHT_MARGIN" value="112" />
   <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
   <option name="JD_ALIGN_PARAM_COMMENTS" value="false" />
   <option name="JD_ALIGN_EXCEPTION_COMMENTS" value="false" />
@@ -24,6 +23,9 @@
   <XML>
     <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
   </XML>
+  <editorconfig>
+    <option name="ENABLED" value="false" />
+  </editorconfig>
   <codeStyleSettings language="Groovy">
     <option name="CALL_PARAMETERS_WRAP" value="1" />
     <option name="METHOD_PARAMETERS_WRAP" value="1" />
@@ -43,6 +45,7 @@
     <option name="ENUM_CONSTANTS_WRAP" value="1" />
   </codeStyleSettings>
   <codeStyleSettings language="JAVA">
+    <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
     <option name="CALL_PARAMETERS_WRAP" value="1" />
     <option name="METHOD_PARAMETERS_WRAP" value="1" />
     <option name="RESOURCE_LIST_WRAP" value="1" />
@@ -53,9 +56,6 @@
     <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
     <option name="BINARY_OPERATION_WRAP" value="1" />
     <option name="TERNARY_OPERATION_WRAP" value="1" />
-    <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
-    <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
-    <option name="KEEP_SIMPLE_CLASSES_IN_ONE_LINE" value="true" />
     <option name="FOR_STATEMENT_WRAP" value="1" />
     <option name="ARRAY_INITIALIZER_WRAP" value="1" />
     <option name="ASSIGNMENT_WRAP" value="1" />
@@ -66,4 +66,3 @@
     <option name="ENUM_CONSTANTS_WRAP" value="1" />
   </codeStyleSettings>
 </code_scheme>
-
