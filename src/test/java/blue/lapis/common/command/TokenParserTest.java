@@ -122,6 +122,7 @@ public class TokenParserTest {
         try {
             t.parse(source, s);
             Assert.fail("No exception was thrown.");
-        } catch (InvalidTokenException ignored) {}
+        } catch (InvalidTokenException ignored) {
+        }
     }
 }

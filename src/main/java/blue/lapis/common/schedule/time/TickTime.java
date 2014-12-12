@@ -37,7 +37,8 @@ import javax.annotation.Nonnull;
 public final class TickTime implements Time {
     private long time = 0L;
 
-    protected TickTime(long serverTime) {}
+    protected TickTime(long serverTime) {
+    }
 
     /**
      * @return The current TickTime in "world" time (e.g. the world players join when they login)

@@ -92,7 +92,8 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
                 T t = parser.parse(source, token);
                 args.set(argNum, t);
                 return t;
-            } catch (Throwable ignored) {}
+            } catch (Throwable ignored) {
+            }
             return null;
         }
 

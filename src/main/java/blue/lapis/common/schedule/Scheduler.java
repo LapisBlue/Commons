@@ -35,7 +35,8 @@ public final class Scheduler {
         return instance;
     }
 
-    private Scheduler() {}
+    private Scheduler() {
+    }
 
     public void add(LapisTask task) {
         immediate.insert(task); //for now.
