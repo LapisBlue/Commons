@@ -22,12 +22,15 @@
  */
 package blue.lapis.common;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.event.state.PreInitializationEvent;
+import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.List;
 
@@ -37,11 +40,14 @@ import static org.mockito.Mockito.when;
 public final class CommonsTests {
 
     public static void mockPlugin() {
-        Game gameProxy = mock(Game.class);
+        Game game = mock(Game.class);
+        PluginContainer container = mock(PluginContainer.class);
+
+        LapisCommonsPlugin plugin = new LapisCommonsPlugin(game, container);
+        plugin.logger = LoggerFactory.getLogger(LapisCommonsPlugin.class);
+
         PreInitializationEvent init = mock(PreInitializationEvent.class);
-        when(init.getGame()).thenReturn(gameProxy);
-        when(init.getPluginLog()).thenReturn(LoggerFactory.getLogger(LapisCommonsPlugin.class));
-        new LapisCommonsPlugin().initialize(init);
+        plugin.initialize(init);
     }
 
     public static void mockPlayers(String... players) {
@@ -52,6 +58,9 @@ public final class CommonsTests {
             playerList.add(player);
         }
 
-        when(LapisCommonsPlugin.getGame().getOnlinePlayers()).thenReturn(ImmutableList.copyOf(playerList));
+        Game game = LapisCommonsPlugin.getGame();
+        Server server = mock(Server.class);
+        when(server.getOnlinePlayers()).thenReturn(ImmutableList.copyOf(playerList));
+        when(game.getServer()).thenReturn(Optional.of(server));
     }
 }

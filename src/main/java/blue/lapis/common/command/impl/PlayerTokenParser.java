@@ -41,7 +41,7 @@ public class PlayerTokenParser implements TokenParser<Player> {
     @Override
     @Nonnull
     public Player parse(@Nonnull final CommandSource source, @Nonnull final String token) {
-        Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
+        Collection<Player> players = LapisCommonsPlugin.getGame().getServer().get().getOnlinePlayers();
 
         // TODO: strip off leading "p:" ?
 
@@ -64,7 +64,7 @@ public class PlayerTokenParser implements TokenParser<Player> {
     @Nonnull
     public List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
         List<String> results = Lists.newArrayList();
-        Collection<Player> players = LapisCommonsPlugin.getGame().getOnlinePlayers();
+        Collection<Player> players = LapisCommonsPlugin.getGame().getServer().get().getOnlinePlayers();
 
         for (Player p : players) {
             if (Parsing.startsWithIgnoreCase(p.getName(), partial))

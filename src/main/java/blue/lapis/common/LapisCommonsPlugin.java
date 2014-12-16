@@ -26,7 +26,10 @@ import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.event.Subscribe;
+
+import javax.inject.Inject;
 
 /**
  * Plugin class. This is not super-important in itself, but needs to be here so we can guarantee that it's
@@ -35,8 +38,18 @@ import org.spongepowered.api.util.event.Subscribe;
 @Plugin(id = "lapis-commons", name = "LapisCommons", version = "1.0.0-SNAPSHOT")
 public class LapisCommonsPlugin {
     private static LapisCommonsPlugin instance;
-    private static Logger logger;
-    private static Game game;
+
+    private final Game game;
+    private final PluginContainer container;
+
+    @Inject
+    protected Logger logger;
+
+    @Inject
+    public LapisCommonsPlugin(Game game, PluginContainer container) {
+        this.game = game;
+        this.container = container;
+    }
 
     /**
      * Gets the instance of the LapisCommons plugin.
@@ -53,7 +66,7 @@ public class LapisCommonsPlugin {
      * @return The game instance of the server implementation or null if the plugin is not loaded.
      */
     public static Game getGame() {
-        return game;
+        return getInstance().game;
     }
 
     /**
@@ -62,13 +75,11 @@ public class LapisCommonsPlugin {
      * @return The plugin logger for this plugin or null if the plugin is not loaded
      */
     public static Logger getLogger() {
-        return logger;
+        return getInstance().logger;
     }
 
     @Subscribe
     public void initialize(PreInitializationEvent event) {
         instance = this;
-        game = event.getGame();
-        logger = event.getPluginLog();
     }
 }
