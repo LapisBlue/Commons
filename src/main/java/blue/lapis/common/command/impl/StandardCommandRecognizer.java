@@ -35,9 +35,9 @@ public class StandardCommandRecognizer implements CommandRecognizer {
     public static final StandardCommandRecognizer INSTANCE = new StandardCommandRecognizer();
 
     @Override
-    public boolean recognize(@Nonnull final CommandSource source,
-                             @Nonnull final String inputLine,
-                             @Nonnull final LapisCommand command) {
+    public boolean recognize(final CommandSource source,
+                             final String inputLine,
+                             final LapisCommand command) {
 
         return inputLine.equalsIgnoreCase(command.getName()) ||
                 Parsing.startsWithIgnoreCase(inputLine, command.getName() + " ");

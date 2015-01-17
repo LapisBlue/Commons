@@ -45,18 +45,17 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
     private List<LapisCommand> commands = Lists.newArrayList();
     private String name;
 
-    public LapisCommand(@Nonnull final String name) {
+    public LapisCommand(final String name) {
         this.name = name;
     }
 
     @Override
-    @Nonnull
     public String getName() {
         return name;
     }
 
     @Override
-    public void register(@Nonnull String pluginID, @Nonnull CommandInvocationTarget command) {
+    public void register(String pluginID, CommandInvocationTarget command) {
         //verify pluginID. It pays to be paranoid.
         Optional<PluginContainer> plug = LapisCommonsPlugin.getGame().getPluginManager().getPlugin(pluginID);
         if (plug.isPresent()) {
@@ -69,7 +68,7 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
 
     @Override
     @SuppressWarnings("unchecked")
-    public void fireCommand(@Nonnull final CommandSource source, @Nonnull final String inputline) {
+    public void fireCommand(final CommandSource source, final String inputline) {
         //Tokenize inputline
         ImmutableList<String> tokens = tokenizer.getTokens(inputline);
 
@@ -81,11 +80,11 @@ public class LapisCommand<S extends CommandSource> implements CommandHolder, Com
                 .withTokens(tokens);
     }
 
-    public void invoke(@Nonnull CommandContext<S> context) {
+    public void invoke(CommandContext<S> context) {
 
     }
 
-    public void setRecognizer(@Nonnull final CommandRecognizer recognizer) {
+    public void setRecognizer(final CommandRecognizer recognizer) {
         this.recognizer = recognizer;
     }
 }

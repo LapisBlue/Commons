@@ -34,9 +34,8 @@ import java.util.List;
  */
 public class StandardTokenizer implements Tokenizer {
 
-    @Nonnull
     @Override
-    public ImmutableList<String> getTokens(@Nonnull final String s) {
+    public ImmutableList<String> getTokens(final String s) {
         List<String> result = Lists.newArrayList();
 
         StringBuilder token = new StringBuilder();

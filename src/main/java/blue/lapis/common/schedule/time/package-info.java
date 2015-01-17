@@ -20,35 +20,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package blue.lapis.common.economy.event.impl;
-
-import blue.lapis.common.economy.Transaction;
-import blue.lapis.common.economy.event.TransactionEvent;
-import com.google.common.base.Preconditions;
-
-import javax.annotation.Nonnull;
-
-public class TransactionEventImpl extends EconomyEventImpl implements TransactionEvent {
-    private final Transaction transaction;
-    private boolean cancelled = false;
-
-    public TransactionEventImpl(Transaction transaction) {
-        super(Preconditions.checkNotNull(transaction, "transaction").getAccount());
-        this.transaction = transaction;
-    }
-
-    @Override
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
-    }
-
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
-    }
-}
+@org.spongepowered.api.util.annotation.NonnullByDefault
+package blue.lapis.common.schedule.time;

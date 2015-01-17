@@ -20,41 +20,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+@org.spongepowered.api.util.annotation.NonnullByDefault
 package blue.lapis.common.economy;
-
-import blue.lapis.common.economy.formatter.BalanceFormatter;
-
-import javax.annotation.Nonnull;
-
-/**
- * <p>Represents a single account of a single type of currency. Generally, accounts of a common currency have a
- * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does
- * not address who or what the holder is, or the number of holders, only the balance.</p>
- *
- * <p>This interface is available for custom economy systems to implement, either to allow credit, store
- * transaction logs, or create other unforseen behaviors.</p>
- */
-public interface EconomyAccount {
-
-    String getID();
-
-    /**
-     * @return The current balance on this account
-     */
-    double getBalance();
-
-    /**
-     * @return a formatter which can display this account's currency
-     */
-    BalanceFormatter getFormatter();
-
-    /**
-     * Apply a Transaction's proposed change to this EconomyAccount. The Transaction MUST be in
-     * State.EVENT_FIRED, otherwise this method can choose to throw an IllegalStateException or return false.
-     *
-     * @param t The Transaction to apply
-     * below zero.
-     */
-    void apply(Transaction t);
-
-}

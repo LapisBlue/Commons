@@ -31,11 +31,11 @@ import javax.annotation.Nonnull;
  */
 public class InsufficientBalanceException extends TransactionException {
 
-    public InsufficientBalanceException(@Nonnull Transaction t) {
+    public InsufficientBalanceException(Transaction t) {
         super(t);
     }
 
-    public InsufficientBalanceException(@Nonnull String message, @Nonnull Transaction t) {
+    public InsufficientBalanceException(String message, Transaction t) {
         super(message, t);
     }
 }

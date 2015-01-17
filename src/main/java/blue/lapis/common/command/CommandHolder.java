@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
  * Device which can accept Command registrations and determine, given an input line, which Command to invoke.
  */
 public interface CommandHolder {
-    void register(@Nonnull final String pluginID, @Nonnull final CommandInvocationTarget command);
+    void register(final String pluginID, final CommandInvocationTarget command);
 
-    void fireCommand(@Nonnull final CommandSource source, @Nonnull final String inputline);
+    void fireCommand(final CommandSource source, final String inputline);
 }

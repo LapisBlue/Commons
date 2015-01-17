@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package blue.lapis.common.permission.impl;
 
 import blue.lapis.common.permission.Group;
@@ -37,7 +36,7 @@ public class StandardGroup implements Group {
     IndexedSet<Group> immediateSubsets;
     IndexedSet<Group> cache;
 
-    public StandardGroup(@Nonnull String name) {
+    public StandardGroup(String name) {
         Preconditions.checkArgument(!name.trim().isEmpty(), "Name cannot be empty or whitespace.");
         id = name.trim().toLowerCase();
     }
@@ -52,53 +51,50 @@ public class StandardGroup implements Group {
         return new StandardGroup(nodeName);
     }
 
-    @Nonnull
     @Override
     public String getId() {
         return id;
     }
 
-    @Nonnull
     @Override
     public ImmutableSet<Group> getInheritors() {
         return immediateSupers.resolve();
     }
 
     @Override
-    public boolean hasInheritor(@Nonnull final Group superset) {
+    public boolean hasInheritor(final Group superset) {
         return immediateSupers.contains(superset);
     }
 
     @Override
-    public void addInheritor(@Nonnull final Group superset) {
+    public void addInheritor(final Group superset) {
         immediateSupers.add(superset);
     }
 
-    @Nonnull
     @Override
     public ImmutableSet<Group> getInheritance() {
         return immediateSubsets.resolve();
     }
 
     @Override
-    public boolean inheritsFrom(@Nonnull final Group subset) {
+    public boolean inheritsFrom(final Group subset) {
         return immediateSubsets.contains(subset);
     }
 
     @Override
-    public void inheritFrom(@Nonnull final Group subset) {
+    public void inheritFrom(final Group subset) {
         immediateSubsets.add(subset);
     }
 
     @Override
-    public boolean declaresPermission(@Nonnull final String node, final Group origin) {
+    public boolean declaresPermission(final String node, final Group origin) {
         if (id.equals(node)) return true;
         if (node.startsWith(id + '.')) return true;
         return false;
     }
 
     @Override
-    public boolean grantsPermission(@Nonnull final String node, int depth, final Group origin) {
+    public boolean grantsPermission(final String node, int depth, final Group origin) {
         if (declaresPermission(node, origin)) return true;
         if (depth > Group.MAX_SEARCH_DEPTH) return false;
         for (Group group : immediateSubsets) {

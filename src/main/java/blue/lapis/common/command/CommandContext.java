@@ -38,19 +38,16 @@ public interface CommandContext<S extends CommandSource> {
     /**
      * @return the CommandSource which this command was issued from
      */
-    @Nonnull
     S getSource();
 
     /**
      * @return the entire line of text entered, except for the portion recognized as the command
      */
-    @Nonnull
     public String getLine();
 
     /**
      * @return the tokens in String format, as determined by the Tokenizer for this command
      */
-    @Nonnull
     public ImmutableList<String> getTokens();
 
     /**

@@ -36,17 +36,14 @@ public interface Group {
     public static int MAX_SEARCH_DEPTH = 16;
     public static final Group ALL_GROUPS = new StandardGroup("root");
 
-    @Nonnull
     public String getId();
 
-    @Nonnull
     public ImmutableSet<Group> getInheritors();
 
-    public boolean hasInheritor(@Nonnull Group superset);
+    public boolean hasInheritor(Group superset);
 
-    public void addInheritor(@Nonnull Group superset);
+    public void addInheritor(Group superset);
 
-    @Nonnull
     public ImmutableSet<Group> getInheritance();
 
     public boolean inheritsFrom(Group subset);

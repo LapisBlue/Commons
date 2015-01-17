@@ -41,12 +41,11 @@ final class IndexedSet<T> implements Iterable<T> {
         this.index = index;
     }
 
-    @Nonnull
     protected BitSet getData() {
         return data;
     }
 
-    protected void setData(@Nonnull BitSet b) {
+    protected void setData(BitSet b) {
         data = b;
     }
 
@@ -125,7 +124,6 @@ final class IndexedSet<T> implements Iterable<T> {
         }
 
         @Override
-        @Nonnull
         public T next() {
             if (next == null) throw new NoSuchElementException();
             T result = next;

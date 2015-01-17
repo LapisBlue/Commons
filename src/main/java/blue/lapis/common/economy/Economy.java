@@ -44,7 +44,6 @@ public final class Economy {
         // TODO
     }
 
-    @Nonnull
     public static Economy getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Economy();
@@ -52,23 +51,20 @@ public final class Economy {
         return INSTANCE;
     }
 
-    @Nonnull
     public String formatBalance(double amount, String prefix) {
         return BalanceFormatterRegistry.get(prefix).format(amount);
     }
 
-    @Nonnull
-    public List<EconomyAccount> getAccounts(@Nonnull Object owner) {
+    public List<EconomyAccount> getAccounts(Object owner) {
         throw new UnsupportedOperationException();
     }
 
     @Nullable
-    public EconomyAccount getAccount(@Nonnull Object owner, @Nonnull String accountName) {
+    public EconomyAccount getAccount(Object owner, String accountName) {
         throw new UnsupportedOperationException();
     }
 
-    @Nonnull
-    public EconomyAccount createAccount(@Nonnull Object owner, @Nonnull String accountName) {
+    public EconomyAccount createAccount(Object owner, String accountName) {
         throw new UnsupportedOperationException();
     }
 }

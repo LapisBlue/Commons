@@ -33,6 +33,5 @@ import javax.annotation.Nonnull;
  */
 public interface TransactionEvent extends EconomyEvent, Cancellable {
 
-    @Nonnull
     Transaction getTransaction();
 }

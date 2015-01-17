@@ -36,18 +36,16 @@ public class BooleanTokenParser implements TokenParser<Boolean> {
     private static final ImmutableList<String> TRUE = ImmutableList.of("1", "true", "yes", "on");
     private static final ImmutableList<String> FALSE = ImmutableList.of("0", "false", "no", "off");
 
-    @Nonnull
     @Override
-    public Boolean parse(@Nonnull CommandSource source, @Nonnull String token) {
+    public Boolean parse(CommandSource source, String token) {
         token = Parsing.toLowerCase(token.trim());
         if (TRUE.contains(token)) return true;
         if (FALSE.contains(token)) return false;
         throw new InvalidTokenException(token, Boolean.class);
     }
 
-    @Nonnull
     @Override
-    public List<String> suggest(@Nonnull CommandSource source, String token) {
+    public List<String> suggest(CommandSource source, String token) {
         token = token.trim();
         if (!token.isEmpty()) {
             token = Parsing.toLowerCase(token);

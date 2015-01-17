@@ -50,24 +50,21 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
      *
      * @param source the Player, CommandBlock, or Console the command was run from
      */
-    public CommandContextImpl(@Nonnull final S source) {
+    public CommandContextImpl(final S source) {
         this.source = source;
     }
 
     @Override
-    @Nonnull
     public S getSource() {
         return source;
     }
 
     @Override
-    @Nonnull
     public String getLine() {
         return line;
     }
 
     @Override
-    @Nonnull
     public ImmutableList<String> getTokens() {
         return tokens;
     }
@@ -113,8 +110,7 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
      * @param line the raw input line
      * @return This Object for further modification
      */
-    @Nonnull
-    public CommandContextImpl<S> withLine(@Nonnull final String line) {
+    public CommandContextImpl<S> withLine(final String line) {
         this.line = line;
         return this;
     }
@@ -125,8 +121,7 @@ public class CommandContextImpl<S extends CommandSource> implements CommandConte
      * @param tokens The raw tokens as defined by the Tokenizer for this command
      * @return This object for further modification
      */
-    @Nonnull
-    public CommandContextImpl<S> withTokens(@Nonnull final List<String> tokens) {
+    public CommandContextImpl<S> withTokens(final List<String> tokens) {
         this.tokens = ImmutableList.copyOf(tokens);
         return this;
     }

@@ -96,7 +96,6 @@ public final class Transaction {
      * @param account The EconomyAccount which this Transaction applies to
      * @return A new Transaction which will operate on the specified account
      */
-    @Nonnull
     public static Transaction on(EconomyAccount account) {
         return new Transaction(account);
     }
@@ -109,7 +108,6 @@ public final class Transaction {
      * @param initiator Any object identifying the origin of this Transaction.
      * @return This object for further modification
      */
-    @Nonnull
     public Transaction withInitiator(Object initiator) {
         validateState(Status.INCOMPLETE);
         this.initiator = initiator;
@@ -124,7 +122,6 @@ public final class Transaction {
      * @param target Any object identifying this Transaction's target; usually the account holder.
      * @return This object for further modification
      */
-    @Nonnull
     public Transaction withTarget(Object target) {
         validateState(Status.INCOMPLETE);
         this.target = target;
@@ -141,7 +138,6 @@ public final class Transaction {
      * was purchased, but can be arbitrary data for event listeners to use.
      * @return This object for further modification
      */
-    @Nonnull
     public Transaction withReason(Object reason) {
         validateState(Status.INCOMPLETE);
         this.reason = reason;
@@ -160,7 +156,6 @@ public final class Transaction {
      * @see #add(double)
      * @see #subtract(double)
      */
-    @Nonnull
     public Transaction withAbsolute(Double balance) {
         validateState(Status.INCOMPLETE);
         this.balance = balance;
@@ -170,7 +165,6 @@ public final class Transaction {
     /**
      * @return The EconomyAccount which this Transaction applies to
      */
-    @Nonnull
     public EconomyAccount getAccount() {
         return account;
     }
@@ -221,7 +215,6 @@ public final class Transaction {
      * @param amount The amount to increase the account balance by
      * @return This object for further modification
      */
-    @Nonnull
     public Transaction add(double amount) {
         delta += amount;
         return this;
@@ -233,7 +226,6 @@ public final class Transaction {
      * @param amount The amount to reduce the account balance by
      * @return This object for further modification
      */
-    @Nonnull
     public Transaction subtract(double amount) {
         delta -= amount;
         return this;
@@ -245,7 +237,6 @@ public final class Transaction {
      * @param amount The amount that the new account balance should be
      * @return This object for further modification
      */
-    @Nonnull
     public Transaction setAbsolute(double amount) {
         balance = amount;
         return this;

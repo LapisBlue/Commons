@@ -35,12 +35,11 @@ public class EconomyEventImpl implements EconomyEvent {
 
     private final EconomyAccount account;
 
-    public EconomyEventImpl(@Nonnull EconomyAccount account) {
+    public EconomyEventImpl(EconomyAccount account) {
         this.account = Preconditions.checkNotNull(account, "account");
     }
 
     @Override
-    @Nonnull
     public EconomyAccount getAccount() {
         return account;
     }

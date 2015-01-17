@@ -30,8 +30,7 @@ import javax.annotation.Nonnull;
  * Anything that can be invoked as a command
  */
 public interface CommandInvocationTarget<S extends CommandSource> {
-    void invoke(@Nonnull CommandContext<S> context);
+    void invoke(CommandContext<S> context);
 
-    @Nonnull
     String getName();
 }

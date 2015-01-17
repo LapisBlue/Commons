@@ -50,7 +50,7 @@ public class TokenParserRegistry {
 
     @SuppressWarnings("unchecked")
     @Nullable
-    public static <T> TokenParser<T> get(@Nonnull Class<T> clazz) {
+    public static <T> TokenParser<T> get(Class<T> clazz) {
         TokenParser<T> t;
         lock.readLock().lock();
         {

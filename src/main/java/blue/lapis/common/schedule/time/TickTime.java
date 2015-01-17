@@ -62,22 +62,18 @@ public final class TickTime implements Time {
         return time;
     }
 
-    @Nonnull
     public TickTime add(TickDuration duration) {
         return new TickTime(time + duration.getTicks());
     }
 
-    @Nonnull
     public TickTime subtract(TickDuration duration) {
         return new TickTime(time - duration.getTicks());
     }
 
-    @Nonnull
     public TickTime plus(TickDuration duration) {
         return add(duration);
     }
 
-    @Nonnull
     public TickTime minus(TickDuration duration) {
         return subtract(duration);
     }

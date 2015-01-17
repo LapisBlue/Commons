@@ -39,8 +39,7 @@ import java.util.List;
 public class PlayerTokenParser implements TokenParser<Player> {
 
     @Override
-    @Nonnull
-    public Player parse(@Nonnull final CommandSource source, @Nonnull final String token) {
+    public Player parse(final CommandSource source, final String token) {
         Collection<Player> players = LapisCommonsPlugin.getGame().getServer().get().getOnlinePlayers();
 
         // TODO: strip off leading "p:" ?
@@ -61,8 +60,7 @@ public class PlayerTokenParser implements TokenParser<Player> {
     }
 
     @Override
-    @Nonnull
-    public List<String> suggest(@Nonnull final CommandSource source, @Nonnull final String partial) {
+    public List<String> suggest(final CommandSource source, final String partial) {
         List<String> results = Lists.newArrayList();
         Collection<Player> players = LapisCommonsPlugin.getGame().getServer().get().getOnlinePlayers();
 

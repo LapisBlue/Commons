@@ -37,7 +37,6 @@ public class PrefixBalanceFormatter extends AbstractBalanceFormatter {
         super(prefix);
     }
 
-    @Nonnull
     @Override
     public String format(double amount) {
         if (amount == 1.0d) {

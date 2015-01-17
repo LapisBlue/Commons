@@ -34,9 +34,8 @@ import java.util.List;
  * Converts tokens into Integers, much like the name would suggest.
  */
 public class IntegerTokenParser implements TokenParser<Integer> {
-    @Nonnull
     @Override
-    public Integer parse(@Nonnull CommandSource source, @Nonnull String token) {
+    public Integer parse(CommandSource source, String token) {
         try {
             return Integer.valueOf(token.trim());
         } catch (NumberFormatException e) {
@@ -44,9 +43,8 @@ public class IntegerTokenParser implements TokenParser<Integer> {
         }
     }
 
-    @Nonnull
     @Override
-    public List<String> suggest(@Nonnull CommandSource source, String token) {
+    public List<String> suggest(CommandSource source, String token) {
         String match = token.trim();
         if (match.length() == 0) return ImmutableList.of("1");
         char ch = match.charAt(0);

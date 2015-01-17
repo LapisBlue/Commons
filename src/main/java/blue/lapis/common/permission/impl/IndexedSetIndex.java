@@ -51,7 +51,7 @@ final class IndexedSetIndex<T> {
      * @param bit The object to declare
      * @return The bit number which represents this object
      */
-    public int declare(@Nonnull T bit) {
+    public int declare(T bit) {
         int existing = bits.indexOf(bit);
         if (existing >= 0) return existing;
 
@@ -65,7 +65,7 @@ final class IndexedSetIndex<T> {
      * @param bit The object being queried
      * @return The index of the supplied object, or -1 if no such entry exists.
      */
-    public int indexOf(@Nonnull T bit) {
+    public int indexOf(T bit) {
         return bits.indexOf(bit);
     }
 

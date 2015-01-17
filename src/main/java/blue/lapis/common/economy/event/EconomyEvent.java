@@ -32,6 +32,5 @@ import javax.annotation.Nonnull;
  */
 public interface EconomyEvent extends Event {
 
-    @Nonnull
     EconomyAccount getAccount();
 }

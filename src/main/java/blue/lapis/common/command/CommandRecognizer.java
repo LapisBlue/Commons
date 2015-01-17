@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
  * the first match with a matching CommandConfiguration.
  */
 public interface CommandRecognizer {
-    boolean recognize(@Nonnull final CommandSource source,
-                      @Nonnull final String inputLine,
-                      @Nonnull final LapisCommand command);
+    boolean recognize(final CommandSource source,
+                      final String inputLine,
+                      final LapisCommand command);
 }

@@ -33,16 +33,15 @@ public class TransactionException extends Exception {
 
     private final Transaction transaction;
 
-    public TransactionException(@Nonnull final Transaction t) {
+    public TransactionException(final Transaction t) {
         this.transaction = t;
     }
 
-    public TransactionException(@Nonnull final String message, @Nonnull final Transaction t) {
+    public TransactionException(final String message, final Transaction t) {
         super(message);
         this.transaction = t;
     }
 
-    @Nonnull
     public Transaction getTransaction() {
         return transaction;
     }

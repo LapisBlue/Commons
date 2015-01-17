@@ -45,8 +45,7 @@ public final class BalanceFormatterRegistry {
      * @param prefix The account-prefix for the currency in question
      * @return A CurrencyFormatter which can express the quantity and units of currency of this type
      */
-    @Nonnull
-    public static BalanceFormatter get(@Nonnull String prefix) {
+    public static BalanceFormatter get(String prefix) {
         if (registrations.containsKey(prefix)) {
             mutex.readLock().lock();
             BalanceFormatter result = registrations.get(prefix);
@@ -68,7 +67,7 @@ public final class BalanceFormatterRegistry {
      * @param formatter A CurrencyFormatter which can turn amounts of this currency into a human-readable
      * String
      */
-    public void register(@Nonnull String prefix, @Nonnull BalanceFormatter formatter) {
+    public void register(String prefix, BalanceFormatter formatter) {
         mutex.writeLock().lock();
         registrations.put(prefix, formatter);
         mutex.writeLock().unlock();

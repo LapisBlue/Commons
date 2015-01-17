@@ -31,6 +31,5 @@ import javax.annotation.Nonnull;
  */
 public interface Tokenizer {
 
-    @Nonnull
-    ImmutableList<String> getTokens(@Nonnull final String s);
+    ImmutableList<String> getTokens(final String s);
 }

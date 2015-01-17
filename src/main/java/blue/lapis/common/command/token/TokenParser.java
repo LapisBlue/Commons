@@ -43,8 +43,7 @@ public interface TokenParser<T> {
      *
      * @throws InvalidTokenException if the String does not appear to match any object
      */
-    @Nonnull
-    T parse(@Nonnull CommandSource source, @Nonnull String token);
+    T parse(CommandSource source, String token);
 
     /**
      * Get tab-complete suggestions for this parser
@@ -53,6 +52,5 @@ public interface TokenParser<T> {
      * @param token The token to generate tab-complete suggestions for
      * @return a List of possible completions, or an empty List if none are available
      */
-    @Nonnull
-    List<String> suggest(@Nonnull CommandSource source, String token);
+    List<String> suggest(CommandSource source, String token);
 }

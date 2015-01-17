@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package blue.lapis.common.permission.impl;
 
 import blue.lapis.common.command.impl.Parsing;
@@ -37,7 +36,7 @@ public class CompoundGroup extends StandardGroup {
 
     private IndexedSet<Group> supers;
 
-    public CompoundGroup(@Nonnull String name) {
+    public CompoundGroup(String name) {
         super(name);
         List<String> implication = Parsing.split(name, "=>");
         Preconditions.checkArgument(implication.size() == 2,

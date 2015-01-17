@@ -35,6 +35,5 @@ public interface BalanceFormatter {
      * @param amount The amount of currency to render
      * @return A formatted String expressing the currency's quantity and units.
      */
-    @Nonnull
     String format(double amount);
 }

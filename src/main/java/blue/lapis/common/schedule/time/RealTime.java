@@ -40,7 +40,6 @@ public final class RealTime implements Time {
         this.timestamp = timestamp;
     }
 
-    @Nonnull
     public static RealTime now() {
         return new RealTime(System.currentTimeMillis());
     }
@@ -56,7 +55,6 @@ public final class RealTime implements Time {
         }
     }
 
-    @Nonnull
     public TickTime toTickTime() {
         return TickTime.now().plus(this.minus(RealTime.now()).asTickDuration());
     }

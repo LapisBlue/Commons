@@ -57,52 +57,42 @@ public class RealDuration implements Duration {
         this.milliseconds = millis;
     }
 
-    @Nonnull
     public static RealDuration milliseconds(final long num) {
         return new RealDuration(num);
     }
 
-    @Nonnull
     public static RealDuration seconds(final double num) {
         return new RealDuration((long) (num * SECONDS_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration minutes(final double num) {
         return new RealDuration((long) (num * MINUTES_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration hours(final double num) {
         return new RealDuration((long) (num * HOURS_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration days(final double num) {
         return new RealDuration((long) (num * DAYS_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration weeks(final double num) {
         return new RealDuration((long) (num * WEEKS_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration months(final double num) {
         return new RealDuration((long) (num * MONTHS_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration years(final double num) {
         return new RealDuration((long) (num * YEARS_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration decades(final double num) {
         return new RealDuration((long) (num * DECADES_TO_MILLIS));
     }
 
-    @Nonnull
     public static RealDuration centuries(final double num) {
         return new RealDuration((long) (num * CENTURIES_TO_MILLIS));
     }
@@ -148,34 +138,28 @@ public class RealDuration implements Duration {
     }
 
     @Override
-    @Nonnull
     public TickDuration asTickDuration() {
         return new TickDuration((long) (milliseconds * Time.MILLIS_TO_TICKS));
     }
 
     @Override
-    @Nonnull
     public RealDuration asRealDuration() {
         return this;
     }
 
-    @Nonnull
-    public RealDuration add(@Nonnull RealDuration other) {
+    public RealDuration add(RealDuration other) {
         return new RealDuration(this.milliseconds + other.milliseconds);
     }
 
-    @Nonnull
-    public RealDuration subtract(@Nonnull final RealDuration other) {
+    public RealDuration subtract(final RealDuration other) {
         return new RealDuration(this.milliseconds - other.milliseconds);
     }
 
-    @Nonnull
-    public RealDuration plus(@Nonnull final RealDuration other) {
+    public RealDuration plus(final RealDuration other) {
         return add(other);
     }
 
-    @Nonnull
-    public RealDuration minus(@Nonnull final RealDuration other) {
+    public RealDuration minus(final RealDuration other) {
         return subtract(other);
     }
 
