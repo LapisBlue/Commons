@@ -25,7 +25,7 @@ tasks.withType(JavaCompile) {
 // Project repositories
 repositories {
     mavenCentral()
-    maven { url 'http://repo.spongepowered.org/Sponge/maven' }
+    maven { url 'http://repo.spongepowered.org/maven' }
 }
 
 // Project dependencies
