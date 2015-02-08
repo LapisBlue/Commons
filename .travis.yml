@@ -1,3 +1,4 @@
+sudo: false
 language: java
 jdk:
   - openjdk6
@@ -12,4 +13,4 @@ env:
     - secure: WtEeGDHXX9F8ozizapxpSq7lZgNFjeSkq7DqlI8t0k9AiEejAjeXe0b7nqFpo0y2rCjs+rjpmEM3g9+J1RljuYujBSiUqtsIPcuY2OfeO5ESITlBuPhZpC5sqfDe+JkbxozIhURV63628eAeYoQZnKxO1Jq5R9Tk/05khpvB1U0=
 after_success:
   - git clone $LAPIS_DEPLOY $DEPLOY_ROOT &&
-    $DEPLOY_ROOT/javadocs.sh commons "./gradlew javadoc -x :SpongeAPI:javadoc" build/docs/javadoc
+    $DEPLOY_ROOT/javadocs commons "./gradlew javadoc -x :SpongeAPI:javadoc" build/docs/javadoc
