@@ -19,7 +19,7 @@
             <package name="javax" withSubpackages="true" static="false"/>
         </value>
     </option>
-    <option name="RIGHT_MARGIN" value="150"/>
+    <option name="RIGHT_MARGIN" value="120"/>
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true"/>
     <option name="ENABLE_JAVADOC_FORMATTING" value="false"/>
     <option name="JD_ALIGN_PARAM_COMMENTS" value="false"/>
