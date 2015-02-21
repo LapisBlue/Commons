@@ -24,8 +24,6 @@ package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.formatter.BalanceFormatter;
 
-import javax.annotation.Nonnull;
-
 /**
  * <p>Represents a single account of a single type of currency. Generally, accounts of a common currency have a
  * common prefix in their ID (such as "gold:savings" and "gold:inventory", or even "gold"). This interface does

@@ -22,15 +22,16 @@
  */
 package blue.lapis.common.command;
 
+import static org.junit.Assert.assertEquals;
+
 import blue.lapis.common.CommonsTests;
 import blue.lapis.common.command.impl.StandardTokenizer;
+
 import com.google.common.collect.ImmutableList;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class TokenizerTest {
     private final StandardTokenizer tokenizer = new StandardTokenizer();

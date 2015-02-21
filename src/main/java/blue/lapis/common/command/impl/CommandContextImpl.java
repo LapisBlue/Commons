@@ -26,14 +26,15 @@ import blue.lapis.common.command.CommandContext;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
 import blue.lapis.common.command.token.TokenParserRegistry;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Lapis implementation of {@link CommandContext}

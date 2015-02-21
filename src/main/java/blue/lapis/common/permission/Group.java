@@ -23,9 +23,8 @@
 package blue.lapis.common.permission;
 
 import blue.lapis.common.permission.impl.StandardGroup;
-import com.google.common.collect.ImmutableSet;
 
-import javax.annotation.Nonnull;
+import com.google.common.collect.ImmutableSet;
 
 /**
  * Represents a collection of objects which permissions apply to, along with their inheritance

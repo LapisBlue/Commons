@@ -26,13 +26,13 @@ import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.impl.CommandContextImpl;
 import blue.lapis.common.command.impl.StandardCommandRecognizer;
 import blue.lapis.common.command.impl.StandardTokenizer;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**

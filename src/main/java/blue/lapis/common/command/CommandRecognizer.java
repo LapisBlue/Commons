@@ -24,8 +24,6 @@ package blue.lapis.common.command;
 
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
-
 /**
  * Simple yes-no interface: Given the CommandSource, the inputline String, and a Command, say yes or no about
  * whether to invoke it. The typical use scenario is to iterate over the recognizers of each Command and invoke

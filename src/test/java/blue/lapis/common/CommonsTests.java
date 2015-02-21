@@ -22,6 +22,9 @@
  */
 package blue.lapis.common;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -33,9 +36,6 @@ import org.spongepowered.api.event.state.PreInitializationEvent;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.List;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public final class CommonsTests {
 

@@ -24,7 +24,6 @@ package blue.lapis.common.command.token;
 
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**

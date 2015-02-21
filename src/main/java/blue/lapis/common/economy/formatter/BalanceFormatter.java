@@ -22,8 +22,6 @@
  */
 package blue.lapis.common.economy.formatter;
 
-import javax.annotation.Nonnull;
-
 /**
  * Produces formatted currency Strings for display
  */

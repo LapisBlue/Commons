@@ -24,8 +24,6 @@ package blue.lapis.common.command;
 
 import com.google.common.collect.ImmutableList;
 
-import javax.annotation.Nonnull;
-
 /**
  * Simple interface for converting a joined String into a series of tokens.
  */

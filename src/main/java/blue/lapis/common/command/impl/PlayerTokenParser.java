@@ -25,11 +25,11 @@ package blue.lapis.common.command.impl;
 import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
+
 import com.google.common.collect.Lists;
 import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.List;
 

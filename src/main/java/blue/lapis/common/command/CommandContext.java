@@ -23,10 +23,10 @@
 package blue.lapis.common.command;
 
 import blue.lapis.common.command.token.InvalidTokenException;
+
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**

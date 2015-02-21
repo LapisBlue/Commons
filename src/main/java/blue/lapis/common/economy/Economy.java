@@ -24,9 +24,9 @@ package blue.lapis.common.economy;
 
 import blue.lapis.common.economy.formatter.BalanceFormatterRegistry;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents the economy as a whole. This class is currently under API scrutiny,

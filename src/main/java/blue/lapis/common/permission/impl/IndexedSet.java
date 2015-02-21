@@ -24,7 +24,6 @@ package blue.lapis.common.permission.impl;
 
 import com.google.common.collect.ImmutableSet;
 
-import javax.annotation.Nonnull;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Iterator;

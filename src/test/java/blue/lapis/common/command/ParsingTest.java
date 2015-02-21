@@ -22,7 +22,12 @@
  */
 package blue.lapis.common.command;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import blue.lapis.common.command.impl.Parsing;
+
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
@@ -30,8 +35,6 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.regex.Pattern;
-
-import static org.junit.Assert.*;
 
 /**
  *

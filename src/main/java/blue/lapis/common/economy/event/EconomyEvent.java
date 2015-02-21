@@ -23,9 +23,8 @@
 package blue.lapis.common.economy.event;
 
 import blue.lapis.common.economy.EconomyAccount;
-import org.spongepowered.api.util.event.Event;
 
-import javax.annotation.Nonnull;
+import org.spongepowered.api.util.event.Event;
 
 /**
  * Base interface for events related to economy.

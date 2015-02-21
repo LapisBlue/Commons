@@ -24,9 +24,8 @@ package blue.lapis.common.economy.event.impl;
 
 import blue.lapis.common.economy.Transaction;
 import blue.lapis.common.economy.event.TransactionEvent;
-import com.google.common.base.Preconditions;
 
-import javax.annotation.Nonnull;
+import com.google.common.base.Preconditions;
 
 public class TransactionEventImpl extends EconomyEventImpl implements TransactionEvent {
     private final Transaction transaction;

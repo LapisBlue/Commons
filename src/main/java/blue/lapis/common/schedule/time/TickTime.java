@@ -22,8 +22,6 @@
  */
 package blue.lapis.common.schedule.time;
 
-import javax.annotation.Nonnull;
-
 /**
  * <p>Represents an absolute number of ticks since the overworld was first created.</p>
  *
