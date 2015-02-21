@@ -25,6 +25,10 @@ tasks.withType(JavaCompile) {
 // Project repositories
 repositories {
     mavenCentral()
+    maven {
+        name = 'sonatype-nexus'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
     maven { url 'http://repo.spongepowered.org/maven' }
 }
 
