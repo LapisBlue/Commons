@@ -24,7 +24,6 @@ package blue.lapis.common.permission.impl;
 
 import com.google.common.collect.Lists;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**

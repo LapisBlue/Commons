@@ -24,9 +24,9 @@ package blue.lapis.common.permission.impl;
 
 import blue.lapis.common.command.impl.Parsing;
 import blue.lapis.common.permission.Group;
+
 import com.google.common.base.Preconditions;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**

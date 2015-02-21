@@ -23,10 +23,9 @@
 package blue.lapis.common.permission.impl;
 
 import blue.lapis.common.permission.Group;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
-
-import javax.annotation.Nonnull;
 
 public class StandardGroup implements Group {
 

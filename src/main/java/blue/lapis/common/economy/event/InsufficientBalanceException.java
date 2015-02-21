@@ -24,8 +24,6 @@ package blue.lapis.common.economy.event;
 
 import blue.lapis.common.economy.Transaction;
 
-import javax.annotation.Nonnull;
-
 /**
  * Thrown when an EconomyAccount could not apply a Transaction due to insufficient funds.
  */

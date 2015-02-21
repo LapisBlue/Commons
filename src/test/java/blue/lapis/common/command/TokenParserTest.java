@@ -22,10 +22,17 @@
  */
 package blue.lapis.common.command;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import blue.lapis.common.CommonsTests;
 import blue.lapis.common.command.token.InvalidTokenException;
 import blue.lapis.common.command.token.TokenParser;
 import blue.lapis.common.command.token.TokenParserRegistry;
+
 import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import org.junit.Before;
@@ -34,9 +41,6 @@ import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.command.CommandSource;
 
 import javax.annotation.Nonnull;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 public class TokenParserTest {
     private final CommandSource source = mock(CommandSource.class);

@@ -25,8 +25,9 @@ package blue.lapis.common.schedule;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 /**
  * Internal class representing a forecast of future task executions.

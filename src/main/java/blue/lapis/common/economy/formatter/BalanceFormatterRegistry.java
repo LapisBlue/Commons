@@ -24,7 +24,6 @@ package blue.lapis.common.economy.formatter;
 
 import com.google.common.collect.Maps;
 
-import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 

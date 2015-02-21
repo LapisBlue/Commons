@@ -24,8 +24,6 @@ package blue.lapis.common.command;
 
 import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
-
 /**
  * Anything that can be invoked as a command
  */

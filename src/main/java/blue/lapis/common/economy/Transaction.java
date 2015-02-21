@@ -26,10 +26,10 @@ import blue.lapis.common.LapisCommonsPlugin;
 import blue.lapis.common.economy.event.TransactionEvent;
 import blue.lapis.common.economy.event.TransactionException;
 import blue.lapis.common.economy.event.impl.TransactionEventImpl;
+
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.FutureCallback;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**

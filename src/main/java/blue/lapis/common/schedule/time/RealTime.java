@@ -22,11 +22,11 @@
  */
 package blue.lapis.common.schedule.time;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
+
+import javax.annotation.Nullable;
 
 /**
  * Represents a time since the Epoch

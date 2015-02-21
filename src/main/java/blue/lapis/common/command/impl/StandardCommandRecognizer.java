@@ -24,9 +24,8 @@ package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.CommandRecognizer;
 import blue.lapis.common.command.LapisCommand;
-import org.spongepowered.api.util.command.CommandSource;
 
-import javax.annotation.Nonnull;
+import org.spongepowered.api.util.command.CommandSource;
 
 /**
  * Straightforward implementation of CommandRecognizer

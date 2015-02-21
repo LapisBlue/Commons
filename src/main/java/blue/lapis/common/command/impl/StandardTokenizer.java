@@ -23,10 +23,10 @@
 package blue.lapis.common.command.impl;
 
 import blue.lapis.common.command.Tokenizer;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**

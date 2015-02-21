@@ -25,6 +25,7 @@ package blue.lapis.common.schedule;
 import blue.lapis.common.schedule.time.Duration;
 import blue.lapis.common.schedule.time.RealDuration;
 import blue.lapis.common.schedule.time.RealTime;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

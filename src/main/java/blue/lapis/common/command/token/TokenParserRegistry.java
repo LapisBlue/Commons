@@ -25,13 +25,14 @@ package blue.lapis.common.command.token;
 import blue.lapis.common.command.impl.BooleanTokenParser;
 import blue.lapis.common.command.impl.IntegerTokenParser;
 import blue.lapis.common.command.impl.PlayerTokenParser;
+
 import com.google.common.collect.Maps;
 import org.spongepowered.api.entity.player.Player;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import javax.annotation.Nullable;
 
 /**
  * Thread-safe registry/factory for {@link TokenParser}s, which resolve Strings into typesafe game objects.
