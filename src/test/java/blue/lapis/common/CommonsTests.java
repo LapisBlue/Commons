@@ -25,7 +25,6 @@ package blue.lapis.common;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.slf4j.LoggerFactory;
@@ -61,6 +60,6 @@ public final class CommonsTests {
         Game game = LapisCommonsPlugin.getGame();
         Server server = mock(Server.class);
         when(server.getOnlinePlayers()).thenReturn(ImmutableList.copyOf(playerList));
-        when(game.getServer()).thenReturn(Optional.of(server));
+        when(game.getServer()).thenReturn(server);
     }
 }
