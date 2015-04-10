@@ -58,3 +58,7 @@ license {
         java = 'SLASHSTAR_STYLE'
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
